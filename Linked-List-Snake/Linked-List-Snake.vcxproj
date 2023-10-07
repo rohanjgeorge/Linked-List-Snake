@@ -145,6 +145,7 @@
     <ClInclude Include="header\EventService.h" />
     <ClInclude Include="header\GameService.h" />
     <ClInclude Include="header\GraphicService.h" />
+    <ClInclude Include="header\IUIController.h" />
     <ClInclude Include="header\ServiceLocator.h" />
     <ClInclude Include="header\SoundService.h" />
     <ClInclude Include="header\UIService.h" />

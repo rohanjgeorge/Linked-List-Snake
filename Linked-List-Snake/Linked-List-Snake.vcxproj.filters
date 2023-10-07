@@ -56,5 +56,8 @@
     <ClInclude Include="header\UIService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="header\IUIController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
