@@ -38,6 +38,7 @@ void ServiceLocator::initialize()
 
 void ServiceLocator::update()
 {
+	event_service->update();
 	ui_service->update();
 	graphic_service->update();
 }

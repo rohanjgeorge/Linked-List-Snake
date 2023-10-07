@@ -2,6 +2,7 @@
 #include "../header/GameService.h"
 #include "../header/GraphicService.h"
 #include "../header/SoundService.h"
+#include "../header/EventService.h"
 
 MainMenuUIController::MainMenuUIController() { game_window = nullptr; }
 
@@ -87,15 +88,7 @@ void MainMenuUIController::positionButtons()
 
 void MainMenuUIController::update()
 {
-    if (pressedMouseButton())
-    {
-        handleButtonInteractions();
-        mouse_button_pressed = true;
-    }
-    else
-    {
-        mouse_button_pressed = false;
-    }
+    handleButtonInteractions();
 }
 
 void MainMenuUIController::render()
@@ -108,12 +101,8 @@ void MainMenuUIController::render()
 
 void MainMenuUIController::show() { }
 
-bool MainMenuUIController::pressedMouseButton() { return sf::Mouse::isButtonPressed(sf::Mouse::Left); }
-
 void MainMenuUIController::handleButtonInteractions()
 {
-    if (mouse_button_pressed) return;
-
     sf::Vector2f mouse_position = sf::Vector2f(sf::Mouse::getPosition(*game_window));
 
     if (clickedButton(&play_button_sprite, mouse_position))
@@ -134,5 +123,6 @@ void MainMenuUIController::handleButtonInteractions()
 
 bool MainMenuUIController::clickedButton(sf::Sprite* button_sprite, sf::Vector2f mouse_position)
 {
-    return button_sprite->getGlobalBounds().contains(mouse_position);
+    return ServiceLocator::getInstance()->getEventService()->pressedLeftMouseButton() &&
+        button_sprite->getGlobalBounds().contains(mouse_position);
 }

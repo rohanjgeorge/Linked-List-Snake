@@ -10,8 +10,6 @@ private:
 	const float button_height = 140.f;
 	const float background_alpha = 110.f;
 
-	bool mouse_button_pressed = false;
-
 	sf::RenderWindow* game_window;
 
 	// Textures:
@@ -39,7 +37,6 @@ private:
 	void scaleButton(sf::Sprite* button_to_scale);
 	void positionButtons();
 
-	bool pressedMouseButton();
 	void handleButtonInteractions();
 	bool clickedButton(sf::Sprite*, sf::Vector2f);
 
