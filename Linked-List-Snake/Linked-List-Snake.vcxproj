@@ -137,6 +137,7 @@
     <ClCompile Include="source\EventService.cpp" />
     <ClCompile Include="source\GameService.cpp" />
     <ClCompile Include="source\GraphicService.cpp" />
+    <ClCompile Include="source\MainMenuUIController.cpp" />
     <ClCompile Include="source\ServiceLocator.cpp" />
     <ClCompile Include="source\SoundService.cpp" />
     <ClCompile Include="source\SplashScreenUIController.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="header\GameService.h" />
     <ClInclude Include="header\GraphicService.h" />
     <ClInclude Include="header\IUIController.h" />
+    <ClInclude Include="header\MainMenuUIController.h" />
     <ClInclude Include="header\ServiceLocator.h" />
     <ClInclude Include="header\SoundService.h" />
     <ClInclude Include="header\SplashScreenUIController.h" />
