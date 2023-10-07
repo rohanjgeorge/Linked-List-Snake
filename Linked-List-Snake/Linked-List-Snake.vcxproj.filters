@@ -21,9 +21,21 @@
     <ClCompile Include="source\GameService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\ServiceLocator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GraphicService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\GameService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ServiceLocator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\GraphicService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

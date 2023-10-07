@@ -1,4 +1,5 @@
 #pragma once
+#include "ServiceLocator.h"
 
 enum class GameState
 {
@@ -11,8 +12,11 @@ class GameService
 {
 private:
 	static GameState current_state;
+	ServiceLocator* service_locator;
+	sf::RenderWindow* game_window;
 
 	void initialize();
+	void initializeVariables();
 	void destroy();
 
 public:
@@ -22,6 +26,7 @@ public:
 	void ignite();
 	void update();
 	void render();
+	bool isRunning();
 
 	static void setGameState(GameState new_state);
 	static GameState getGameState();
