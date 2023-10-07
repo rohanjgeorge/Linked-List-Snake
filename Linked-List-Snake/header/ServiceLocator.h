@@ -3,6 +3,7 @@
 class EventService;
 class GraphicService;
 class SoundService;
+class UIService;
 
 class ServiceLocator
 {
@@ -11,6 +12,7 @@ private:
     EventService* event_service;
     GraphicService* graphic_service;
     SoundService* sound_service;
+    UIService* ui_service;
 
     ServiceLocator();
     ~ServiceLocator();
@@ -29,5 +31,6 @@ public:
     EventService* getEventService();
     GraphicService* getGraphicService();
     SoundService* getSoundService();
+    UIService* getUIService();
     void deleteServiceLocator();
 };

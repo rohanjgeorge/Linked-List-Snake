@@ -139,6 +139,7 @@
     <ClCompile Include="source\GraphicService.cpp" />
     <ClCompile Include="source\ServiceLocator.cpp" />
     <ClCompile Include="source\SoundService.cpp" />
+    <ClCompile Include="source\UIService.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\EventService.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="header\GraphicService.h" />
     <ClInclude Include="header\ServiceLocator.h" />
     <ClInclude Include="header\SoundService.h" />
+    <ClInclude Include="header\UIService.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
