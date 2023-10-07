@@ -1,13 +1,14 @@
 #pragma once
 #include <sfml/Graphics/RenderWindow.hpp>
-
 class GraphicService;
+class SoundService;
 
 class ServiceLocator
 {
 private:
     sf::RenderWindow* game_window;
     GraphicService* graphic_service;
+    SoundService* sound_service;
 
     ServiceLocator();
     ~ServiceLocator();
@@ -24,5 +25,6 @@ public:
 
     sf::RenderWindow* getGameWindow();
     GraphicService* getGraphicService();
+    SoundService* getSoundService();
     void deleteServiceLocator();
 };
