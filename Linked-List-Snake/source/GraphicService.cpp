@@ -56,7 +56,7 @@ sf::RenderWindow* GraphicService::getGameWindow()
 void GraphicService::initializeText()
 {
 	loadFont();
-	setupText();
+	setDefaultText();
 }
 
 bool GraphicService::loadFont()
@@ -65,7 +65,7 @@ bool GraphicService::loadFont()
 		font_DS_DIGIB.loadFromFile("assets/fonts/DS_DIGIB.ttf");
 }
 
-void GraphicService::setupText()
+void GraphicService::setDefaultText()
 {
 	text.setFont(font_bubble_bobble);
 	text.setCharacterSize(default_font_size);
@@ -81,16 +81,13 @@ void GraphicService::drawText(sf::String text_value, sf::Vector2f text_position,
 	text.setPosition(text_position);
 
 	game_window->draw(text);
-
-	text.setCharacterSize(default_font_size);
-	text.setFillColor(sf::Color::White);
+	setDefaultText();
 }
 
 void GraphicService::drawText(sf::String text_value, float text_y_position, int text_font_size, FontType font_type)
 {
 	text.setCharacterSize(text_font_size);
 	drawText(text_value, text_y_position, font_type);
-	text.setCharacterSize(default_font_size);
 }
 
 void GraphicService::drawText(sf::String text_value, float text_y_position, FontType font_type)
@@ -98,7 +95,9 @@ void GraphicService::drawText(sf::String text_value, float text_y_position, Font
 	text.setString(text_value);
 	setTextPosition(text_y_position);
 	setFont(font_type);
+
 	game_window->draw(text);
+	setDefaultText();
 }
 
 // Position of text will be center alligned on x-axis.
