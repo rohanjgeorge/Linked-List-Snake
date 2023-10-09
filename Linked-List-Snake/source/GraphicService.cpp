@@ -15,13 +15,13 @@ void GraphicService::initialize()
 	game_window = createGameWindow();
 	setFrameRate(frame_rate);
 	initializeText();
+	initializeBackgroundImage();
 }
 
 sf::RenderWindow* GraphicService::createGameWindow()
 {
 	configureVideoMode();
-	sf::RenderWindow* window = new sf::RenderWindow(video_mode, game_window_title, sf::Style::Fullscreen);
-	return window;
+	return new sf::RenderWindow(video_mode, game_window_title, sf::Style::Fullscreen);
 }
 
 void GraphicService::configureVideoMode()
@@ -120,4 +120,35 @@ void GraphicService::setFont(FontType font_type)
 		text.setFont(font_DS_DIGIB);
 		break;
 	}
+}
+
+void GraphicService::initializeBackgroundImage()
+{
+	if (background_texture.loadFromFile("assets/textures/snake_bg.png"))
+	{
+		background_sprite.setTexture(background_texture);
+		setBackgroundAlpha();
+		scaleBackgroundImage();
+	}
+}
+
+void GraphicService::setBackgroundAlpha()
+{
+	sf::Color color = background_sprite.getColor();
+	color.a = background_alpha;
+	background_sprite.setColor(color);
+}
+
+
+void GraphicService::scaleBackgroundImage()
+{
+	background_sprite.setScale(
+		static_cast<float>(game_window->getSize().x) / background_sprite.getTexture()->getSize().x,
+		static_cast<float>(game_window->getSize().y) / background_sprite.getTexture()->getSize().y
+	);
+}
+
+void GraphicService::drawBackground()
+{
+	game_window->draw(background_sprite);
 }
