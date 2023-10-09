@@ -29,7 +29,7 @@ private:
 
 	void initializeText();
 	bool loadFont();
-	void setupText();
+	void setDefaultText();
 	void setTextPosition(float y_position);
 	void setFont(FontType font_type);
 

@@ -23,6 +23,8 @@ private:
 	bool hasQuitGame();
 	bool isKeyboardEvent();
 	void updateButtonsState();
+	void updateLeftMouseButtonState();
+	void updateRightMouseButtonState();
 
 public:
 	EventService();

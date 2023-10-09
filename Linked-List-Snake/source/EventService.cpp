@@ -30,16 +30,15 @@ void EventService::processEvents()
 
 void EventService::updateButtonsState()
 {
-    EventService* event_service = ServiceLocator::getInstance()->getEventService();
+    updateLeftMouseButtonState();
+    updateRightMouseButtonState();
+}
 
+void EventService::updateLeftMouseButtonState()
+{
     if (left_mouse_button_state == ButtonState::PRESSED && sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         left_mouse_button_state = ButtonState::HELD;
-    }
-
-    if (right_mouse_button_state == ButtonState::PRESSED && sf::Mouse::isButtonPressed(sf::Mouse::Right))
-    {
-        right_mouse_button_state = ButtonState::HELD;
     }
 
     if (left_mouse_button_state == ButtonState::RELEASED && sf::Mouse::isButtonPressed(sf::Mouse::Left))
@@ -47,14 +46,22 @@ void EventService::updateButtonsState()
         left_mouse_button_state = ButtonState::PRESSED;
     }
 
-    if (right_mouse_button_state == ButtonState::RELEASED && sf::Mouse::isButtonPressed(sf::Mouse::Right))
-    {
-        right_mouse_button_state = ButtonState::PRESSED;
-    }
-
     if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         left_mouse_button_state = ButtonState::RELEASED;
+    }
+}
+
+void EventService::updateRightMouseButtonState()
+{
+    if (right_mouse_button_state == ButtonState::PRESSED && sf::Mouse::isButtonPressed(sf::Mouse::Right))
+    {
+        right_mouse_button_state = ButtonState::HELD;
+    }
+
+    if (right_mouse_button_state == ButtonState::RELEASED && sf::Mouse::isButtonPressed(sf::Mouse::Right))
+    {
+        right_mouse_button_state = ButtonState::PRESSED;
     }
 
     if (!sf::Mouse::isButtonPressed(sf::Mouse::Right))
