@@ -56,7 +56,7 @@ void UIService::render()
 	}
 }
 
-void UIService::show()
+void UIService::showScreen()
 {
 	switch (GameService::getGameState())
 	{
