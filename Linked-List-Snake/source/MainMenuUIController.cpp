@@ -9,33 +9,7 @@ MainMenuUIController::MainMenuUIController() { game_window = nullptr; }
 void MainMenuUIController::initialize()
 {
     game_window = ServiceLocator::getInstance()->getGameWindow();
-    initializeBackgroundImage();
     initializeButtons();
-}
-
-void MainMenuUIController::initializeBackgroundImage()
-{
-    if (background_texture.loadFromFile("assets/textures/snake_bg.png"))
-    {
-        background_sprite.setTexture(background_texture);
-        setBackgroundAlpha();
-        scaleBackgroundImage();
-    }
-}
-
-void MainMenuUIController::setBackgroundAlpha()
-{
-    sf::Color color = background_sprite.getColor();
-    color.a = background_alpha;
-    background_sprite.setColor(color);
-}
-
-void MainMenuUIController::scaleBackgroundImage()
-{
-    background_sprite.setScale(
-        static_cast<float>(game_window->getSize().x) / background_sprite.getTexture()->getSize().x,
-        static_cast<float>(game_window->getSize().y) / background_sprite.getTexture()->getSize().y
-    );
 }
 
 void MainMenuUIController::initializeButtons()
@@ -79,11 +53,16 @@ void MainMenuUIController::scaleButton(sf::Sprite* button_to_scale)
 
 void MainMenuUIController::positionButtons()
 {
-    float x_position = (static_cast<float>(game_window->getSize().x) / 2) - button_width / 2;
+    float x_position = calculateLeftOffsetForButton();
 
-    play_button_sprite.setPosition({ x_position, 400.f });
-    instructions_button_sprite.setPosition({ x_position, 600.f });
-    quit_button_sprite.setPosition({ x_position, 800.f });
+    play_button_sprite.setPosition({ x_position, 500.f });
+    instructions_button_sprite.setPosition({ x_position, 700.f });
+    quit_button_sprite.setPosition({ x_position, 900.f });
+}
+
+float MainMenuUIController::calculateLeftOffsetForButton()
+{
+    return (static_cast<float>(game_window->getSize().x) / 2) - button_width / 2;
 }
 
 void MainMenuUIController::update()
@@ -93,7 +72,7 @@ void MainMenuUIController::update()
 
 void MainMenuUIController::render()
 {
-    game_window->draw(background_sprite);
+    ServiceLocator::getInstance()->getGraphicService()->drawBackground();
     game_window->draw(play_button_sprite);
     game_window->draw(instructions_button_sprite);
     game_window->draw(quit_button_sprite);
