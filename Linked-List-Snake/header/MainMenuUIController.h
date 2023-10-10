@@ -8,14 +8,10 @@ private:
 	// Constants:
 	const float button_width = 400.f;
 	const float button_height = 140.f;
-	const float background_alpha = 110.f;
 
 	sf::RenderWindow* game_window;
 
 	// Textures:
-	sf::Texture background_texture;
-	sf::Sprite background_sprite;
-
 	sf::Texture play_button_texture;
 	sf::Sprite play_button_sprite;
 
@@ -24,10 +20,6 @@ private:
 
 	sf::Texture quit_button_texture;
 	sf::Sprite quit_button_sprite;
-
-	void initializeBackgroundImage();
-	void setBackgroundAlpha();
-	void scaleBackgroundImage();
 
 	void initializeButtons();
 	bool loadButtonTexturesFromFile();
