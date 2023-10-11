@@ -1,7 +1,7 @@
 #pragma once
-#include <unordered_map>
 
-class LevelModel;
+class LevelConfiguration;
+class LevelController;
 
 enum class Level
 {
@@ -12,9 +12,19 @@ enum class Level
 class LevelService 
 {
 private:
-    std::unordered_map<Level, LevelModel> level_map;
+    LevelController* level_controller;
+    Level current_level;
+
+    void createLevelControllerAndConfig();
+    void destroy();
 
 public:
     LevelService();
     ~LevelService();
+
+    void initialize();
+    void update();
+    void render();
+
+    void createLevel(Level level_index);
 };
