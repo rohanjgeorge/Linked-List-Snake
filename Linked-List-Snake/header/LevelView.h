@@ -11,11 +11,6 @@ private:
     sf::Color background_color = sf::Color(0, 153, 0);  // Green
     sf::Color border_color = sf::Color::Black;
 
-    float border_thickness = 10.0f;
-
-    // Border offset from the ends
-    float x_offset = 40.0f;
-    float y_offset = 40.0f;
     float border_width;
     float border_height;
     
@@ -25,6 +20,10 @@ private:
     void drawLevel();
 
 public:
+    static const int border_thickness = 10;
+    static const int border_offset_left = 40;
+    static const int border_offset_top = 40;
+
     LevelView();
     ~LevelView();
 

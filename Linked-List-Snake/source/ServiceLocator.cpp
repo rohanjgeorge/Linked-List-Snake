@@ -5,6 +5,7 @@
 #include "../header/LevelService.h"
 #include "../header/UIService.h"
 #include "../header/GameService.h"
+#include "../header/ElementService.h"
 
 ServiceLocator::ServiceLocator()
 {
@@ -12,6 +13,7 @@ ServiceLocator::ServiceLocator()
 	event_service = nullptr;
 	sound_service = nullptr;
 	level_service = nullptr;
+	element_service = nullptr;
 	ui_service = nullptr;
 	game_window = nullptr;
 
@@ -26,6 +28,7 @@ void ServiceLocator::createServices()
 	graphic_service = new GraphicService();
 	sound_service = new SoundService();
 	level_service = new LevelService();
+	element_service = new ElementService();
 	ui_service = new UIService();
 }
 
@@ -38,13 +41,20 @@ void ServiceLocator::initialize()
 
 	event_service->initialize();
 	level_service->initialize();
+	element_service->initialize();
 	ui_service->initialize();
 }
 
 void ServiceLocator::update()
 {
 	event_service->update();
-	if (GameService::getGameState() == GameState::GAMEPLAY) level_service->update();
+
+	if (GameService::getGameState() == GameState::GAMEPLAY)
+	{
+		level_service->update();
+		element_service->update();
+	}
+
 	ui_service->update();
 	graphic_service->update();
 }
@@ -52,13 +62,20 @@ void ServiceLocator::update()
 void ServiceLocator::render()
 {
 	graphic_service->render();
-	if (GameService::getGameState() == GameState::GAMEPLAY) level_service->render();
+
+	if (GameService::getGameState() == GameState::GAMEPLAY)
+	{
+		level_service->render();
+		element_service->render();
+	}
+
 	ui_service->render();
 }
 
 void ServiceLocator::clearAllServices()
 {
 	delete(ui_service);
+	delete(element_service);
 	delete(level_service);
 	delete(graphic_service);
 	delete(sound_service);
@@ -80,6 +97,8 @@ GraphicService* ServiceLocator::getGraphicService() { return graphic_service; }
 SoundService* ServiceLocator::getSoundService() { return sound_service; }
 
 LevelService* ServiceLocator::getLevelService() { return level_service; }
+
+ElementService* ServiceLocator::getElementService() { return element_service; }
 
 UIService* ServiceLocator::getUIService() { return ui_service; }
 

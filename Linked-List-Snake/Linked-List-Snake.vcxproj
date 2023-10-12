@@ -140,9 +140,11 @@
     <ClCompile Include="source\GraphicService.cpp" />
     <ClCompile Include="source\LevelController.cpp" />
     <ClCompile Include="source\LevelModel.cpp" />
+    <ClCompile Include="source\LevelSelectionUIController.cpp" />
     <ClCompile Include="source\LevelView.cpp" />
     <ClCompile Include="source\LevelService.cpp" />
     <ClCompile Include="source\MainMenuUIController.cpp" />
+    <ClCompile Include="source\Obstacle.cpp" />
     <ClCompile Include="source\ServiceLocator.cpp" />
     <ClCompile Include="source\SoundService.cpp" />
     <ClCompile Include="source\SplashScreenUIController.cpp" />
@@ -156,9 +158,11 @@
     <ClInclude Include="header\IUIController.h" />
     <ClInclude Include="header\LevelController.h" />
     <ClInclude Include="header\LevelModel.h" />
+    <ClInclude Include="header\LevelSelectionUIController.h" />
     <ClInclude Include="header\LevelView.h" />
     <ClInclude Include="header\LevelService.h" />
     <ClInclude Include="header\MainMenuUIController.h" />
+    <ClInclude Include="header\Obstacle.h" />
     <ClInclude Include="header\ServiceLocator.h" />
     <ClInclude Include="header\SoundService.h" />
     <ClInclude Include="header\SplashScreenUIController.h" />

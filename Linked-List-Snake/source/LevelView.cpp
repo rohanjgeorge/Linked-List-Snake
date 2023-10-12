@@ -27,7 +27,7 @@ void LevelView::initializeBackground()
 void LevelView::initializeBorder()
 {
     border_rect.setSize(sf::Vector2f(border_width, border_height));
-    border_rect.setPosition(x_offset, y_offset);
+    border_rect.setPosition(border_offset_left, border_offset_top);
     border_rect.setFillColor(sf::Color::Transparent);
     border_rect.setOutlineColor(border_color);
     border_rect.setOutlineThickness(border_thickness);
@@ -35,8 +35,8 @@ void LevelView::initializeBorder()
 
 void LevelView::calculateBorderExtents()
 {
-    border_width = game_window->getSize().x - 2 * x_offset;
-    border_height = game_window->getSize().y - 2 * y_offset;
+    border_width = game_window->getSize().x - 2 * border_offset_left;
+    border_height = game_window->getSize().y - 2 * border_offset_top;
 }
 
 void LevelView::update()

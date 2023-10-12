@@ -39,3 +39,8 @@ LevelView* LevelController::getLevelView()
 {
 	return level_view;
 }
+
+const std::vector<ElementData>& LevelController::getElementDataList(int level_index)
+{
+	return level_model->getElementDataList(level_index);
+}

@@ -86,7 +86,7 @@ void MainMenuUIController::handleButtonInteractions()
 
     if (clickedButton(&play_button_sprite, mouse_position))
     {
-        GameService::setGameState(GameState::GAMEPLAY);
+        GameService::setGameState(GameState::LEVEL_SELECTION);
         ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
     }
 

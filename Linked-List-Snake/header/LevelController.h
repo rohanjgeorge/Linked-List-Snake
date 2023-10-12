@@ -1,6 +1,7 @@
 #pragma once
+#include <vector>
+#include "LevelModel.h"
 
-class LevelModel;
 class LevelView;
 
 class LevelController
@@ -19,4 +20,5 @@ public:
 
     LevelModel* getLevelModel();
     LevelView* getLevelView();
+    const std::vector<ElementData>& getElementDataList(int level_index);
 };

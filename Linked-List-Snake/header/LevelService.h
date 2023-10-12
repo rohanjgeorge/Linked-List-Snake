@@ -15,7 +15,8 @@ private:
     LevelController* level_controller;
     Level current_level;
 
-    void createLevelControllerAndConfig();
+    void createLevelController();
+    void spawnLevelElements(Level level_index);
     void destroy();
 
 public:
@@ -27,4 +28,5 @@ public:
     void render();
 
     void createLevel(Level level_index);
+    LevelController* getLevelController();
 };

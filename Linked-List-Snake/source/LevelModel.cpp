@@ -1,4 +1,6 @@
 #include "../header/LevelModel.h"
+#include "../header/LevelService.h"
+#include "../header/ElementService.h"
 
 LevelModel::LevelModel()
 {
@@ -18,11 +20,26 @@ void LevelModel::initialize(int grid_width, int grid_height)
 
 void LevelModel::initializeLevelData()
 {
-	level_data_list.push_back({ Level::ONE, level_one_data_list });
-	level_data_list.push_back({ Level::TWO, level_two_data_list });
+	level_data_list.push_back(LevelData(Level::ONE, &level_one_data_list));
+	level_data_list.push_back(LevelData(Level::TWO, &level_two_data_list));
 }
 
-std::vector<LevelData> LevelModel::getLevelDataList()
+const std::vector<LevelData>& LevelModel::getLevelDataList()
 {
 	return level_data_list;
+}
+
+const std::vector<ElementData>& LevelModel::getElementDataList(int index)
+{
+	return *level_data_list[index].element_data_list;
+}
+
+float LevelModel::getGridCellWidth()
+{
+	return grid_cell_width;
+}
+
+float LevelModel::getGridCellHeight()
+{
+	return grid_cell_height;
 }
