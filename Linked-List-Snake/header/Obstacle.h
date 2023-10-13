@@ -8,25 +8,24 @@ private:
 
     static sf::Texture obstacle_texture;
     static sf::Sprite obstacle_sprite;
-    
-    static bool texture_loaded;
 
-    int x_index;
-    int y_index;
+    sf::Vector2i grid_position;
 
-    float cell_width;
-    float cell_height;
+    static float cell_width;
+    static float cell_height;
 
-    void initializeObstacleSprite();
-    void scaleObstacleSprite();
+    static void initializeObstacleSprite();
+    static void scaleObstacleSprite();
     void setObstacleSpritePosition();
     void drawObstacle();
 
 public:
-    Obstacle(int x, int y, float cell_width, float cell_height);
+    Obstacle(sf::Vector2i position);
     ~Obstacle();
 
-    void initialize();
+    static void initialize();
     void update();
     void render();
+
+    static void setupObstacleSprite(float width, float height);
 };

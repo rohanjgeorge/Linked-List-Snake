@@ -30,17 +30,17 @@ void LevelController::render()
 	level_view->render();
 }
 
-LevelModel* LevelController::getLevelModel()
+float LevelController::getCellWidth()
 {
-	return level_model;
+	return level_model->getCellWidth();
 }
 
-LevelView* LevelController::getLevelView()
+float LevelController::getCellHeight()
 {
-	return level_view;
+	return level_model->getCellHeight();
 }
 
-const std::vector<ElementData>& LevelController::getElementDataList(int level_index)
+const std::vector<ElementData>& LevelController::getElementDataList(int level_to_load)
 {
-	return level_model->getElementDataList(level_index);
+	return level_model->getElementDataList(level_to_load);
 }

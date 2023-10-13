@@ -8,15 +8,15 @@ private:
     sf::RectangleShape backgroundRect;
     sf::RectangleShape border_rect;
 
-    sf::Color background_color = sf::Color(0, 153, 0);  // Green
+    sf::Color background_color = sf::Color(180, 200, 160);
     sf::Color border_color = sf::Color::Black;
 
-    float border_width;
-    float border_height;
+    float grid_width;
+    float grid_height;
     
     void initializeBackground();
     void initializeBorder();
-    void calculateBorderExtents();
+    void calculateGridExtents();
     void drawLevel();
 
 public:

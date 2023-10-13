@@ -4,38 +4,36 @@
 
 sf::Texture Obstacle::obstacle_texture;
 sf::Sprite Obstacle::obstacle_sprite;
+float Obstacle::cell_width = 0.f;
+float Obstacle::cell_height = 0.f;
 
-bool Obstacle::texture_loaded = false;
-
-Obstacle::Obstacle(int x, int y, float width, float height)
+Obstacle::Obstacle(sf::Vector2i position)
 {
-	x_index = x;
-	y_index = y;
-	cell_width = width;
-	cell_height = height;
+	grid_position = position;
+	game_window = ServiceLocator::getInstance()->getGameWindow();
 }
 
-Obstacle::~Obstacle()
-{
-}
+Obstacle::~Obstacle() = default;
 
 void Obstacle::initialize()
 {
-	game_window = ServiceLocator::getInstance()->getGameWindow();
-
 	initializeObstacleSprite();
 }
 
 void Obstacle::initializeObstacleSprite()
 {
-	if (texture_loaded) return;
-
 	if (obstacle_texture.loadFromFile("assets/textures/obstacle.png"))
 	{
 		obstacle_sprite.setTexture(obstacle_texture);
-		scaleObstacleSprite();
-		texture_loaded = true;
 	}
+}
+
+void Obstacle::setupObstacleSprite(float width, float height)
+{
+	cell_width = width;
+	cell_height = height;
+
+	scaleObstacleSprite();
 }
 
 void Obstacle::scaleObstacleSprite()
@@ -46,9 +44,7 @@ void Obstacle::scaleObstacleSprite()
 	);
 }
 
-void Obstacle::update()
-{
-}
+void Obstacle::update() { }
 
 void Obstacle::render()
 {
@@ -66,8 +62,8 @@ void Obstacle::setObstacleSpritePosition()
 	float left_offset = LevelView::border_offset_left + LevelView::border_thickness;
 	float top_offset = LevelView::border_offset_top + LevelView::border_thickness;
 
-	float x_position = left_offset + (cell_width * x_index);
-	float y_position = top_offset + (cell_height * y_index);
+	float screen_position_x = left_offset + (cell_width * grid_position.x);
+	float screen_position_y = top_offset + (cell_height * grid_position.y);
 
-	obstacle_sprite.setPosition(x_position, y_position);
+	obstacle_sprite.setPosition(screen_position_x, screen_position_y);
 }

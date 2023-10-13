@@ -1,20 +1,16 @@
 #include "../header/LevelView.h"
 #include "../header/ServiceLocator.h"
 
-LevelView::LevelView()
-{
-}
+LevelView::LevelView() = default;
 
-LevelView::~LevelView()
-{
-}
+LevelView::~LevelView() = default;
 
 void LevelView::initialize()
 {
 	game_window = ServiceLocator::getInstance()->getGameWindow();
     
     initializeBackground();
-    calculateBorderExtents();
+    calculateGridExtents();
     initializeBorder();
 }
 
@@ -26,22 +22,20 @@ void LevelView::initializeBackground()
 
 void LevelView::initializeBorder()
 {
-    border_rect.setSize(sf::Vector2f(border_width, border_height));
+    border_rect.setSize(sf::Vector2f(grid_width, grid_height));
     border_rect.setPosition(border_offset_left, border_offset_top);
     border_rect.setFillColor(sf::Color::Transparent);
     border_rect.setOutlineColor(border_color);
     border_rect.setOutlineThickness(border_thickness);
 }
 
-void LevelView::calculateBorderExtents()
+void LevelView::calculateGridExtents()
 {
-    border_width = game_window->getSize().x - 2 * border_offset_left;
-    border_height = game_window->getSize().y - 2 * border_offset_top;
+    grid_width = game_window->getSize().x - 2 * border_offset_left;
+    grid_height = game_window->getSize().y - 2 * border_offset_top;
 }
 
-void LevelView::update()
-{
-}
+void LevelView::update() { }
 
 void LevelView::render()
 {
@@ -56,10 +50,10 @@ void LevelView::drawLevel()
 
 float LevelView::getGridWidth()
 {
-    return border_width - border_thickness;
+    return grid_width;
 }
 
 float LevelView::getGridHeight()
 {
-    return border_height - border_thickness;
+    return grid_height;
 }
