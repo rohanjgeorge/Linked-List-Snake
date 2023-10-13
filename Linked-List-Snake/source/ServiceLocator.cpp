@@ -1,6 +1,7 @@
 #include "../header/ServiceLocator.h"
 #include "../header/EventService.h"
 #include "../header/GraphicService.h"
+#include "../header/TimeService.h"
 #include "../header/SoundService.h"
 #include "../header/LevelService.h"
 #include "../header/UIService.h"
@@ -12,6 +13,7 @@ ServiceLocator::ServiceLocator()
 {
 	graphic_service = nullptr;
 	event_service = nullptr;
+	time_service = nullptr;
 	sound_service = nullptr;
 	level_service = nullptr;
 	player_service = nullptr;
@@ -28,6 +30,7 @@ void ServiceLocator::createServices()
 {
 	event_service = new EventService();
 	graphic_service = new GraphicService();
+	time_service = new TimeService();
 	sound_service = new SoundService();
 	level_service = new LevelService();
 	player_service = new PlayerService();
@@ -39,6 +42,7 @@ void ServiceLocator::initialize()
 {
 	graphic_service->initialize();
 	sound_service->initialize();
+	time_service->initialize();
 
 	game_window = graphic_service->getGameWindow();
 
@@ -51,6 +55,7 @@ void ServiceLocator::initialize()
 
 void ServiceLocator::update()
 {
+	time_service->update();
 	event_service->update();
 
 	if (GameService::getGameState() == GameState::GAMEPLAY)
@@ -87,6 +92,7 @@ void ServiceLocator::clearAllServices()
 	delete(graphic_service);
 	delete(sound_service);
 	delete(event_service);
+	delete(time_service);
 }
 
 ServiceLocator* ServiceLocator::getInstance()
@@ -100,6 +106,8 @@ sf::RenderWindow* ServiceLocator::getGameWindow() { return game_window; }
 EventService* ServiceLocator::getEventService() { return event_service; }
 
 GraphicService* ServiceLocator::getGraphicService() { return graphic_service; }
+
+TimeService* ServiceLocator::getTimeService() { return time_service; }
 
 SoundService* ServiceLocator::getSoundService() { return sound_service; }
 

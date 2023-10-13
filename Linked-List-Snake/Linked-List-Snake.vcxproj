@@ -152,6 +152,7 @@
     <ClCompile Include="source\SingleLinkedList.cpp" />
     <ClCompile Include="source\SoundService.cpp" />
     <ClCompile Include="source\SplashScreenUIController.cpp" />
+    <ClCompile Include="source\TimeService.cpp" />
     <ClCompile Include="source\UIService.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +175,7 @@
     <ClInclude Include="header\SingleLinkedList.h" />
     <ClInclude Include="header\SoundService.h" />
     <ClInclude Include="header\SplashScreenUIController.h" />
+    <ClInclude Include="header\TimeService.h" />
     <ClInclude Include="header\UIService.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

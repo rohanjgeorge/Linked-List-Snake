@@ -2,6 +2,7 @@
 #include <sfml/Graphics/RenderWindow.hpp>
 class EventService;
 class GraphicService;
+class TimeService;
 class SoundService;
 class LevelService;
 class PlayerService;
@@ -14,6 +15,7 @@ private:
     sf::RenderWindow* game_window;
     EventService* event_service;
     GraphicService* graphic_service;
+    TimeService* time_service;
     SoundService* sound_service;
     LevelService* level_service;
     PlayerService* player_service;
@@ -36,6 +38,7 @@ public:
     sf::RenderWindow* getGameWindow();
     EventService* getEventService();
     GraphicService* getGraphicService();
+    TimeService* getTimeService();
     SoundService* getSoundService();
     LevelService* getLevelService();
     PlayerService* getPlayerService();
