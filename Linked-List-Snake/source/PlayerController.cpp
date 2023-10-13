@@ -29,15 +29,24 @@ void PlayerController::initialize()
 	float width = ServiceLocator::getInstance()->getLevelService()->getLevelController()->getLevelModel()->getGridCellWidth();
 	float height = ServiceLocator::getInstance()->getLevelService()->getLevelController()->getLevelModel()->getGridCellHeight();
 
+	reset();
 	single_linked_list->initialize(width, height, default_position, default_direction);
-	player_direction = default_direction;
-	elapsed_duration = 0.f;
 }
 
 void PlayerController::update()
 {
-	handleButtonInteraction();
-	handleLinkedListUpdate();
+	switch (player_state)
+	{
+	case PlayerState::ALIVE:
+		handleButtonInteraction();
+		handleLinkedListUpdate();
+		handlePlayerCollision();
+		break;
+
+	case PlayerState::DEAD:
+		handleRestart();
+		break;
+	}
 }
 
 void PlayerController::render()
@@ -78,12 +87,55 @@ void PlayerController::handleLinkedListUpdate()
 	}
 }
 
+void PlayerController::handlePlayerCollision()
+{
+	if (single_linked_list->handleNodeCollision())
+	{
+		player_state = PlayerState::DEAD;
+	}
+}
+
+void PlayerController::handleRestart()
+{
+	restart_counter += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+
+	if (restart_counter >= restart_duration)
+	{
+		respawnPlayer();
+	}
+}
+
 void PlayerController::spawnPlayer()
 {
 	for (int i = 0; i < initial_snake_length; i++)
 	{
 		single_linked_list->insertNode();
 	}
+}
+
+void PlayerController::reset()
+{
+	player_state = PlayerState::ALIVE;
+	player_direction = default_direction;
+	elapsed_duration = 0.f;
+	restart_counter = 0.f;
+}
+
+void PlayerController::respawnPlayer()
+{
+	single_linked_list->removeAllNodes();
+	reset();
+	spawnPlayer();
+}
+
+void PlayerController::setPlayerSet(PlayerState state)
+{
+	player_state = state;
+}
+
+PlayerState PlayerController::getPlayerState()
+{
+	return player_state;
 }
 
 void PlayerController::destroy()

@@ -19,6 +19,9 @@ private:
 	Node* createNode();
 	void initializeNode(Node* new_node, Node* reference_node);
 	sf::Vector2i getNewNodePosition(Node* reference_node);
+	sf::Vector2i getHeadNodeNextPosition();
+
+	void updateNodes(Direction direction);
 
 public:
 	SingleLinkedList();
@@ -30,6 +33,8 @@ public:
 
 	void insertNode();
 	void removeNode();
+	void removeAllNodes();
 
+	bool handleNodeCollision();
 	Node* getHeadNodeReference();
 };

@@ -43,19 +43,20 @@ void Node::scaleNodeSprite()
 	);
 }
 
-void Node::setNodeSpritePosition()
-{
-	float x_position = LevelView::border_offset_left  + (position.x * node_width);
-	float y_position = LevelView::border_offset_top  + (position.y * node_height);
-
-	node_sprite.setPosition(sf::Vector2f(x_position, y_position));
-}
-
-void Node::updateNodePosition(Direction dir)
+void Node::updateNode(Direction dir)
 {
 	direction = dir;
 	position = getNextNodePosition();
+
 	setNodeSpritePosition();
+}
+
+void Node::setNodeSpritePosition()
+{
+	float x_position = LevelView::border_offset_left + (position.x * node_width);
+	float y_position = LevelView::border_offset_top + (position.y * node_height);
+
+	node_sprite.setPosition(sf::Vector2f(x_position, y_position));
 }
 
 void Node::render()

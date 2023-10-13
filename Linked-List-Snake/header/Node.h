@@ -29,7 +29,7 @@ private:
 	void initializeNodeSprite();
 	void scaleNodeSprite();
 	void setNodeSpritePosition();
-	sf::Vector2i getNextNodePosition();
+
 	sf::Vector2i getNextPositionUp();
 	sf::Vector2i getNextPositionDown();
 	sf::Vector2i getNextPositionLeft();
@@ -40,11 +40,12 @@ public:
 	~Node();
 
 	void initialize(float width, float height, sf::Vector2i pos, Direction dir);
-	void updateNodePosition(Direction dir);
+	void updateNode(Direction dir);
 	void render();
 
 	void setNextNodeReference(Node* node);
 	Node* getNextNodeReference();
 	Direction getNodeDirection();
 	sf::Vector2i getNodePosition();
+	sf::Vector2i getNextNodePosition();
 };

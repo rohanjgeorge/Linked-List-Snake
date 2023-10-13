@@ -6,9 +6,7 @@ SingleLinkedList::SingleLinkedList()
 	head_node = nullptr;
 }
 
-SingleLinkedList::~SingleLinkedList()
-{
-}
+SingleLinkedList::~SingleLinkedList() = default;
 
 void SingleLinkedList::initialize(float width, float height, sf::Vector2i position, Direction direction)
 {
@@ -20,18 +18,7 @@ void SingleLinkedList::initialize(float width, float height, sf::Vector2i positi
 
 void SingleLinkedList::update(Direction direction)
 {
-	Node* cur_node = head_node;
-	Direction node_direction = direction;
-
-	while (cur_node != nullptr)
-	{
-		Direction temp_direction = cur_node->getNodeDirection();
-
-		cur_node->updateNodePosition(node_direction);
-
-		node_direction = temp_direction;
-		cur_node = cur_node->getNextNodeReference();
-	}
+	updateNodes(direction);
 }
 
 void SingleLinkedList::render()
@@ -43,6 +30,38 @@ void SingleLinkedList::render()
 		cur_node->render();
 		cur_node = cur_node->getNextNodeReference();
 	}
+}
+
+void SingleLinkedList::updateNodes(Direction direction)
+{
+	Node* cur_node = head_node;
+	Direction node_direction = direction;
+
+	while (cur_node != nullptr)
+	{
+		Direction temp_direction = cur_node->getNodeDirection();
+
+		cur_node->updateNode(node_direction);
+
+		node_direction = temp_direction;
+		cur_node = cur_node->getNextNodeReference();
+	}
+}
+
+bool SingleLinkedList::handleNodeCollision()
+{
+	if (head_node == nullptr) return false;
+
+	sf::Vector2i predicted_position = head_node->getNextNodePosition();
+
+	Node* cur_node = head_node->getNextNodeReference();
+	while (cur_node != nullptr)
+	{
+		if (cur_node->getNodePosition() == predicted_position) return true;
+		cur_node = cur_node->getNextNodeReference();
+	}
+
+	return false;
 }
 
 void SingleLinkedList::insertNode()
@@ -80,9 +99,36 @@ void SingleLinkedList::removeNode()
 
 	while (cur_node->getNextNodeReference()->getNextNodeReference() != nullptr )
 	{
-		delete (cur_node->getNextNodeReference());
-		cur_node->setNextNodeReference(nullptr);
+		cur_node = cur_node->getNextNodeReference();
 	}
+	
+	delete (cur_node->getNextNodeReference());
+	cur_node->setNextNodeReference(nullptr);
+}
+
+void SingleLinkedList::removeAllNodes()
+{
+	if (head_node == nullptr) return;
+
+	Node* cur_node = head_node;
+
+	if (cur_node->getNextNodeReference() == nullptr)
+	{
+		delete(head_node);
+		head_node = nullptr;
+	}
+
+	while (cur_node->getNextNodeReference()->getNextNodeReference() != nullptr)
+	{
+		Node* temp_node = cur_node;
+		cur_node = cur_node->getNextNodeReference();
+
+		temp_node->setNextNodeReference(nullptr);
+		delete(temp_node);
+	}
+
+	delete(cur_node);
+	head_node = nullptr;
 }
 
 Node* SingleLinkedList::createNode()

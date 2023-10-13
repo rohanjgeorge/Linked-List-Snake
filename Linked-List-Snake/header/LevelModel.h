@@ -35,17 +35,13 @@ public:
 class LevelModel
 {
 private:
-    std::vector<ElementData> level_one_data_list = {ElementData(ElementType::OBSTACLE, sf::Vector2i(25, 15)),
+    std::vector<ElementData> level_one_data_list = {};
+
+    std::vector<ElementData> level_two_data_list = { ElementData(ElementType::OBSTACLE, sf::Vector2i(25, 15)),
                                                     ElementData(ElementType::OBSTACLE, sf::Vector2i(26, 15)),
                                                     ElementData(ElementType::OBSTACLE, sf::Vector2i(27, 15)),
                                                     ElementData(ElementType::OBSTACLE, sf::Vector2i(28, 15)),
-                                                    ElementData(ElementType::OBSTACLE, sf::Vector2i(29, 15))};
-
-    std::vector<ElementData> level_two_data_list = { ElementData(ElementType::OBSTACLE, sf::Vector2i(5, 5)),
-                                                    ElementData(ElementType::OBSTACLE, sf::Vector2i(5, 7)),
-                                                    ElementData(ElementType::OBSTACLE, sf::Vector2i(9, 5)),
-                                                    ElementData(ElementType::OBSTACLE, sf::Vector2i(25, 9)),
-                                                    ElementData(ElementType::OBSTACLE, sf::Vector2i(37, 14)) };
+                                                    ElementData(ElementType::OBSTACLE, sf::Vector2i(29, 15)) };
 
     std::vector<LevelData> level_data_list;
     
@@ -55,7 +51,7 @@ private:
     void initializeLevelData();
 
 public:
-    static const int number_of_rows = 25;
+    static const int number_of_rows = 27;
     static const int number_of_columns = 50;
 
     LevelModel();

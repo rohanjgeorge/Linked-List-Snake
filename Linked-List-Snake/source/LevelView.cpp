@@ -56,10 +56,10 @@ void LevelView::drawLevel()
 
 float LevelView::getGridWidth()
 {
-    return border_width - border_thickness;
+    return border_width;
 }
 
 float LevelView::getGridHeight()
 {
-    return border_height - border_thickness;
+    return border_height;
 }
