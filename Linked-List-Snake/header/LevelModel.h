@@ -1,7 +1,8 @@
 #pragma once
 #include <SFML/System/Vector2.hpp>
 #include "../header/ElementService.h"
-#include "../header/LevelConfig.h"
+#include "../header/LevelData.h"
+#include "../header/ElementData.h"
 #include <vector>
 
 class LevelModel
@@ -15,7 +16,7 @@ private:
                                                     ElementData(ElementType::OBSTACLE, sf::Vector2i(28, 15)),
                                                     ElementData(ElementType::OBSTACLE, sf::Vector2i(29, 15)) };
 
-    std::vector<LevelData> level_data_list;
+    std::vector<LevelData> level_configurations;
     
     float cell_width;
     float cell_height;

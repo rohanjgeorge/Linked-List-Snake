@@ -156,8 +156,9 @@
     <ClInclude Include="header\GameService.h" />
     <ClInclude Include="header\GraphicService.h" />
     <ClInclude Include="header\IUIController.h" />
-    <ClInclude Include="header\LevelConfig.h" />
+    <ClInclude Include="header\ElementData.h" />
     <ClInclude Include="header\LevelController.h" />
+    <ClInclude Include="header\LevelData.h" />
     <ClInclude Include="header\LevelModel.h" />
     <ClInclude Include="header\LevelSelectionUIController.h" />
     <ClInclude Include="header\LevelView.h" />

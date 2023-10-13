@@ -16,18 +16,18 @@ void LevelModel::initialize(int width, int height)
 
 void LevelModel::initializeLevelData()
 {
-	level_data_list.push_back(LevelData(Level::ONE, &level_one_element_list));
-	level_data_list.push_back(LevelData(Level::TWO, &level_two_element_list));
+	level_configurations.push_back(LevelData(Level::ONE, &level_one_element_list));
+	level_configurations.push_back(LevelData(Level::TWO, &level_two_element_list));
 }
 
 const std::vector<LevelData>& LevelModel::getLevelDataList()
 {
-	return level_data_list;
+	return level_configurations;
 }
 
 const std::vector<ElementData>& LevelModel::getElementDataList(int level_to_load)
 {
-	return *level_data_list[level_to_load].element_data_list;
+	return *level_configurations[level_to_load].element_data_list;
 }
 
 float LevelModel::getCellWidth()
