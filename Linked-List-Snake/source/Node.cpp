@@ -1,6 +1,7 @@
 #include "../header/Node.h"
 #include "../header/ServiceLocator.h"
 #include "../header/LevelView.h"
+#include "../header/LevelModel.h"
 
 Node::Node()
 {
@@ -44,16 +45,17 @@ void Node::scaleNodeSprite()
 
 void Node::setNodeSpritePosition()
 {
-	float x_position = LevelView::border_offset_left + LevelView::border_thickness + (position.x * node_width);
-	float y_position = LevelView::border_offset_top + LevelView::border_thickness + (position.y * node_height);
+	float x_position = LevelView::border_offset_left  + (position.x * node_width);
+	float y_position = LevelView::border_offset_top  + (position.y * node_height);
 
 	node_sprite.setPosition(sf::Vector2f(x_position, y_position));
 }
 
-void Node::updateNodePosition(sf::Vector2i pos, Direction dir)
+void Node::updateNodePosition(Direction dir)
 {
-	position = pos;
 	direction = dir;
+	position = getNextNodePosition();
+	setNodeSpritePosition();
 }
 
 void Node::render()
@@ -64,6 +66,71 @@ void Node::render()
 void Node::setNextNodeReference(Node* node)
 {
 	next_node = node;
+}
+
+sf::Vector2i Node::getNextNodePosition() 
+{
+	switch (direction) 
+	{
+	case Direction::UP:
+		return getNextPositionUp();
+	case Direction::DOWN:
+		return getNextPositionDown();
+	case Direction::RIGHT:
+		return getNextPositionRight();
+	case Direction::LEFT:
+		return getNextPositionLeft();
+	default:
+		return position;
+	}
+}
+
+sf::Vector2i Node::getNextPositionDown() 
+{
+	if (position.y >= LevelModel::number_of_rows - 1)
+	{
+		return sf::Vector2i(position.x, 0);
+	}
+	else 
+	{
+		return sf::Vector2i(position.x, position.y + 1);
+	}
+}
+
+sf::Vector2i Node::getNextPositionUp()
+{
+	if (position.y <= 0) 
+	{
+		return sf::Vector2i(position.x, LevelModel::number_of_rows - 1);
+	}
+	else 
+	{
+		return sf::Vector2i(position.x, position.y - 1);
+	}
+}
+
+sf::Vector2i Node::getNextPositionRight() 
+{
+	if (position.x >= LevelModel::number_of_columns - 1)
+	{
+		return sf::Vector2i(0, position.y);
+	}
+	else
+	{
+		return sf::Vector2i(position.x + 1, position.y);
+	}
+}
+
+sf::Vector2i Node::getNextPositionLeft() 
+{
+	if (position.x <= 0)
+	{
+		return sf::Vector2i(LevelModel::number_of_columns - 1, position.y);
+	}
+	else 
+	{
+		return sf::Vector2i(position.x - 1, position.y);
+	}
 }
 
 Node* Node::getNextNodeReference()

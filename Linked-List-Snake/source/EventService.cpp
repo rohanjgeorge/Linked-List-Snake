@@ -84,6 +84,14 @@ bool EventService::isKeyboardEvent() { return game_event.type == sf::Event::KeyP
 
 bool EventService::pressedEscapeKey() { return game_event.key.code == sf::Keyboard::Escape; }
 
+bool EventService::pressedUpKey() { return game_event.key.code == sf::Keyboard::Up; }
+
+bool EventService::pressedDownKey() { return game_event.key.code == sf::Keyboard::Down; }
+
+bool EventService::pressedLeftKey() { return game_event.key.code == sf::Keyboard::Left; }
+
+bool EventService::pressedRightKey() { return game_event.key.code == sf::Keyboard::Right; }
+
 bool EventService::pressedLeftMouseButton() { return left_mouse_button_state == ButtonState::PRESSED; }
 
 bool EventService::pressedRightMouseButton() { return right_mouse_button_state == ButtonState::PRESSED; }

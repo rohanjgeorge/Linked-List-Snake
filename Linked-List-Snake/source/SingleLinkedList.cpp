@@ -3,20 +3,35 @@
 
 SingleLinkedList::SingleLinkedList()
 {
+	head_node = nullptr;
 }
 
 SingleLinkedList::~SingleLinkedList()
 {
 }
 
-void SingleLinkedList::initialize(float width, float height)
+void SingleLinkedList::initialize(float width, float height, sf::Vector2i position, Direction direction)
 {
 	node_width = width;
 	node_height = height;
+	default_position = position;
+	default_direction = direction;
 }
 
-void SingleLinkedList::update()
+void SingleLinkedList::update(Direction direction)
 {
+	Node* cur_node = head_node;
+	Direction node_direction = direction;
+
+	while (cur_node != nullptr)
+	{
+		Direction temp_direction = cur_node->getNodeDirection();
+
+		cur_node->updateNodePosition(node_direction);
+
+		node_direction = temp_direction;
+		cur_node = cur_node->getNextNodeReference();
+	}
 }
 
 void SingleLinkedList::render()

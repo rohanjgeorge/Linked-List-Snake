@@ -35,6 +35,10 @@ public:
 	void processEvents();
 
 	bool pressedEscapeKey();
+	bool pressedUpKey();
+	bool pressedDownKey();
+	bool pressedLeftKey();
+	bool pressedRightKey();
 	bool pressedLeftMouseButton();
 	bool pressedRightMouseButton();
 };

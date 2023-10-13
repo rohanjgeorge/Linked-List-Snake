@@ -12,8 +12,8 @@ LevelModel::~LevelModel()
 
 void LevelModel::initialize(int grid_width, int grid_height)
 {
-	grid_cell_width = grid_width/number_of_columns;
-	grid_cell_height = grid_height/number_of_rows;
+	grid_cell_width = static_cast<float>(grid_width) /static_cast<float>(number_of_columns);
+	grid_cell_height = static_cast<float>(grid_height) /static_cast<float>(number_of_rows);
 
 	initializeLevelData();
 }
