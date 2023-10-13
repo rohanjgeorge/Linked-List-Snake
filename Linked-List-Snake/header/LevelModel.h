@@ -55,7 +55,7 @@ private:
     void initializeLevelData();
 
 public:
-    static const int number_of_rows = 30;
+    static const int number_of_rows = 25;
     static const int number_of_columns = 50;
 
     LevelModel();

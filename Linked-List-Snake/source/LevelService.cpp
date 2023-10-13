@@ -2,6 +2,7 @@
 #include "../header/LevelController.h"
 #include "../header/ServiceLocator.h"
 #include "../header/ElementService.h"
+#include "../header/PlayerService.h"
 #include "../header/LevelModel.h"
 
 LevelService::LevelService()
@@ -39,6 +40,12 @@ void LevelService::render()
 void LevelService::createLevel(Level level_index)
 {
 	spawnLevelElements(level_index);
+	spawnPlayer();
+}
+
+void LevelService::spawnPlayer()
+{
+	ServiceLocator::getInstance()->getPlayerService()->spawnPlayer();
 }
 
 void LevelService::spawnLevelElements(Level level_index)

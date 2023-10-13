@@ -16,6 +16,7 @@ private:
     Level current_level;
 
     void createLevelController();
+    void spawnPlayer();
     void spawnLevelElements(Level level_index);
     void destroy();
 
