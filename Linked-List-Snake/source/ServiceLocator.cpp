@@ -15,7 +15,6 @@ ServiceLocator::ServiceLocator()
 	level_service = nullptr;
 	element_service = nullptr;
 	ui_service = nullptr;
-	game_window = nullptr;
 
 	createServices();
 }
@@ -36,9 +35,6 @@ void ServiceLocator::initialize()
 {
 	graphic_service->initialize();
 	sound_service->initialize();
-
-	game_window = graphic_service->getGameWindow();
-
 	event_service->initialize();
 	level_service->initialize();
 	element_service->initialize();
@@ -87,8 +83,6 @@ ServiceLocator* ServiceLocator::getInstance()
 	static ServiceLocator instance;
 	return &instance;
 }
-
-sf::RenderWindow* ServiceLocator::getGameWindow() { return game_window; }
 
 EventService* ServiceLocator::getEventService() { return event_service; }
 
