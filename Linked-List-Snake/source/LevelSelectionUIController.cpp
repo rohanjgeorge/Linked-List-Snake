@@ -9,7 +9,7 @@ LevelSelectionUIController::LevelSelectionUIController() { game_window = nullptr
 
 void LevelSelectionUIController::initialize()
 {
-    game_window = ServiceLocator::getInstance()->getGameWindow();
+    game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
     initializeButtons();
 }
 

@@ -1,6 +1,7 @@
 #include "../header/Obstacle.h"
 #include "../header/ServiceLocator.h"
 #include "../header/LevelView.h"
+#include "../header/GraphicService.h"
 
 sf::Texture Obstacle::obstacle_texture;
 sf::Sprite Obstacle::obstacle_sprite;
@@ -10,7 +11,7 @@ float Obstacle::cell_height = 0.f;
 Obstacle::Obstacle(sf::Vector2i position)
 {
 	grid_position = position;
-	game_window = ServiceLocator::getInstance()->getGameWindow();
+	game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
 }
 
 Obstacle::~Obstacle() = default;

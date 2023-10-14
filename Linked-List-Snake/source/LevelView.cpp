@@ -1,5 +1,6 @@
 #include "../header/LevelView.h"
 #include "../header/ServiceLocator.h"
+#include "../header/GraphicService.h"
 
 LevelView::LevelView() = default;
 
@@ -7,7 +8,7 @@ LevelView::~LevelView() = default;
 
 void LevelView::initialize()
 {
-	game_window = ServiceLocator::getInstance()->getGameWindow();
+	game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
     
     initializeBackground();
     calculateGridExtents();
