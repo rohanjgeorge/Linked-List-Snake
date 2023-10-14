@@ -3,105 +3,94 @@
 #include "../header/GraphicService.h"
 #include "../header/SoundService.h"
 #include "../header/EventService.h"
+#include "../header/ButtonView.h"
+#include "../header/Config.h"
 
-MainMenuUIController::MainMenuUIController() { game_window = nullptr; }
+MainMenuUIController::MainMenuUIController()
+{
+    createButtons();
+}
+
+MainMenuUIController::~MainMenuUIController()
+{
+    destroy();
+}
 
 void MainMenuUIController::initialize()
 {
-    game_window = ServiceLocator::getInstance()->getGameWindow();
     initializeButtons();
+    registerButtonCallback();
+}
+
+void MainMenuUIController::createButtons()
+{
+    play_button = new ButtonView();
+    instructions_button = new ButtonView();
+    quit_button = new ButtonView();
 }
 
 void MainMenuUIController::initializeButtons()
 {
-    if (loadButtonTexturesFromFile())
-    {
-        setButtonSprites();
-        scaleAllButttons();
-        positionButtons();
-    }
-}
-
-bool MainMenuUIController::loadButtonTexturesFromFile()
-{
-    return play_button_texture.loadFromFile("assets/textures/play_button.png") &&
-        instructions_button_texture.loadFromFile("assets/textures/instructions_button.png") &&
-        quit_button_texture.loadFromFile("assets/textures/quit_button.png");
-}
-
-void MainMenuUIController::setButtonSprites()
-{
-    play_button_sprite.setTexture(play_button_texture);
-    instructions_button_sprite.setTexture(instructions_button_texture);
-    quit_button_sprite.setTexture(quit_button_texture);
-}
-
-void MainMenuUIController::scaleAllButttons()
-{
-    scaleButton(&play_button_sprite);
-    scaleButton(&instructions_button_sprite);
-    scaleButton(&quit_button_sprite);
-}
-
-void MainMenuUIController::scaleButton(sf::Sprite* button_to_scale)
-{
-    button_to_scale->setScale(
-        button_width / button_to_scale->getTexture()->getSize().x,
-        button_height / button_to_scale->getTexture()->getSize().y
-    );
-}
-
-void MainMenuUIController::positionButtons()
-{
     float x_position = calculateLeftOffsetForButton();
 
-    play_button_sprite.setPosition({ x_position, 500.f });
-    instructions_button_sprite.setPosition({ x_position, 700.f });
-    quit_button_sprite.setPosition({ x_position, 900.f });
+    play_button->initialize("Play Button", Config::play_button_texture_path, button_width, button_height, sf::Vector2f(x_position, play_button_y_position));
+    instructions_button->initialize("Instructions Button", Config::instructions_button_texture_path, button_width, button_height, sf::Vector2f(x_position, instructions_button_y_position));
+    quit_button->initialize("Quit Button", Config::quit_button_texture_path, button_width, button_height, sf::Vector2f(x_position, quit_button_y_position));
+}
+
+void MainMenuUIController::registerButtonCallback()
+{
+    play_button->registerCallbackFuntion(std::bind(&MainMenuUIController::playButtonCallback, this));
+    instructions_button->registerCallbackFuntion(std::bind(&MainMenuUIController::instructionsButtonCallback, this));
+    quit_button->registerCallbackFuntion(std::bind(&MainMenuUIController::quitButtonCallback, this));
 }
 
 float MainMenuUIController::calculateLeftOffsetForButton()
 {
+    sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
     return (static_cast<float>(game_window->getSize().x) / 2) - button_width / 2;
+}
+
+void MainMenuUIController::playButtonCallback()
+{
+    ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
+}
+
+void MainMenuUIController::instructionsButtonCallback()
+{
+    ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
+}
+
+void MainMenuUIController::quitButtonCallback()
+{
+    ServiceLocator::getInstance()->getGraphicService()->getGameWindow()->close();
 }
 
 void MainMenuUIController::update()
 {
-    handleButtonInteractions();
+    play_button->update();
+    instructions_button->update();
+    quit_button->update();
 }
 
 void MainMenuUIController::render()
 {
     ServiceLocator::getInstance()->getGraphicService()->drawBackground();
-    game_window->draw(play_button_sprite);
-    game_window->draw(instructions_button_sprite);
-    game_window->draw(quit_button_sprite);
+    play_button->render();
+    instructions_button->render();
+    quit_button->render();
 }
 
-void MainMenuUIController::show() { }
-
-void MainMenuUIController::handleButtonInteractions()
+void MainMenuUIController::show() 
 {
-    sf::Vector2f mouse_position = sf::Vector2f(sf::Mouse::getPosition(*game_window));
-
-    if (clickedButton(&play_button_sprite, mouse_position))
-    {
-        printf("Clicked Play Button \n");
-        ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
-    }
-
-    if (clickedButton(&instructions_button_sprite, mouse_position))
-    {
-        printf("Clicked Instruction Button \n");
-        ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
-    }
-
-    if (clickedButton(&quit_button_sprite, mouse_position))
-        game_window->close();
+    play_button->show();
+    instructions_button->show();
+    quit_button->show();
 }
 
-bool MainMenuUIController::clickedButton(sf::Sprite* button_sprite, sf::Vector2f mouse_position)
+void MainMenuUIController::destroy()
 {
-    return ServiceLocator::getInstance()->getEventService()->pressedLeftMouseButton() &&
-        button_sprite->getGlobalBounds().contains(mouse_position);
+    delete (play_button);
+    delete (instructions_button);
+    delete (quit_button);
 }

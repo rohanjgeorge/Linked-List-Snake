@@ -2,91 +2,61 @@
 #include "../header/GameService.h"
 #include "../header/GraphicService.h"
 #include "../header/SoundService.h"
+#include "../header/AnimatedImageView.h"
+#include "../header/Config.h"
 
 SplashScreenUIController::SplashScreenUIController()
 {
-    game_window = nullptr;
+    outscal_logo_view = new AnimatedImageView();
+}
+
+SplashScreenUIController::~SplashScreenUIController()
+{
+    delete (outscal_logo_view);
 }
 
 void SplashScreenUIController::initialize()
 {
-    game_window = ServiceLocator::getInstance()->getGameWindow();
-
-    initializeVariables();
     initializeOutscalLogo();
 }
 
 void SplashScreenUIController::update()
 {
-    if (elapsed_time < splash_screen_time)
-    {
-        float deltaTime = clock.restart().asSeconds();
-        elapsed_time += deltaTime;
-        updateLogo(deltaTime);
-    }
-    else
-    {
-        logoAnimationComplete();
-    }
+    outscal_logo_view->update();
 }
 
-void SplashScreenUIController::render() { game_window->draw(outscal_logo_sprite); }
-
-void SplashScreenUIController::initializeVariables() { elapsed_time = 0.0f; }
+void SplashScreenUIController::render() 
+{ 
+    outscal_logo_view->render();
+}
 
 void SplashScreenUIController::initializeOutscalLogo()
 {
-    loadOutscalTexture();
-    outscal_logo_sprite.setTexture(outscal_logo_texture);
-    setPositionToCenter();
+    sf::Vector2f position = getLogoPosition();
+    outscal_logo_view->initialize(Config::outscal_logo_texture_path, logo_width, logo_height, position);
 }
 
-void SplashScreenUIController::loadOutscalTexture()
+void SplashScreenUIController::fadeInAnimationCallback()
 {
-    if (!tryLoadingOutscalLogo())
-        printf("ERROR :: UIService :: Unable to find Outscal Logo Texture");
+    outscal_logo_view->show(AnimationType::FADE_OUT, logo_animation_duration, std::bind(&SplashScreenUIController::fadeOutAnimationCallback, this));
 }
 
-bool SplashScreenUIController::tryLoadingOutscalLogo() { return outscal_logo_texture.loadFromFile("assets/textures/outscal_logo.png"); }
-
-void SplashScreenUIController::setPositionToCenter()
+void SplashScreenUIController::fadeOutAnimationCallback()
 {
-    sf::Vector2u windowSize = game_window->getSize();
-    sf::Vector2u logoSize = outscal_logo_texture.getSize();
-    outscal_logo_sprite.setPosition((windowSize.x - logoSize.x) / 2.0f, (windowSize.y - logoSize.y) / 2.0f);
-}
-
-void SplashScreenUIController::updateLogo(float deltaTime)
-{
-    if (elapsed_time <= 3.0f)
-        showLogoWithFade();
-    else
-        hideLogoWithFade();
-}
-
-// Calculate the alpha value based on elapsed time (e.g., linear interpolation)
-void SplashScreenUIController::showLogoWithFade()
-{
-    float alpha = std::min(1.0f, elapsed_time / logo_animation_time); // Gradually becomes visible over 2 seconds
-    outscal_logo_sprite.setColor(sf::Color(255, 255, 255, static_cast<sf::Uint8>(alpha * 255)));
-}
-
-// Once the logo is fully visible, start fading out after 2 seconds.
-void SplashScreenUIController::hideLogoWithFade()
-{
-    float alpha = std::max(0.0f, 1.0f - ((elapsed_time - 3.0f) / logo_animation_time));
-    outscal_logo_sprite.setColor(sf::Color(255, 255, 255, static_cast<sf::Uint8>(alpha * 255)));
-}
-
-void SplashScreenUIController::logoAnimationComplete()
-{
-    ServiceLocator::getInstance()->getSoundService()->playBackgroundMusic();
     GameService::setGameState(GameState::MAIN_MENU);
+}
+
+sf::Vector2f SplashScreenUIController::getLogoPosition()
+{
+    sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+
+    float x_position = (game_window->getSize().x - logo_width) / 2.0f;
+    float y_position = (game_window->getSize().y - logo_height) / 2.0f;
+
+    return sf::Vector2f(x_position, y_position);
 }
 
 void SplashScreenUIController::show()
 {
-    // Reset the Clock:
-    clock.restart();
-    elapsed_time = 0.0f;
+    outscal_logo_view->show(AnimationType::FADE_IN, logo_animation_duration, std::bind(&SplashScreenUIController::fadeInAnimationCallback, this));
 }

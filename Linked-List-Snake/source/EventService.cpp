@@ -1,5 +1,6 @@
 #include "../header/EventService.h"
 #include "../header/ServiceLocator.h"
+#include "../header/GraphicService.h"
 
 EventService::EventService() { game_window = nullptr; }
 
@@ -7,7 +8,7 @@ EventService::~EventService() = default;
 
 void EventService::initialize()
 {
-    game_window = ServiceLocator::getInstance()->getGameWindow();
+    game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
 }
 
 void EventService::update()

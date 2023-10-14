@@ -1,6 +1,5 @@
 #include "../header/UIService.h"
 #include "../header/GameService.h"
-#include "../header/GraphicService.h"
 #include "../header/MainMenuUIController.h"
 #include "../header/SplashScreenUIController.h"
 
@@ -8,7 +7,6 @@ UIService::UIService()
 {
 	splash_screen_controller = nullptr;
 	main_menu_controller = nullptr;
-	game_window = nullptr;
 
 	createControllers();
 }
@@ -26,7 +24,6 @@ UIService::~UIService()
 
 void UIService::initialize()
 {
-	game_window = ServiceLocator::getInstance()->getGameWindow();
 	initializeControllers();
 }
 
