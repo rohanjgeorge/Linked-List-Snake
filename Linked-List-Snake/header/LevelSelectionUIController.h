@@ -2,6 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include "../header/IUIController.h"
 
+class ButtonView;
+
 class LevelSelectionUIController : public IUIController
 {
 private:
@@ -9,29 +11,28 @@ private:
 	const float button_width = 400.f;
 	const float button_height = 140.f;
 
-	sf::RenderWindow* game_window;
+	const float level_one_button_y_position = 500.f;
+	const float level_two_button_y_position = 700.f;
+	const float menu_button_y_position = 900.f;
 
-	// Textures:
-	sf::Texture level_one_button_texture;
-	sf::Sprite level_one_button_sprite;
+	ButtonView* level_one_button;
+	ButtonView* level_two_button;
+	ButtonView* menu_button;
 
-	sf::Texture level_two_button_texture;
-	sf::Sprite level_two_button_sprite;
-
+	void createButtons();
 	void initializeButtons();
-	bool loadButtonTexturesFromFile();
-	void setButtonSprites();
-
-	void scaleAllButttons();
-	void scaleButton(sf::Sprite* button_to_scale);
-	void positionButtons();
+	void registerButtonCallback();
 	float calculateLeftOffsetForButton();
 
-	void handleButtonInteractions();
-	bool clickedButton(sf::Sprite*, sf::Vector2f);
+	void levelOneButtonCallback();
+	void levelTwoButtonCallback();
+	void menuButtonCallback();
+
+	void destroy();
 
 public:
 	LevelSelectionUIController();
+	~LevelSelectionUIController();
 
 	void initialize() override;
 	void update() override;

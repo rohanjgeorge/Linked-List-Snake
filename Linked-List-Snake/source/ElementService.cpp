@@ -9,10 +9,7 @@ ElementService::ElementService() = default;
 
 ElementService::~ElementService() = default;
 
-void ElementService::initialize() 
-{
-	Obstacle::initialize();
-}
+void ElementService::initialize() { }
 
 void ElementService::update()
 {
@@ -32,23 +29,21 @@ void ElementService::render()
 
 const void ElementService::spawnElements(std::vector<ElementData>& element_data_list, float cell_width, float cell_height)
 {
-	Obstacle::setupObstacleSprite(cell_width, cell_height);
-
 	for (int i = 0; i < element_data_list.size(); i++)
 	{
 		switch (element_data_list[i].element_type)
 		{
 		case::ElementType::OBSTACLE:
-			spawnObstacle(element_data_list[i].position);
+			spawnObstacle(element_data_list[i].position, cell_width, cell_height);
 			break;
 		}		
 	}
 }
 
-void ElementService::spawnObstacle(sf::Vector2i position)
+void ElementService::spawnObstacle(sf::Vector2i position, float cell_width, float cell_height)
 {
-	Obstacle* obstacle = new Obstacle(position);
+	Obstacle* obstacle = new Obstacle();
 
-	obstacle->initialize();
+	obstacle->initialize(position, cell_width, cell_height);
 	obstacle_list.push_back(obstacle);
 }

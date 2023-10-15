@@ -1,15 +1,26 @@
 #include "../header/LevelView.h"
 #include "../header/ServiceLocator.h"
 #include "../header/GraphicService.h"
+#include "../header/RectangleShapeView.h"
 
-LevelView::LevelView() = default;
+LevelView::LevelView()
+{
+    createViews();
+}
 
-LevelView::~LevelView() = default;
+LevelView::~LevelView()
+{
+    destroy();
+}
+
+void LevelView::createViews()
+{
+    background_rectangle = new RectangleShapeView();
+    border_rectangle = new RectangleShapeView();
+}
 
 void LevelView::initialize()
 {
-	game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
-    
     initializeBackground();
     calculateGridExtents();
     initializeBorder();
@@ -17,36 +28,49 @@ void LevelView::initialize()
 
 void LevelView::initializeBackground()
 {
-    backgroundRect.setSize(sf::Vector2f(game_window->getSize().x, game_window->getSize().y));
-    backgroundRect.setFillColor(background_color);
+    sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+
+    sf::Vector2f background_size = sf::Vector2f(game_window->getSize().x, game_window->getSize().y);
+
+    background_rectangle->initialize(background_size, sf::Vector2f(0, 0), 0, background_color);
+    background_rectangle->show();
 }
 
 void LevelView::initializeBorder()
 {
-    border_rect.setSize(sf::Vector2f(grid_width, grid_height));
-    border_rect.setPosition(border_offset_left, border_offset_top);
-    border_rect.setFillColor(sf::Color::Transparent);
-    border_rect.setOutlineColor(border_color);
-    border_rect.setOutlineThickness(border_thickness);
+    sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+
+    sf::Vector2f border_size = sf::Vector2f(grid_width, grid_height);
+    sf::Vector2f border_position = sf::Vector2f(border_offset_left, border_offset_top);
+
+    border_rectangle->initialize(border_size, border_position, border_thickness, sf::Color::Transparent, border_color);
+    background_rectangle->show();
 }
 
 void LevelView::calculateGridExtents()
 {
+    sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+
     grid_width = game_window->getSize().x - 2 * border_offset_left;
     grid_height = game_window->getSize().y - 2 * border_offset_top;
 }
 
-void LevelView::update() { }
+void LevelView::destroy()
+{
+    delete (background_rectangle);
+    delete (border_rectangle);
+}
+
+void LevelView::update() 
+{
+    background_rectangle->update();
+    border_rectangle->update();
+}
 
 void LevelView::render()
 {
-	drawLevel();
-}
-
-void LevelView::drawLevel()
-{
-    game_window->draw(backgroundRect);
-    game_window->draw(border_rect);
+    background_rectangle->render();
+    border_rectangle->render();
 }
 
 float LevelView::getGridWidth()

@@ -15,7 +15,7 @@ class ElementService
 private:
 	std::vector<Obstacle*> obstacle_list;
 
-	void spawnObstacle(sf::Vector2i position);
+	void spawnObstacle(sf::Vector2i position, float cell_width, float cell_height);
 
 public:
 	ElementService();

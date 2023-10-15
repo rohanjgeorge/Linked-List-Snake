@@ -1,31 +1,26 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+class ImageView;
+
 class Obstacle
 {
 private: 
-    sf::RenderWindow* game_window;
-
-    static sf::Texture obstacle_texture;
-    static sf::Sprite obstacle_sprite;
+    ImageView* obstacle_image;
 
     sf::Vector2i grid_position;
 
-    static float cell_width;
-    static float cell_height;
+    float cell_width;
+    float cell_height;
 
-    static void initializeObstacleSprite();
-    static void scaleObstacleSprite();
-    void setObstacleSpritePosition();
-    void drawObstacle();
+    void initializeObstacleImage();
+    sf::Vector2f getObstacleImagePosition();
 
 public:
-    Obstacle(sf::Vector2i position);
+    Obstacle();
     ~Obstacle();
 
-    static void initialize();
+    void initialize(sf::Vector2i grid_pos, float width, float height);
     void update();
     void render();
-
-    static void setupObstacleSprite(float width, float height);
 };
