@@ -2,8 +2,6 @@
 #include "../header/SingleLinkedList.h"
 #include "../header/ServiceLocator.h"
 #include "../header/LevelService.h"
-#include "../header/LevelController.h"
-#include "../header/LevelModel.h"
 #include "../header/TimeService.h"
 #include "../header/EventService.h"
 
@@ -26,8 +24,8 @@ void PlayerController::createLinkedList()
 
 void PlayerController::initialize()
 {
-	float width = ServiceLocator::getInstance()->getLevelService()->getLevelController()->getLevelModel()->getGridCellWidth();
-	float height = ServiceLocator::getInstance()->getLevelService()->getLevelController()->getLevelModel()->getGridCellHeight();
+	float width = ServiceLocator::getInstance()->getLevelService()->getCellWidth();
+	float height = ServiceLocator::getInstance()->getLevelService()->getCellHeight();
 
 	reset();
 	single_linked_list->initialize(width, height, default_position, default_direction);

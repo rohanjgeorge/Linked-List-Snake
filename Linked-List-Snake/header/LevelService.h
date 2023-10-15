@@ -29,4 +29,6 @@ public:
     void render();
 
     void createLevel(Level level_to_load);
+    float getCellWidth();
+    float getCellHeight();
 };

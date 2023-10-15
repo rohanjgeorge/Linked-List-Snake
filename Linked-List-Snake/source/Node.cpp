@@ -2,15 +2,19 @@
 #include "../header/ServiceLocator.h"
 #include "../header/LevelView.h"
 #include "../header/LevelModel.h"
+#include "../header/ImageView.h"
+#include "../header/Config.h"
 
 Node::Node()
 {
 	next_node = nullptr;
-	position = sf::Vector2i(0, 0);
+	grid_position = sf::Vector2i(0, 0);
+	node_image = new ImageView();
 }
 
 Node::~Node()
 {
+	delete (node_image);
 }
 
 void Node::initialize(float width, float height, sf::Vector2i pos, Direction dir)
@@ -18,50 +22,36 @@ void Node::initialize(float width, float height, sf::Vector2i pos, Direction dir
 	node_width = width;
 	node_height = height;
 	direction = dir;
+	grid_position = pos;
 
-	position = pos;
-
-	game_window = ServiceLocator::getInstance()->getGameWindow();
-	initializeNodeSprite();
+	initializeNodeUI();
 }
 
-void Node::initializeNodeSprite()
+void Node::initializeNodeUI()
 {
-	if (node_texture.loadFromFile("assets/textures/snake_body.png"))
-	{
-		node_sprite.setTexture(node_texture);
-		scaleNodeSprite();
-		setNodeSpritePosition();
-	}
-}
-
-void Node::scaleNodeSprite()
-{
-	node_sprite.setScale(
-		static_cast<float>(node_width) / node_sprite.getTexture()->getSize().x,
-		static_cast<float>(node_height) / node_sprite.getTexture()->getSize().y
-	);
+	node_image->initialize(Config::snake_body_texture_path, node_width, node_height, getNodeScreenPosition());
 }
 
 void Node::updateNode(Direction dir)
 {
 	direction = dir;
-	position = getNextNodePosition();
+	grid_position = getNextNodePosition();
 
-	setNodeSpritePosition();
+	node_image->setPosition(getNodeScreenPosition());
+	node_image->update();
 }
 
-void Node::setNodeSpritePosition()
+sf::Vector2f Node::getNodeScreenPosition()
 {
-	float x_position = LevelView::border_offset_left + (position.x * node_width);
-	float y_position = LevelView::border_offset_top + (position.y * node_height);
+	float x_screen_position = LevelView::border_offset_left + (grid_position.x * node_width);
+	float y_screen_position = LevelView::border_offset_top + (grid_position.y * node_height);
 
-	node_sprite.setPosition(sf::Vector2f(x_position, y_position));
+	return sf::Vector2f(x_screen_position, y_screen_position);
 }
 
 void Node::render()
 {
-	game_window->draw(node_sprite);
+	node_image->render();
 }
 
 void Node::setNextNodeReference(Node* node)
@@ -82,55 +72,55 @@ sf::Vector2i Node::getNextNodePosition()
 	case Direction::LEFT:
 		return getNextPositionLeft();
 	default:
-		return position;
+		return grid_position;
 	}
 }
 
 sf::Vector2i Node::getNextPositionDown() 
 {
-	if (position.y >= LevelModel::number_of_rows - 1)
+	if (grid_position.y >= LevelModel::number_of_rows - 1)
 	{
-		return sf::Vector2i(position.x, 0);
+		return sf::Vector2i(grid_position.x, 0);
 	}
 	else 
 	{
-		return sf::Vector2i(position.x, position.y + 1);
+		return sf::Vector2i(grid_position.x, grid_position.y + 1);
 	}
 }
 
 sf::Vector2i Node::getNextPositionUp()
 {
-	if (position.y <= 0) 
+	if (grid_position.y <= 0)
 	{
-		return sf::Vector2i(position.x, LevelModel::number_of_rows - 1);
+		return sf::Vector2i(grid_position.x, LevelModel::number_of_rows - 1);
 	}
 	else 
 	{
-		return sf::Vector2i(position.x, position.y - 1);
+		return sf::Vector2i(grid_position.x, grid_position.y - 1);
 	}
 }
 
 sf::Vector2i Node::getNextPositionRight() 
 {
-	if (position.x >= LevelModel::number_of_columns - 1)
+	if (grid_position.x >= LevelModel::number_of_columns - 1)
 	{
-		return sf::Vector2i(0, position.y);
+		return sf::Vector2i(0, grid_position.y);
 	}
 	else
 	{
-		return sf::Vector2i(position.x + 1, position.y);
+		return sf::Vector2i(grid_position.x + 1, grid_position.y);
 	}
 }
 
 sf::Vector2i Node::getNextPositionLeft() 
 {
-	if (position.x <= 0)
+	if (grid_position.x <= 0)
 	{
-		return sf::Vector2i(LevelModel::number_of_columns - 1, position.y);
+		return sf::Vector2i(LevelModel::number_of_columns - 1, grid_position.y);
 	}
 	else 
 	{
-		return sf::Vector2i(position.x - 1, position.y);
+		return sf::Vector2i(grid_position.x - 1, grid_position.y);
 	}
 }
 
@@ -146,5 +136,5 @@ Direction Node::getNodeDirection()
 
 sf::Vector2i Node::getNodePosition()
 {
-	return position;
+	return grid_position;
 }
