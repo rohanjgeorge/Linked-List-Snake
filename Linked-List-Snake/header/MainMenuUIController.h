@@ -2,6 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include "../header/IUIController.h"
 
+class ButtonView;
+
 class MainMenuUIController : public IUIController
 {
 private:
@@ -9,32 +11,28 @@ private:
 	const float button_width = 400.f;
 	const float button_height = 140.f;
 
-	sf::RenderWindow* game_window;
+	const float play_button_y_position = 500.f;
+	const float instructions_button_y_position = 700.f;
+	const float quit_button_y_position = 900.f;
 
-	// Textures:
-	sf::Texture play_button_texture;
-	sf::Sprite play_button_sprite;
+	ButtonView* play_button;
+	ButtonView* instructions_button;
+	ButtonView* quit_button;
 
-	sf::Texture instructions_button_texture;
-	sf::Sprite instructions_button_sprite;
-
-	sf::Texture quit_button_texture;
-	sf::Sprite quit_button_sprite;
-
+	void createButtons();
 	void initializeButtons();
-	bool loadButtonTexturesFromFile();
-	void setButtonSprites();
-
-	void scaleAllButttons();
-	void scaleButton(sf::Sprite* button_to_scale);
-	void positionButtons();
+	void registerButtonCallback();
 	float calculateLeftOffsetForButton();
 
-	void handleButtonInteractions();
-	bool clickedButton(sf::Sprite*, sf::Vector2f);
+	void playButtonCallback();
+	void instructionsButtonCallback();
+	void quitButtonCallback();
+
+	void destroy();
 
 public:
 	MainMenuUIController();
+	~MainMenuUIController();
 
 	void initialize() override;
 	void update() override;

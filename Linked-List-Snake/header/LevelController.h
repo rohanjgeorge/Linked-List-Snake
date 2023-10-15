@@ -18,7 +18,8 @@ public:
     void update();
     void render();
 
-    LevelModel* getLevelModel();
-    LevelView* getLevelView();
-    const std::vector<ElementData>& getElementDataList(int level_index);
+    float getCellWidth();
+    float getCellHeight();
+
+    const std::vector<ElementData>& getElementDataList(int level_to_load);
 };

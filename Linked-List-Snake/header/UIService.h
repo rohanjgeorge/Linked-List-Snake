@@ -1,6 +1,6 @@
 #pragma once
-#include <SFML/Graphics/RenderWindow.hpp>
 
+class IUIController;
 class SplashScreenUIController;
 class MainMenuUIController;
 class LevelSelectionUIController;
@@ -12,10 +12,9 @@ private:
 	MainMenuUIController* main_menu_controller;
 	LevelSelectionUIController* level_selection_ui_controller;
 
-	sf::RenderWindow* game_window;
-
 	void createControllers();
 	void initializeControllers();
+	IUIController* getCurrentUIController();
 	void destroy();
 
 public:

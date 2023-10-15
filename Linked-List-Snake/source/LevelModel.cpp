@@ -2,44 +2,40 @@
 #include "../header/LevelService.h"
 #include "../header/ElementService.h"
 
-LevelModel::LevelModel()
-{
-}
+LevelModel::LevelModel() = default;
 
-LevelModel::~LevelModel()
-{
-}
+LevelModel::~LevelModel() = default;
 
-void LevelModel::initialize(int grid_width, int grid_height)
+void LevelModel::initialize(int width, int height)
 {
-	grid_cell_width = static_cast<float>(grid_width) /static_cast<float>(number_of_columns);
-	grid_cell_height = static_cast<float>(grid_height) /static_cast<float>(number_of_rows);
+	cell_width = static_cast<float>(width) /static_cast<float>(number_of_columns);
+	cell_height = static_cast<float>(height) /static_cast<float>(number_of_rows);
 
 	initializeLevelData();
 }
 
 void LevelModel::initializeLevelData()
 {
-	level_data_list.push_back(LevelData(Level::ONE, &level_one_data_list));
-	level_data_list.push_back(LevelData(Level::TWO, &level_two_data_list));
+	level_configurations.push_back(LevelData(Level::ONE, &level_one_element_list));
+	level_configurations.push_back(LevelData(Level::TWO, &level_two_element_list));
 }
 
 const std::vector<LevelData>& LevelModel::getLevelDataList()
 {
-	return level_data_list;
+	return level_configurations;
 }
 
-const std::vector<ElementData>& LevelModel::getElementDataList(int index)
+const std::vector<ElementData>& LevelModel::getElementDataList(int level_to_load)
 {
-	return *level_data_list[index].element_data_list;
+	return *level_configurations[level_to_load].element_data_list;
 }
 
-float LevelModel::getGridCellWidth()
+float LevelModel::getCellWidth()
 {
-	return grid_cell_width;
+	return cell_width;
 }
 
-float LevelModel::getGridCellHeight()
+float LevelModel::getCellHeight()
 {
-	return grid_cell_height;
+	return cell_height;
 }

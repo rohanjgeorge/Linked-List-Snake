@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <SFML/System/Vector2.hpp>
 
 class Obstacle;
 struct ElementData;
@@ -14,7 +15,7 @@ class ElementService
 private:
 	std::vector<Obstacle*> obstacle_list;
 
-	const void spawnObstacle(std::vector<ElementData>& element_data_list, int index, float cell_width, float cell_height);
+	void spawnObstacle(sf::Vector2i position, float cell_width, float cell_height);
 
 public:
 	ElementService();

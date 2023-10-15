@@ -37,9 +37,9 @@ void LevelService::render()
 	level_controller->render();
 }
 
-void LevelService::createLevel(Level level_index)
+void LevelService::createLevel(Level level_to_load)
 {
-	spawnLevelElements(level_index);
+	spawnLevelElements(level_to_load);
 	spawnPlayer();
 }
 
@@ -48,18 +48,13 @@ void LevelService::spawnPlayer()
 	ServiceLocator::getInstance()->getPlayerService()->spawnPlayer();
 }
 
-void LevelService::spawnLevelElements(Level level_index)
+void LevelService::spawnLevelElements(Level level_to_load)
 {
-	float cell_width = level_controller->getLevelModel()->getGridCellWidth();
-	float cell_height = level_controller->getLevelModel()->getGridCellHeight();
+	float cell_width = level_controller->getCellWidth();
+	float cell_height = level_controller->getCellHeight();
 
-	std::vector<ElementData> element_data_list = level_controller->getElementDataList((int)level_index);
+	std::vector<ElementData> element_data_list = level_controller->getElementDataList((int)level_to_load);
 	ServiceLocator::getInstance()->getElementService()->spawnElements(element_data_list, cell_width, cell_height);
-}
-
-LevelController* LevelService::getLevelController()
-{
-	return level_controller;
 }
 
 void LevelService::destroy()

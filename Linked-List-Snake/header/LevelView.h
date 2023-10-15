@@ -1,23 +1,25 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+class RectangleShapeView;
+
 class LevelView
 {
 private:
-    sf::RenderWindow* game_window;
-    sf::RectangleShape backgroundRect;
-    sf::RectangleShape border_rect;
+    const sf::Color background_color = sf::Color(180, 200, 160);
+    const sf::Color border_color = sf::Color::Black;
 
-    sf::Color background_color = sf::Color(180, 200, 160);
-    sf::Color border_color = sf::Color::Black;
+    RectangleShapeView* background_rectangle;
+    RectangleShapeView* border_rectangle;
 
-    float border_width;
-    float border_height;
+    float grid_width;
+    float grid_height;
     
+    void createViews();
     void initializeBackground();
     void initializeBorder();
-    void calculateBorderExtents();
-    void drawLevel();
+    void calculateGridExtents();
+    void destroy();
 
 public:
     static const int border_thickness = 10;

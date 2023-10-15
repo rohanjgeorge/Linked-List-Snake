@@ -5,17 +5,11 @@
 #include "../header/Obstacle.h"
 #include "../header/LevelModel.h"
 
-ElementService::ElementService()
-{
-}
+ElementService::ElementService() = default;
 
-ElementService::~ElementService()
-{
-}
+ElementService::~ElementService() = default;
 
-void ElementService::initialize()
-{
-}
+void ElementService::initialize() { }
 
 void ElementService::update()
 {
@@ -40,18 +34,16 @@ const void ElementService::spawnElements(std::vector<ElementData>& element_data_
 		switch (element_data_list[i].element_type)
 		{
 		case::ElementType::OBSTACLE:
-			spawnObstacle(element_data_list, i, cell_width, cell_height);
+			spawnObstacle(element_data_list[i].position, cell_width, cell_height);
 			break;
 		}		
 	}
 }
 
-const void ElementService::spawnObstacle(std::vector<ElementData>& element_data_list, int index, float cell_width, float cell_height)
+void ElementService::spawnObstacle(sf::Vector2i position, float cell_width, float cell_height)
 {
-	Obstacle* obstacle = new Obstacle(element_data_list[index].position.x, 
-										element_data_list[index].position.y, 
-										cell_width, cell_height);
+	Obstacle* obstacle = new Obstacle();
 
-	obstacle->initialize();
+	obstacle->initialize(position, cell_width, cell_height);
 	obstacle_list.push_back(obstacle);
 }
