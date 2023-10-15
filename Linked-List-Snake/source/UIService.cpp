@@ -32,49 +32,31 @@ void UIService::initialize()
 
 void UIService::update()
 {
-	switch (GameService::getGameState())
+	IUIController* ui_controller = getCurrentUIController();
+
+	if (ui_controller)
 	{
-	case GameState::SPLASH_SCREEN:
-		splash_screen_controller->update();
-		break;
-	case GameState::MAIN_MENU:
-		main_menu_controller->update();
-		break;
-	case GameState::LEVEL_SELECTION:
-		level_selection_ui_controller->update();
-		break;
+		ui_controller->update();
 	}
 }
 
 void UIService::render()
 {
-	switch (GameService::getGameState())
+	IUIController* ui_controller = getCurrentUIController();
+
+	if (ui_controller)
 	{
-	case GameState::SPLASH_SCREEN:
-		splash_screen_controller->render();
-		break;
-	case GameState::MAIN_MENU:
-		main_menu_controller->render();
-		break;
-	case GameState::LEVEL_SELECTION:
-		level_selection_ui_controller->render();
-		break;
+		ui_controller->render();
 	}
 }
 
 void UIService::showScreen()
 {
-	switch (GameService::getGameState())
+	IUIController* ui_controller = getCurrentUIController();
+
+	if (ui_controller)
 	{
-	case GameState::SPLASH_SCREEN:
-		splash_screen_controller->show();
-		break;
-	case GameState::MAIN_MENU:
-		main_menu_controller->show();
-		break;
-	case GameState::LEVEL_SELECTION:
-		level_selection_ui_controller->show();
-		break;
+		ui_controller->show();
 	}
 }
 
@@ -83,6 +65,24 @@ void UIService::initializeControllers()
 	splash_screen_controller->initialize();
 	main_menu_controller->initialize();
 	level_selection_ui_controller->initialize();
+}
+
+IUIController* UIService::getCurrentUIController()
+{
+	switch (GameService::getGameState())
+	{
+	case GameState::SPLASH_SCREEN:
+		return splash_screen_controller;
+
+	case GameState::MAIN_MENU:
+		return main_menu_controller;
+
+	case GameState::LEVEL_SELECTION:
+		return level_selection_ui_controller;
+
+	default:
+		return nullptr;
+	}
 }
 
 void UIService::destroy()

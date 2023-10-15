@@ -1,5 +1,6 @@
 #pragma once
 
+class IUIController;
 class SplashScreenUIController;
 class MainMenuUIController;
 class LevelSelectionUIController;
@@ -13,6 +14,7 @@ private:
 
 	void createControllers();
 	void initializeControllers();
+	IUIController* getCurrentUIController();
 	void destroy();
 
 public:
