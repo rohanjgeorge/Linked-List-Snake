@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/System/Vector2.hpp>
 #include "../header/Node.h"
+#include <vector>
 
 class Node;
 enum class Direction;
@@ -19,7 +20,6 @@ private:
 	Node* createNode();
 	void initializeNode(Node* new_node, Node* reference_node);
 	sf::Vector2i getNewNodePosition(Node* reference_node);
-	sf::Vector2i getHeadNodeNextPosition();
 
 	void updateNodes(Direction direction);
 
@@ -37,4 +37,6 @@ public:
 
 	bool handleNodeCollision();
 	Node* getHeadNodeReference();
+
+	std::vector<sf::Vector2i> getNodesPositionList();
 };

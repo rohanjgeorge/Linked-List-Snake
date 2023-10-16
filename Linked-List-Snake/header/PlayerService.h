@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+#include <SFML/System/Vector2.hpp>
 
 class PlayerController;
 
@@ -19,4 +21,5 @@ public:
 	void render();
 
 	void spawnPlayer();
+	std::vector<sf::Vector2i> getCurrentPlayerPositionList();
 };

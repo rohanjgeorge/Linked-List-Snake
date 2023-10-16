@@ -177,3 +177,18 @@ Node* SingleLinkedList::getHeadNodeReference()
 {
 	return head_node;
 }
+
+std::vector<sf::Vector2i> SingleLinkedList::getNodesPositionList()
+{
+	std::vector<sf::Vector2i> nodes_position_list;
+
+	Node* cur_node = head_node;
+
+	while (cur_node != nullptr)
+	{
+		nodes_position_list.push_back(cur_node->getNodePosition());
+		cur_node = cur_node->getNextNodeReference();
+	}
+
+	return nodes_position_list;
+}

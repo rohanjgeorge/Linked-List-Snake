@@ -18,6 +18,7 @@ private:
     void createLevelController();
     void spawnPlayer();
     void spawnLevelElements(Level level_to_load);
+    void spawnFood();
     void destroy();
 
 public:

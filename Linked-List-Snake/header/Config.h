@@ -10,6 +10,15 @@ public:
 	static const sf::String obstacle_texture_path;
 	static const sf::String snake_body_texture_path;
 
+	static const sf::String apple_texture_path;
+	static const sf::String mango_texture_path;
+	static const sf::String orange_texture_path;
+	static const sf::String pizza_texture_path;
+	static const sf::String burger_texture_path;
+	static const sf::String cheese_texture_path;
+	static const sf::String poision_texture_path;
+	static const sf::String alcohol_texture_path;
+
 	static const sf::String play_button_texture_path;
 	static const sf::String instructions_button_texture_path;
 	static const sf::String quit_button_texture_path;

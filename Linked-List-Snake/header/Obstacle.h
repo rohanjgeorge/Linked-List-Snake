@@ -23,4 +23,6 @@ public:
     void initialize(sf::Vector2i grid_pos, float width, float height);
     void update();
     void render();
+
+    sf::Vector2i getObstaclePosition();
 };

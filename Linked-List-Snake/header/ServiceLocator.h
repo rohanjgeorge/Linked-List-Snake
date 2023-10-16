@@ -7,6 +7,7 @@ class SoundService;
 class LevelService;
 class PlayerService;
 class ElementService;
+class FoodService;
 class UIService;
 
 class ServiceLocator
@@ -19,6 +20,7 @@ private:
     LevelService* level_service;
     PlayerService* player_service;
     ElementService* element_service;
+    FoodService* food_service;
     UIService* ui_service;
 
     ServiceLocator();
@@ -41,6 +43,7 @@ public:
     LevelService* getLevelService();
     PlayerService* getPlayerService();
     ElementService* getElementService();
+    FoodService* getFoodService();
     UIService* getUIService();
     void deleteServiceLocator();
 };

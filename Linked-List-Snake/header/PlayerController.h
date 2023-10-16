@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/System/Vector2.hpp>
 #include "Node.h"
+#include <vector>
 
 class SingleLinkedList;
 enum class Direction;
@@ -48,4 +49,6 @@ public:
 	void respawnPlayer();
 	void setPlayerSet(PlayerState state);
 	PlayerState getPlayerState();
+
+	std::vector<sf::Vector2i> getCurrentPlayerPositionList();
 };
