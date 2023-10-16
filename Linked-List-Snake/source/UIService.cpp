@@ -3,12 +3,14 @@
 #include "../header/MainMenuUIController.h"
 #include "../header/SplashScreenUIController.h"
 #include "../header/LevelSelectionUIController.h"
+#include "../header/GameplayUIController.h"
 
 UIService::UIService()
 {
 	splash_screen_controller = nullptr;
 	main_menu_controller = nullptr;
 	level_selection_ui_controller = nullptr;
+	gameplay_ui_controller = nullptr;
 
 	createControllers();
 }
@@ -18,6 +20,7 @@ void UIService::createControllers()
 	splash_screen_controller = new SplashScreenUIController();
 	main_menu_controller = new MainMenuUIController();
 	level_selection_ui_controller = new LevelSelectionUIController();
+	gameplay_ui_controller = new GameplayUIController();
 }
 
 UIService::~UIService()
@@ -65,6 +68,7 @@ void UIService::initializeControllers()
 	splash_screen_controller->initialize();
 	main_menu_controller->initialize();
 	level_selection_ui_controller->initialize();
+	gameplay_ui_controller->initialize();
 }
 
 IUIController* UIService::getCurrentUIController()
@@ -80,6 +84,9 @@ IUIController* UIService::getCurrentUIController()
 	case GameState::LEVEL_SELECTION:
 		return level_selection_ui_controller;
 
+	case GameState::GAMEPLAY:
+		return gameplay_ui_controller;
+
 	default:
 		return nullptr;
 	}
@@ -90,4 +97,5 @@ void UIService::destroy()
 	delete(splash_screen_controller);
 	delete(main_menu_controller);
 	delete(level_selection_ui_controller);
+	delete(gameplay_ui_controller);
 }

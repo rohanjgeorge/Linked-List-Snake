@@ -138,6 +138,7 @@
     <ClCompile Include="source\EventService.cpp" />
     <ClCompile Include="source\Food.cpp" />
     <ClCompile Include="source\FoodService.cpp" />
+    <ClCompile Include="source\GameplayUIController.cpp" />
     <ClCompile Include="source\GameService.cpp" />
     <ClCompile Include="source\GraphicService.cpp" />
     <ClCompile Include="source\LevelController.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="header\EventService.h" />
     <ClInclude Include="header\Food.h" />
     <ClInclude Include="header\FoodService.h" />
+    <ClInclude Include="header\GameplayUIController.h" />
     <ClInclude Include="header\GameService.h" />
     <ClInclude Include="header\GraphicService.h" />
     <ClInclude Include="header\ImageView.h" />

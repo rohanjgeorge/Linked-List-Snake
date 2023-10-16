@@ -19,7 +19,6 @@ private:
 
 	static void loadFont();
 	
-	void setText(sf::String text_value);
 	void setFont(FontType font_type);
 	void setFontSize(int font_size);
 	void setTextPosition(sf::Vector2f position);
@@ -34,4 +33,6 @@ public:
 	virtual void initialize(sf::String text_value, sf::Vector2f position, FontType font_type = FontType::BUBBLE_BOBBLE, int font_size = default_font_size, sf::Color color = sf::Color::White);
 	virtual void update() override;
 	virtual void render() override;
+	
+	void setText(sf::String text_value);
 };
