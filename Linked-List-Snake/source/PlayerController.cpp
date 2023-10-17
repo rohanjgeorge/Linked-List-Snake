@@ -7,7 +7,7 @@
 #include "../header/ElementService.h"
 #include "../header/FoodService.h"
 #include "../header/SoundService.h"
-#include "../header/Food.h"
+#include "../header/FoodType.h"
 
 PlayerController::PlayerController()
 {
@@ -108,7 +108,7 @@ void PlayerController::handleElementsCollision()
 {
 	ElementService* element_service = ServiceLocator::getInstance()->getElementService();
 
-	if(element_service->handleElementsCollision(single_linked_list->getHeadNodeReference()))
+	if(element_service->handleElementsCollision(single_linked_list->getHeadNode()))
 	{
 		current_player_state = PlayerState::DEAD;
 		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::DEATH);
@@ -120,7 +120,7 @@ void PlayerController::handleFoodCollision()
 	FoodService* food_service = ServiceLocator::getInstance()->getFoodService();
 	FoodType food_type;
 
-	if (food_service->handleFoodCollision(single_linked_list->getHeadNodeReference(), food_type))
+	if (food_service->handleFoodCollision(single_linked_list->getHeadNode(), food_type))
 	{
 		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::PICKUP);
 
@@ -170,7 +170,6 @@ void PlayerController::performOperation(FoodType food_type)
 		break;
 
 	case FoodType::ALCOHOL:	
-		player_direction = single_linked_list->reverse();
 		break;
 	}
 } 
@@ -227,7 +226,7 @@ std::vector<sf::Vector2i> PlayerController::getCurrentPlayerPositionList()
 
 int PlayerController::getPlayerScore()
 {
-	return single_linked_list->getLinkedListSize();
+	return player_score;
 }
 
 TimeComplexity PlayerController::getTimeComplexity()

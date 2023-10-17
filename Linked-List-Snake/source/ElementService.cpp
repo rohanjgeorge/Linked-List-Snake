@@ -52,7 +52,7 @@ bool ElementService::handleElementsCollision(Node* head_node)
 	for (int i = 0; i < obstacle_list.size(); i++)
 	{
 		if (obstacle_list[i]->getObstaclePosition() == head_node->getNextNodePosition() ||
-			obstacle_list[i]->getObstaclePosition() == head_node->getNodePosition())
+			obstacle_list[i]->getObstaclePosition() == head_node->getPosition())
 		{
 			return true;
 		}

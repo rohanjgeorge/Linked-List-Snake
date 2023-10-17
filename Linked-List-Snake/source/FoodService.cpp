@@ -5,6 +5,7 @@
 #include "../header/LevelModel.h"
 #include "../header/PlayerService.h"
 #include "../header/Node.h"
+#include "../header/FoodType.h"
 
 FoodService::FoodService() : random_engine(random_device())
 {
@@ -138,9 +139,9 @@ void FoodService::reset()
 
 bool FoodService::handleFoodCollision(Node* head_node, FoodType& out_food_type)
 {
-	if (food_item && food_item->getFoodPosition() == head_node->getNodePosition())
+	if (current_food_item && current_food_item->getFoodPosition() == head_node->getPosition())
 	{
-		out_food_type = food_item->getFoodType();
+		out_food_type = current_food_item->getFoodType();
 		return true;
 	}
 
