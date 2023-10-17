@@ -124,17 +124,17 @@ sf::Vector2i Node::getNextPositionLeft()
 	}
 }
 
-Node* Node::getNextNodeReference()
+Node* Node::getNextNode()
 {
 	return next_node;
 }
 
-Direction Node::getNodeDirection()
+Direction Node::getDirection()
 {
 	return direction;
 }
 
-sf::Vector2i Node::getNodePosition()
+sf::Vector2i Node::getPosition()
 {
 	return grid_position;
 }

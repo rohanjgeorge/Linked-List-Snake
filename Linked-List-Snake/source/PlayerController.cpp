@@ -8,7 +8,6 @@
 PlayerController::PlayerController()
 {
 	single_linked_list = nullptr;
-
 	createLinkedList();
 }
 
@@ -33,10 +32,10 @@ void PlayerController::initialize()
 
 void PlayerController::update()
 {
-	switch (player_state)
+	switch (current_player_state)
 	{
 	case PlayerState::ALIVE:
-		handleButtonInteraction();
+		handlePlayerInput();
 		handleLinkedListUpdate();
 		handlePlayerCollision();
 		break;
@@ -52,25 +51,25 @@ void PlayerController::render()
 	single_linked_list->render();
 }
 
-void PlayerController::handleButtonInteraction()
+void PlayerController::handlePlayerInput()
 {
 	EventService* event_service = ServiceLocator::getInstance()->getEventService();
 
-	if (event_service->pressedUpKey() && player_direction != Direction::DOWN)
+	if (event_service->pressedUpKey() && current_player_direction != Direction::DOWN)
 	{
-		player_direction = Direction::UP;
+		current_player_direction = Direction::UP;
 	}
-	else if (event_service->pressedDownKey() && player_direction != Direction::UP)
+	else if (event_service->pressedDownKey() && current_player_direction != Direction::UP)
 	{
-		player_direction = Direction::DOWN;
+		current_player_direction = Direction::DOWN;
 	}
-	else if (event_service->pressedLeftKey() && player_direction != Direction::RIGHT)
+	else if (event_service->pressedLeftKey() && current_player_direction != Direction::RIGHT)
 	{
-		player_direction = Direction::LEFT;
+		current_player_direction = Direction::LEFT;
 	}
-	else if (event_service->pressedRightKey() && player_direction != Direction::LEFT)
+	else if (event_service->pressedRightKey() && current_player_direction != Direction::LEFT)
 	{
-		player_direction = Direction::RIGHT;
+		current_player_direction = Direction::RIGHT;
 	}
 }
 
@@ -80,7 +79,7 @@ void PlayerController::handleLinkedListUpdate()
 
 	if (elapsed_duration >= movement_frame_duration)
 	{
-		single_linked_list->update(player_direction);
+		single_linked_list->update(current_player_direction);
 		elapsed_duration = 0.f;
 	}
 }
@@ -89,7 +88,7 @@ void PlayerController::handlePlayerCollision()
 {
 	if (single_linked_list->handleNodeCollision())
 	{
-		player_state = PlayerState::DEAD;
+		current_player_state = PlayerState::DEAD;
 	}
 }
 
@@ -107,14 +106,14 @@ void PlayerController::spawnPlayer()
 {
 	for (int i = 0; i < initial_snake_length; i++)
 	{
-		single_linked_list->insertNode();
+		single_linked_list->insertNodeAtTail();
 	}
 }
 
 void PlayerController::reset()
 {
-	player_state = PlayerState::ALIVE;
-	player_direction = default_direction;
+	current_player_state = PlayerState::ALIVE;
+	current_player_direction = default_direction;
 	elapsed_duration = 0.f;
 	restart_counter = 0.f;
 }
@@ -126,14 +125,14 @@ void PlayerController::respawnPlayer()
 	spawnPlayer();
 }
 
-void PlayerController::setPlayerSet(PlayerState state)
+void PlayerController::setPlayerState(PlayerState state)
 {
-	player_state = state;
+	current_player_state = state;
 }
 
 PlayerState PlayerController::getPlayerState()
 {
-	return player_state;
+	return current_player_state;
 }
 
 void PlayerController::destroy()
