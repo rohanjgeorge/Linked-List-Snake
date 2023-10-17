@@ -4,6 +4,7 @@
 #include "../header/Food.h"
 #include "../header/LevelModel.h"
 #include "../header/PlayerService.h"
+#include "../header/Node.h"
 
 FoodService::FoodService() : random_engine(random_device())
 {
@@ -120,6 +121,7 @@ bool FoodService::isValidPosition(std::vector<sf::Vector2i> player_position_data
 void FoodService::destroyFood()
 {
 	if(food_item) delete(food_item);
+	food_item = nullptr;
 }
 
 void FoodService::updateElapsedDuration()
@@ -140,4 +142,15 @@ void FoodService::handleFoodSpawning()
 void FoodService::reset()
 {
 	elapsed_duration = 0.f;
+}
+
+bool FoodService::handleFoodCollision(Node* head_node, FoodType& out_food_type)
+{
+	if (food_item && food_item->getFoodPosition() == head_node->getNodePosition())
+	{
+		out_food_type = food_item->getFoodType();
+		return true;
+	}
+
+	return false;
 }

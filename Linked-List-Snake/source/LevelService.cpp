@@ -55,6 +55,11 @@ float LevelService::getCellHeight()
 	return level_controller->getCellHeight();
 }
 
+Level LevelService::getCurrentLevel()
+{
+	return current_level;
+}
+
 void LevelService::spawnPlayer()
 {
 	ServiceLocator::getInstance()->getPlayerService()->spawnPlayer();
@@ -62,6 +67,8 @@ void LevelService::spawnPlayer()
 
 void LevelService::spawnLevelElements(Level level_to_load)
 {
+	current_level = level_to_load;
+
 	float cell_width = level_controller->getCellWidth();
 	float cell_height = level_controller->getCellHeight();
 

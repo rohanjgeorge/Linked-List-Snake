@@ -3,6 +3,7 @@
 #include <random>
 #include <vector>
 
+class Node;
 class Food;
 enum class FoodType;
 
@@ -15,7 +16,7 @@ enum FoodSpawnStatus
 class FoodService
 {
 private:
-	const float spawn_duration = 4.f;
+	const float spawn_duration = 5.f;
 
 	float elapsed_duration;
 
@@ -40,7 +41,6 @@ private:
 
 	bool isValidPosition(std::vector<sf::Vector2i> player_position_data, std::vector<sf::Vector2i> elements_position_data, sf::Vector2i food_position);
 
-	void destroyFood();
 	void updateElapsedDuration();
 	void handleFoodSpawning();
 	void reset();
@@ -55,4 +55,7 @@ public:
 
 	void startFoodSpawning(float width, float height);
 	void stopFoodSpawning();
+
+	void destroyFood();
+	bool handleFoodCollision(Node* head_node, FoodType& out_food_type);
 };

@@ -32,4 +32,5 @@ public:
     void createLevel(Level level_to_load);
     float getCellWidth();
     float getCellHeight();
+    Level getCurrentLevel();
 };

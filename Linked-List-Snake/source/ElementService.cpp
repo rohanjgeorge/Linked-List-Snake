@@ -4,6 +4,7 @@
 #include "../header/LevelController.h"
 #include "../header/Obstacle.h"
 #include "../header/LevelModel.h"
+#include "../header/Node.h"
 
 ElementService::ElementService() = default;
 
@@ -50,6 +51,20 @@ std::vector<sf::Vector2i> ElementService::getElementsPositionList()
 	}
 
 	return elements_position_list;
+}
+
+bool ElementService::handleElementsCollision(Node* head_node)
+{
+	for (int i = 0; i < obstacle_list.size(); i++)
+	{
+		if (obstacle_list[i]->getObstaclePosition() == head_node->getNextNodePosition() ||
+			obstacle_list[i]->getObstaclePosition() == head_node->getNodePosition())
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 void ElementService::spawnObstacle(sf::Vector2i position, float cell_width, float cell_height)

@@ -4,6 +4,8 @@
 enum class SoundType
 {
 	BUTTON_CLICK,
+	PICKUP,
+	DEATH,
 };
 
 class SoundService
@@ -14,6 +16,8 @@ private:
 	sf::Music background_music;
 	sf::Sound sound_effect;
 	sf::SoundBuffer buffer_button_click;
+	sf::SoundBuffer buffer_pickup;
+	sf::SoundBuffer buffer_death;
 
 	void loadBackgroundMusicFromFile();
 	void loadSoundFromFile();

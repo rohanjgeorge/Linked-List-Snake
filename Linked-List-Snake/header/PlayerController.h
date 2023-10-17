@@ -5,6 +5,13 @@
 
 class SingleLinkedList;
 enum class Direction;
+enum class FoodType;
+
+enum class TimeComplexity
+{
+	ONE,
+	N,
+};
 
 enum class PlayerState
 {
@@ -17,7 +24,7 @@ class PlayerController
 private:
 	const int initial_snake_length = 10;
 	const float movement_frame_duration = 0.1f;
-	const float restart_duration = 2.f;
+	const float restart_duration = 4.f;
 
 	const sf::Vector2i default_position = sf::Vector2i(25, 13);
 	const Direction default_direction = Direction::RIGHT;
@@ -27,12 +34,19 @@ private:
 	float restart_counter;
 	Direction player_direction;
 
+	int player_score;
+	TimeComplexity time_complexity;
+
 	SingleLinkedList* single_linked_list;
 
 	void createLinkedList();
 	void handleButtonInteraction();
 	void handleLinkedListUpdate();
 	void handlePlayerCollision();
+	void handleNodeCollision();
+	void handleElementsCollision();
+	void handleFoodCollision();
+	void performOperation(FoodType food_type);
 	void handleRestart();
 	void reset();
 	void destroy();
@@ -51,4 +65,6 @@ public:
 	PlayerState getPlayerState();
 
 	std::vector<sf::Vector2i> getCurrentPlayerPositionList();
+	int getPlayerScore();
+	TimeComplexity getTimeComplexity();
 };

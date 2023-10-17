@@ -78,6 +78,11 @@ FoodType Food::getFoodType()
 	return food_type;
 }
 
+sf::Vector2i Food::getFoodPosition()
+{
+	return grid_position;
+}
+
 sf::Vector2f Food::getFoodImagePosition()
 {
 	float screen_position_x = LevelView::border_offset_left + (cell_width * grid_position.x);

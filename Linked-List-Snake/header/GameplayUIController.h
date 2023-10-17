@@ -24,6 +24,10 @@ private:
 	void initializeScoreText();
 	void initializeTimeComplexityText();
 
+	void updateLevelNumberText();
+	void updateScoreText();
+	void updateTimeComplexityText();
+
 	void destroy();
 
 public:

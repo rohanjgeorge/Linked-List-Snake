@@ -21,7 +21,7 @@ void Node::initialize(float width, float height, sf::Vector2i pos, Direction dir
 {
 	node_width = width;
 	node_height = height;
-	direction = dir;
+	node_direction = dir;
 	grid_position = pos;
 
 	initializeNodeUI();
@@ -34,7 +34,7 @@ void Node::initializeNodeUI()
 
 void Node::updateNode(Direction dir)
 {
-	direction = dir;
+	node_direction = dir;
 	grid_position = getNextNodePosition();
 
 	node_image->setPosition(getNodeScreenPosition());
@@ -61,7 +61,7 @@ void Node::setNextNodeReference(Node* node)
 
 sf::Vector2i Node::getNextNodePosition() 
 {
-	switch (direction) 
+	switch (node_direction)
 	{
 	case Direction::UP:
 		return getNextPositionUp();
@@ -71,6 +71,23 @@ sf::Vector2i Node::getNextNodePosition()
 		return getNextPositionRight();
 	case Direction::LEFT:
 		return getNextPositionLeft();
+	default:
+		return grid_position;
+	}
+}
+
+sf::Vector2i Node::getPrevNodePosition()
+{
+	switch (node_direction)
+	{
+	case Direction::UP:
+		return getNextPositionDown();
+	case Direction::DOWN:
+		return getNextPositionUp();
+	case Direction::RIGHT:
+		return getNextPositionLeft();
+	case Direction::LEFT:
+		return getNextPositionRight();
 	default:
 		return grid_position;
 	}
@@ -131,10 +148,40 @@ Node* Node::getNextNodeReference()
 
 Direction Node::getNodeDirection()
 {
-	return direction;
+	return node_direction;
+}
+
+Direction Node::getReverseNodeDirection()
+{
+	switch (node_direction)
+	{
+	case Direction::UP:
+		return Direction::DOWN;
+	case Direction::DOWN:
+		return Direction::UP;
+	case Direction::LEFT:
+		return Direction::RIGHT;
+	case Direction::RIGHT:
+		return Direction::LEFT;
+	}
 }
 
 sf::Vector2i Node::getNodePosition()
 {
 	return grid_position;
+}
+
+void Node::setNodePosition(sf::Vector2i position)
+{
+	grid_position = position;
+}
+
+void Node::setNodeDirection(Direction direction)
+{
+	node_direction = direction;
+}
+
+void Node::setHeadImage(sf::String path)
+{
+	node_image->setTexture(path);
 }

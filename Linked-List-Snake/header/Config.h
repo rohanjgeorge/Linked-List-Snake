@@ -31,4 +31,6 @@ public:
 
 	static const sf::String background_music_path;
 	static const sf::String button_click_sound_path;
+	static const sf::String pickup_sound_path;
+	static const sf::String death_sound_path;
 };

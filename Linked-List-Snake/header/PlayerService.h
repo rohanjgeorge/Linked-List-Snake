@@ -3,6 +3,7 @@
 #include <SFML/System/Vector2.hpp>
 
 class PlayerController;
+enum class TimeComplexity;
 
 class PlayerService
 {
@@ -22,4 +23,7 @@ public:
 
 	void spawnPlayer();
 	std::vector<sf::Vector2i> getCurrentPlayerPositionList();
+
+	int getPlayerScore();
+	TimeComplexity getTimeComplexity();
 };

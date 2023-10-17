@@ -1,5 +1,5 @@
 #pragma once
-#include <SFML/System/Vector2.hpp>
+#include <SFML/Graphics.hpp>
 
 class ImageView;
 
@@ -19,7 +19,7 @@ private:
 	ImageView* node_image;
 
 	sf::Vector2i grid_position;
-	Direction direction;
+	Direction node_direction;
 
 	float node_width;
 	float node_height;
@@ -45,4 +45,10 @@ public:
 	Direction getNodeDirection();
 	sf::Vector2i getNodePosition();
 	sf::Vector2i getNextNodePosition();
+	sf::Vector2i getPrevNodePosition();
+	Direction getReverseNodeDirection();
+
+	void setNodePosition(sf::Vector2i position);
+	void setNodeDirection(Direction direction);
+	void setHeadImage(sf::String path);
 };
