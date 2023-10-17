@@ -29,10 +29,10 @@ private:
 	const sf::Vector2i default_position = sf::Vector2i(25, 13);
 	const Direction default_direction = Direction::RIGHT;
 
-	PlayerState player_state;
+	PlayerState current_player_state;
 	float elapsed_duration;
 	float restart_counter;
-	Direction player_direction;
+	Direction current_player_direction;
 
 	int player_score;
 	TimeComplexity time_complexity;
@@ -40,7 +40,7 @@ private:
 	SingleLinkedList* single_linked_list;
 
 	void createLinkedList();
-	void handleButtonInteraction();
+	void handlePlayerInput();
 	void handleLinkedListUpdate();
 	void handlePlayerCollision();
 	void handleNodeCollision();
@@ -61,7 +61,7 @@ public:
 
 	void spawnPlayer();
 	void respawnPlayer();
-	void setPlayerSet(PlayerState state);
+	void setPlayerState(PlayerState state);
 	PlayerState getPlayerState();
 
 	std::vector<sf::Vector2i> getCurrentPlayerPositionList();

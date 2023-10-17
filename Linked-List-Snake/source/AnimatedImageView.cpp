@@ -31,7 +31,7 @@ void AnimatedImageView::render()
     ImageView::render();
 }
 
-void AnimatedImageView::show(AnimationType type, float duration, CallbackFunction animation_end_callback)
+void AnimatedImageView::playAnimation(AnimationType type, float duration, CallbackFunction animation_end_callback)
 {
     ImageView::show();
     reset();

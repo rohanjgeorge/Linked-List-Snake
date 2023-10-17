@@ -173,6 +173,7 @@
     <ClInclude Include="header\EventService.h" />
     <ClInclude Include="header\Food.h" />
     <ClInclude Include="header\FoodService.h" />
+    <ClInclude Include="header\FoodType.h" />
     <ClInclude Include="header\GameplayUIController.h" />
     <ClInclude Include="header\GameService.h" />
     <ClInclude Include="header\GraphicService.h" />

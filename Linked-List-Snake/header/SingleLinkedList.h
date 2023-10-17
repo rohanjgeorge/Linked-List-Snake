@@ -30,7 +30,7 @@ private:
 	void initializeNode(Node* new_node, Node* reference_node, Operation operation);
 	sf::Vector2i getNewNodePosition(Node* reference_node, Operation operation);
 
-	void updateNodes(Direction direction);
+	void updateNodes(Direction directionToSet);
 
 public:
 	SingleLinkedList();
@@ -53,7 +53,7 @@ public:
 	Direction reverse();
 
 	bool handleNodeCollision();
-	Node* getHeadNodeReference();
+	Node* getHeadNode();
 	int getLinkedListSize();
 
 	std::vector<sf::Vector2i> getNodesPositionList();

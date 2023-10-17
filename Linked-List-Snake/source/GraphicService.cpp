@@ -1,6 +1,5 @@
 #include "../header/GraphicService.h"
 #include "../header/ImageView.h"
-#include "../header/TextView.h"
 #include "../header/Config.h"
 
 GraphicService::GraphicService()
@@ -17,9 +16,6 @@ void GraphicService::initialize()
 {
 	game_window = createGameWindow();
 	setFrameRate(frame_rate);
-
-	initializeBackgroundImage();
-	TextView::initializeTextView();
 }
 
 sf::RenderWindow* GraphicService::createGameWindow()
@@ -36,7 +32,6 @@ void GraphicService::configureVideoMode()
 void GraphicService::onDestroy()
 {
 	delete(game_window);
-	delete(background_image);
 }
 
 void GraphicService::setFrameRate(int frame_rate_to_set)
@@ -44,10 +39,7 @@ void GraphicService::setFrameRate(int frame_rate_to_set)
 	game_window->setFramerateLimit(frame_rate_to_set);
 }
 
-void GraphicService::update() 
-{
-	background_image->update();
-}
+void GraphicService::update() { }
 
 void GraphicService::render() { }
 
@@ -59,17 +51,4 @@ bool GraphicService::isGameWindowOpen()
 sf::RenderWindow* GraphicService::getGameWindow()
 {
 	return game_window;
-}
-
-void GraphicService::initializeBackgroundImage()
-{
-	background_image = new ImageView();
-
-	background_image->initialize(Config::background_texture_path, game_window_width, game_window_height, sf::Vector2f(0,0));
-	background_image->setImageAlpha(background_alpha);
-}
-
-void GraphicService::drawBackground()
-{
-	background_image->render();
 }

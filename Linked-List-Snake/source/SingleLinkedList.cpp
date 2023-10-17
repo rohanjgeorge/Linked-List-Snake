@@ -30,23 +30,23 @@ void SingleLinkedList::render()
 	while (cur_node != nullptr)
 	{
 		cur_node->render();
-		cur_node = cur_node->getNextNodeReference();
+		cur_node = cur_node->getNextNode();
 	}
 }
 
-void SingleLinkedList::updateNodes(Direction direction)
+void SingleLinkedList::updateNodes(Direction directionToSet)
 {
 	Node* cur_node = head_node;
-	Direction node_direction = direction;
+	Direction node_direction = directionToSet;
 
 	while (cur_node != nullptr)
 	{
-		Direction temp_direction = cur_node->getNodeDirection();
+		Direction previous_direction = cur_node->getDirection();
 
 		cur_node->updateNode(node_direction);
 
-		node_direction = temp_direction;
-		cur_node = cur_node->getNextNodeReference();
+		node_direction = previous_direction;
+		cur_node = cur_node->getNextNode();
 	}
 }
 
@@ -56,11 +56,11 @@ bool SingleLinkedList::handleNodeCollision()
 
 	sf::Vector2i predicted_position = head_node->getNextNodePosition();
 
-	Node* cur_node = head_node->getNextNodeReference();
+	Node* cur_node = head_node->getNextNode();
 	while (cur_node != nullptr)
 	{
-		if (cur_node->getNodePosition() == predicted_position) return true;
-		cur_node = cur_node->getNextNodeReference();
+		if (cur_node->getPosition() == predicted_position) return true;
+		cur_node = cur_node->getNextNode();
 	}
 
 	return false;
@@ -80,9 +80,9 @@ void SingleLinkedList::insertNodeAtTail()
 		return;
 	}
 
-	while (cur_node->getNextNodeReference() != nullptr)
+	while (cur_node->getNextNode() != nullptr)
 	{
-		cur_node = cur_node->getNextNodeReference();
+		cur_node = cur_node->getNextNode();
 	}
 	
 	cur_node->setNextNodeReference(new_node);
@@ -182,19 +182,19 @@ void SingleLinkedList::removeNodeAtTail()
 
 	Node* cur_node = head_node;
 
-	if (cur_node->getNextNodeReference() == nullptr)
+	if (cur_node->getNextNode() == nullptr)
 	{
 		delete(head_node);
 		head_node = nullptr;
 		return;
 	}
 
-	while (cur_node->getNextNodeReference()->getNextNodeReference() != nullptr)
+	while (cur_node->getNextNode()->getNextNode() != nullptr )
 	{
-		cur_node = cur_node->getNextNodeReference();
+		cur_node = cur_node->getNextNode();
 	}
-
-	delete (cur_node->getNextNodeReference());
+	
+	delete (cur_node->getNextNode());
 	cur_node->setNextNodeReference(nullptr);
 }
 
@@ -262,16 +262,16 @@ void SingleLinkedList::removeAllNodes()
 
 	Node* cur_node = head_node;
 
-	if (cur_node->getNextNodeReference() == nullptr)
+	if (cur_node->getNextNode() == nullptr)
 	{
 		delete(head_node);
 		head_node = nullptr;
 	}
 
-	while (cur_node->getNextNodeReference()->getNextNodeReference() != nullptr)
+	while (cur_node->getNextNode()->getNextNode() != nullptr)
 	{
 		Node* temp_node = cur_node;
-		cur_node = cur_node->getNextNodeReference();
+		cur_node = cur_node->getNextNode();
 
 		temp_node->setNextNodeReference(nullptr);
 		delete(temp_node);
@@ -352,7 +352,8 @@ void SingleLinkedList::initializeNode(Node* new_node, Node* reference_node, Oper
 
 sf::Vector2i SingleLinkedList::getNewNodePosition(Node* reference_node, Operation operation)
 {
-	sf::Vector2i reference_position = reference_node->getNodePosition();
+	Direction reference_direction = reference_node->getDirection();
+	sf::Vector2i reference_position = reference_node->getPosition();
 
 	switch (operation)
 	{
@@ -365,7 +366,7 @@ sf::Vector2i SingleLinkedList::getNewNodePosition(Node* reference_node, Operatio
 	return default_position;
 }
 
-Node* SingleLinkedList::getHeadNodeReference()
+Node* SingleLinkedList::getHeadNode()
 {
 	return head_node;
 }
@@ -383,8 +384,8 @@ std::vector<sf::Vector2i> SingleLinkedList::getNodesPositionList()
 
 	while (cur_node != nullptr)
 	{
-		nodes_position_list.push_back(cur_node->getNodePosition());
-		cur_node = cur_node->getNextNodeReference();
+		nodes_position_list.push_back(cur_node->getPosition());
+		cur_node = cur_node->getNextNode();
 	}
 
 	return nodes_position_list;

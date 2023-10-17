@@ -41,9 +41,9 @@ public:
 	void render();
 
 	void setNextNodeReference(Node* node);
-	Node* getNextNodeReference();
-	Direction getNodeDirection();
-	sf::Vector2i getNodePosition();
+	Node* getNextNode();
+	Direction getDirection();
+	sf::Vector2i getPosition();
 	sf::Vector2i getNextNodePosition();
 	sf::Vector2i getPrevNodePosition();
 	Direction getReverseNodeDirection();

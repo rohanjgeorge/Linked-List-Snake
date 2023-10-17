@@ -2,18 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 class ImageView;
-
-enum class FoodType
-{
-    APPLE,
-    MANGO,
-    ORANGE,
-    PIZZA,
-    BURGER,
-    CHEESE,
-    POISION,
-    ALCOHOL,
-};
+enum class FoodType;
 
 class Food
 {

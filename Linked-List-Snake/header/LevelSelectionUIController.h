@@ -3,6 +3,7 @@
 #include "../header/IUIController.h"
 
 class ButtonView;
+class ImageView;
 
 class LevelSelectionUIController : public IUIController
 {
@@ -15,11 +16,17 @@ private:
 	const float level_two_button_y_position = 700.f;
 	const float menu_button_y_position = 900.f;
 
+	const float background_alpha = 85.f;
+
+	ImageView* background_image;
+
 	ButtonView* level_one_button;
 	ButtonView* level_two_button;
 	ButtonView* menu_button;
 
+	void createImage();
 	void createButtons();
+	void initializeBackgroundImage();
 	void initializeButtons();
 	void registerButtonCallback();
 	float calculateLeftOffsetForButton();

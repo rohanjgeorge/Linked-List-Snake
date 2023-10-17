@@ -14,18 +14,12 @@ void ElementService::initialize() { }
 
 void ElementService::update()
 {
-	for (int i = 0; i < obstacle_list.size(); i++)
-	{
-		obstacle_list[i]->update();
-	}
+	for (int i = 0; i < obstacle_list.size(); i++) obstacle_list[i]->update();
 }
 
 void ElementService::render()
 {
-	for (int i = 0; i < obstacle_list.size(); i++)
-	{
-		obstacle_list[i]->render();
-	}
+	for (int i = 0; i < obstacle_list.size(); i++) obstacle_list[i]->render();
 }
 
 const void ElementService::spawnElements(std::vector<ElementData>& element_data_list, float cell_width, float cell_height)

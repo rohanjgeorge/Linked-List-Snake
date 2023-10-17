@@ -141,12 +141,12 @@ sf::Vector2i Node::getNextPositionLeft()
 	}
 }
 
-Node* Node::getNextNodeReference()
+Node* Node::getNextNode()
 {
 	return next_node;
 }
 
-Direction Node::getNodeDirection()
+Direction Node::getDirection()
 {
 	return node_direction;
 }
@@ -166,7 +166,7 @@ Direction Node::getReverseNodeDirection()
 	}
 }
 
-sf::Vector2i Node::getNodePosition()
+sf::Vector2i Node::getPosition()
 {
 	return grid_position;
 }
