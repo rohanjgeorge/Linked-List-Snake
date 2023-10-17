@@ -39,8 +39,6 @@ void ButtonView::handleButtonInteraction()
 
     if (clickedButton(&image_sprite, mouse_position))
     {
-        printButtonClicked();
-        
         if(callback_function) callback_function();
     }
 }

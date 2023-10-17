@@ -5,9 +5,11 @@
 #include "../header/EventService.h"
 #include "../header/ButtonView.h"
 #include "../header/Config.h"
+#include "../header/ImageView.h"
 
 MainMenuUIController::MainMenuUIController()
 {
+    createImage();
     createButtons();
 }
 
@@ -18,8 +20,14 @@ MainMenuUIController::~MainMenuUIController()
 
 void MainMenuUIController::initialize()
 {
+    initializeBackgroundImage();
     initializeButtons();
     registerButtonCallback();
+}
+
+void MainMenuUIController::createImage()
+{
+    background_image = new ImageView();
 }
 
 void MainMenuUIController::createButtons()
@@ -27,6 +35,14 @@ void MainMenuUIController::createButtons()
     play_button = new ButtonView();
     instructions_button = new ButtonView();
     quit_button = new ButtonView();
+}
+
+void MainMenuUIController::initializeBackgroundImage()
+{
+    sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+
+    background_image->initialize(Config::background_texture_path, game_window->getSize().x, game_window->getSize().y, sf::Vector2f(0, 0));
+    background_image->setImageAlpha(background_alpha);
 }
 
 void MainMenuUIController::initializeButtons()
@@ -53,6 +69,7 @@ float MainMenuUIController::calculateLeftOffsetForButton()
 
 void MainMenuUIController::playButtonCallback()
 {
+    // GameState will change to gameplay state.
     ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
 }
 
@@ -68,6 +85,7 @@ void MainMenuUIController::quitButtonCallback()
 
 void MainMenuUIController::update()
 {
+    background_image->update();
     play_button->update();
     instructions_button->update();
     quit_button->update();
@@ -75,7 +93,7 @@ void MainMenuUIController::update()
 
 void MainMenuUIController::render()
 {
-    ServiceLocator::getInstance()->getGraphicService()->drawBackground();
+    background_image->render();
     play_button->render();
     instructions_button->render();
     quit_button->render();
@@ -83,6 +101,7 @@ void MainMenuUIController::render()
 
 void MainMenuUIController::show() 
 {
+    background_image->show();
     play_button->show();
     instructions_button->show();
     quit_button->show();
@@ -93,4 +112,5 @@ void MainMenuUIController::destroy()
     delete (play_button);
     delete (instructions_button);
     delete (quit_button);
+    delete (background_image);
 }
