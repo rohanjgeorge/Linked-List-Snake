@@ -3,6 +3,7 @@
 #include "../header/MainMenuUIController.h"
 #include "../header/SplashScreenUIController.h"
 #include "../header/LevelSelectionUIController.h"
+#include "../header/TextView.h"
 
 UIService::UIService()
 {
@@ -27,6 +28,7 @@ UIService::~UIService()
 
 void UIService::initialize()
 {
+	TextView::initializeTextView();
 	initializeControllers();
 }
 

@@ -15,17 +15,11 @@ private:
 
 	const sf::Color window_color = sf::Color(200, 200, 0, 255);
 
-	const float background_alpha = 85.f;
-
 	sf::VideoMode video_mode;
 	sf::RenderWindow* game_window;
 
-	ImageView* background_image;
-
 	void configureVideoMode();
 	void onDestroy();
-
-	void initializeBackgroundImage();
 
 public:
 	GraphicService();
@@ -39,6 +33,4 @@ public:
 	bool isGameWindowOpen();
 	void setFrameRate(int);
 	sf::RenderWindow* getGameWindow();
-
-	void drawBackground();
 };
