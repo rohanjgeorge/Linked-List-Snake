@@ -173,8 +173,8 @@ std::vector<sf::Vector2i> SingleLinkedList::getNodesPositionList()
 
 	while (cur_node != nullptr)
 	{
-		nodes_position_list.push_back(cur_node->getNodePosition());
-		cur_node = cur_node->getNextNodeReference();
+		nodes_position_list.push_back(cur_node->getPosition());
+		cur_node = cur_node->getNextNode();
 	}
 
 	return nodes_position_list;

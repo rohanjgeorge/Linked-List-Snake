@@ -3,6 +3,7 @@
 #include "../header/LevelView.h"
 #include "../header/ImageView.h"
 #include "../header/Config.h"
+#include "../header/FoodType.h"
 
 Food::Food()
 {

@@ -6,7 +6,7 @@
 class Food;
 enum class FoodType;
 
-enum FoodSpawnStatus
+enum FoodSpawningStatus
 {
 	ACTIVE,
 	IN_ACTIVE,
@@ -19,8 +19,8 @@ private:
 
 	float elapsed_duration;
 
-	FoodSpawnStatus food_spawn_status;
-	Food* food_item;
+	FoodSpawningStatus current_spawning_status;
+	Food* current_food_item;
 
 	float cell_width;
 	float cell_height;

@@ -7,7 +7,7 @@
 
 FoodService::FoodService() : random_engine(random_device())
 {
-	food_item = nullptr;
+	current_food_item = nullptr;
 }
 
 FoodService::~FoodService()
@@ -22,23 +22,23 @@ void FoodService::initialize()
 
 void FoodService::update()
 {
-	if (food_spawn_status == FoodSpawnStatus::ACTIVE)
+	if (current_spawning_status == FoodSpawningStatus::ACTIVE)
 	{
 		updateElapsedDuration();
 		handleFoodSpawning();
 	}
 
-	if (food_item) food_item->update();
+	if (current_food_item) current_food_item->update();
 }
 
 void FoodService::render()
 {
-	if (food_item) food_item->render();
+	if (current_food_item) current_food_item->render();
 }
 
 void FoodService::startFoodSpawning(float width, float height)
 {
-	food_spawn_status = FoodSpawnStatus::ACTIVE;
+	current_spawning_status = FoodSpawningStatus::ACTIVE;
 
 	cell_width = width;
 	cell_height = height;
@@ -46,7 +46,7 @@ void FoodService::startFoodSpawning(float width, float height)
 
 void FoodService::stopFoodSpawning()
 {
-	food_spawn_status = FoodSpawnStatus::IN_ACTIVE;
+	current_spawning_status = FoodSpawningStatus::IN_ACTIVE;
 	destroyFood();
 	reset();
 }
@@ -60,19 +60,17 @@ Food* FoodService::createFood(sf::Vector2i position, FoodType type)
 
 void FoodService::spawnFood()
 {
-	food_item = createFood(getValidSpawnPosition(), getRandomFoodType());
+	current_food_item = createFood(getValidSpawnPosition(), getRandomFoodType());
 }
 
 sf::Vector2i FoodService::getValidSpawnPosition()
 {
 	std::vector<sf::Vector2i> player_position_data = ServiceLocator::getInstance()->getPlayerService()->getCurrentPlayerPositionList();
 	std::vector<sf::Vector2i> elements_position_data = ServiceLocator::getInstance()->getElementService()->getElementsPositionList();
-	sf::Vector2i spawn_position = getRandomPosition();
+	sf::Vector2i spawn_position;
 
-	while (!isValidPosition(player_position_data, elements_position_data, spawn_position))
-	{
-		spawn_position = getRandomPosition();
-	}
+	do spawn_position = getRandomPosition();
+	while (!isValidPosition(player_position_data, elements_position_data, spawn_position));
 
 	return spawn_position;
 }
@@ -100,18 +98,12 @@ bool FoodService::isValidPosition(std::vector<sf::Vector2i> player_position_data
 {
 	for (int i = 0; i < player_position_data.size(); i++)
 	{
-		if (food_position == player_position_data[i])
-		{
-			return false;
-		}
+		if (food_position == player_position_data[i]) return false;
 	}
 
 	for (int i = 0; i < elements_position_data.size(); i++)
 	{
-		if (food_position == elements_position_data[i])
-		{
-			return false;
-		}
+		if (food_position == elements_position_data[i]) return false;
 	}
 
 	return true;
@@ -119,7 +111,7 @@ bool FoodService::isValidPosition(std::vector<sf::Vector2i> player_position_data
 
 void FoodService::destroyFood()
 {
-	if(food_item) delete(food_item);
+	if(current_food_item) delete(current_food_item);
 }
 
 void FoodService::updateElapsedDuration()
