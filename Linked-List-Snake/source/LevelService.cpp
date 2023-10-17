@@ -38,6 +38,7 @@ void LevelService::render()
 
 void LevelService::createLevel(Level level_to_load)
 {
+	current_level = level_to_load;
 	spawnLevelElements(level_to_load);
 }
 
