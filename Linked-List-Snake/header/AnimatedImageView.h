@@ -44,7 +44,7 @@ public:
 	virtual void update() override;
 	virtual void render() override;
 
-	virtual void show(AnimationType type, float duration, CallbackFunction animation_end_callback);
+	virtual void playAnimation(AnimationType type, float duration, CallbackFunction animation_end_callback);
 	
 	void registerCallbackFuntion(CallbackFunction animation_end_callback);
 };

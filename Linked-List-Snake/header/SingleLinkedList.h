@@ -18,10 +18,9 @@ private:
 	Direction default_direction;
 
 	Node* createNode();
-	void initializeNode(Node* new_node, Node* reference_node);
 	sf::Vector2i getNewNodePosition(Node* reference_node);
 
-	void updateNodes(Direction direction);
+	void updateNodes(Direction directionToSet);
 
 public:
 	SingleLinkedList();
@@ -31,12 +30,12 @@ public:
 	void update(Direction direction);
 	void render();
 
-	void insertNode();
-	void removeNode();
+	void insertNodeAtTail();
+	void removeNodeAtTail();
 	void removeAllNodes();
 
 	bool handleNodeCollision();
-	Node* getHeadNodeReference();
+	Node* getHeadNode();
 
 	std::vector<sf::Vector2i> getNodesPositionList();
 };

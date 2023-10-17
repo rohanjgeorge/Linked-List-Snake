@@ -28,23 +28,23 @@ void SingleLinkedList::render()
 	while (cur_node != nullptr)
 	{
 		cur_node->render();
-		cur_node = cur_node->getNextNodeReference();
+		cur_node = cur_node->getNextNode();
 	}
 }
 
-void SingleLinkedList::updateNodes(Direction direction)
+void SingleLinkedList::updateNodes(Direction directionToSet)
 {
 	Node* cur_node = head_node;
-	Direction node_direction = direction;
+	Direction node_direction = directionToSet;
 
 	while (cur_node != nullptr)
 	{
-		Direction temp_direction = cur_node->getNodeDirection();
+		Direction previous_direction = cur_node->getDirection();
 
 		cur_node->updateNode(node_direction);
 
-		node_direction = temp_direction;
-		cur_node = cur_node->getNextNodeReference();
+		node_direction = previous_direction;
+		cur_node = cur_node->getNextNode();
 	}
 }
 
@@ -54,17 +54,17 @@ bool SingleLinkedList::handleNodeCollision()
 
 	sf::Vector2i predicted_position = head_node->getNextNodePosition();
 
-	Node* cur_node = head_node->getNextNodeReference();
+	Node* cur_node = head_node->getNextNode();
 	while (cur_node != nullptr)
 	{
-		if (cur_node->getNodePosition() == predicted_position) return true;
-		cur_node = cur_node->getNextNodeReference();
+		if (cur_node->getPosition() == predicted_position) return true;
+		cur_node = cur_node->getNextNode();
 	}
 
 	return false;
 }
 
-void SingleLinkedList::insertNode()
+void SingleLinkedList::insertNodeAtTail()
 {
 	Node* new_node = createNode();
 	Node* cur_node = head_node;
@@ -72,37 +72,37 @@ void SingleLinkedList::insertNode()
 	if (cur_node == nullptr)
 	{
 		head_node = new_node;
-		initializeNode(new_node, nullptr);
+		new_node->initialize(node_width, node_height, default_position, default_direction);
 		return;
 	}
 
-	while (cur_node->getNextNodeReference() != nullptr)
+	while (cur_node->getNextNode() != nullptr)
 	{
-		cur_node = cur_node->getNextNodeReference();
+		cur_node = cur_node->getNextNode();
 	}
 	
 	cur_node->setNextNodeReference(new_node);
-	initializeNode(new_node, cur_node);
+	new_node->initialize(node_width, node_height, getNewNodePosition(cur_node), cur_node->getDirection());
 }
 
-void SingleLinkedList::removeNode()
+void SingleLinkedList::removeNodeAtTail()
 {
 	if (head_node == nullptr) return;
 
 	Node* cur_node = head_node;
 
-	if (cur_node->getNextNodeReference() == nullptr)
+	if (cur_node->getNextNode() == nullptr)
 	{
 		delete(head_node);
 		head_node = nullptr;
 	}
 
-	while (cur_node->getNextNodeReference()->getNextNodeReference() != nullptr )
+	while (cur_node->getNextNode()->getNextNode() != nullptr )
 	{
-		cur_node = cur_node->getNextNodeReference();
+		cur_node = cur_node->getNextNode();
 	}
 	
-	delete (cur_node->getNextNodeReference());
+	delete (cur_node->getNextNode());
 	cur_node->setNextNodeReference(nullptr);
 }
 
@@ -112,16 +112,16 @@ void SingleLinkedList::removeAllNodes()
 
 	Node* cur_node = head_node;
 
-	if (cur_node->getNextNodeReference() == nullptr)
+	if (cur_node->getNextNode() == nullptr)
 	{
 		delete(head_node);
 		head_node = nullptr;
 	}
 
-	while (cur_node->getNextNodeReference()->getNextNodeReference() != nullptr)
+	while (cur_node->getNextNode()->getNextNode() != nullptr)
 	{
 		Node* temp_node = cur_node;
-		cur_node = cur_node->getNextNodeReference();
+		cur_node = cur_node->getNextNode();
 
 		temp_node->setNextNodeReference(nullptr);
 		delete(temp_node);
@@ -136,23 +136,10 @@ Node* SingleLinkedList::createNode()
 	return new Node();
 }
 
-void SingleLinkedList::initializeNode(Node* new_node, Node* reference_node)
-{
-	if (reference_node == nullptr)
-	{
-		new_node->initialize(node_width, node_height, default_position, default_direction);
-		return;
-	}
-
-	sf::Vector2i position = getNewNodePosition(reference_node);
-
-	new_node->initialize(node_width, node_height, position, reference_node->getNodeDirection());
-}
-
 sf::Vector2i SingleLinkedList::getNewNodePosition(Node* reference_node)
 {
-	Direction reference_direction = reference_node->getNodeDirection();
-	sf::Vector2i reference_position = reference_node->getNodePosition();
+	Direction reference_direction = reference_node->getDirection();
+	sf::Vector2i reference_position = reference_node->getPosition();
 
 	switch (reference_direction)
 	{
@@ -173,7 +160,7 @@ sf::Vector2i SingleLinkedList::getNewNodePosition(Node* reference_node)
 	return default_position;
 }
 
-Node* SingleLinkedList::getHeadNodeReference()
+Node* SingleLinkedList::getHeadNode()
 {
 	return head_node;
 }

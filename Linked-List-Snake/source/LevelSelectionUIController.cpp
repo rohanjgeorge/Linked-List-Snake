@@ -6,10 +6,12 @@
 #include "../header/ButtonView.h"
 #include "../header/Config.h"
 #include "../header/LevelService.h"
+#include "../header/ImageView.h"
 
 LevelSelectionUIController::LevelSelectionUIController()
 {
     createButtons();
+    createImage();
 }
 
 LevelSelectionUIController::~LevelSelectionUIController()
@@ -19,8 +21,14 @@ LevelSelectionUIController::~LevelSelectionUIController()
 
 void LevelSelectionUIController::initialize()
 {
+    initializeBackgroundImage();
     initializeButtons();
     registerButtonCallback();
+}
+
+void LevelSelectionUIController::createImage()
+{
+    background_image = new ImageView();
 }
 
 void LevelSelectionUIController::createButtons()
@@ -28,6 +36,14 @@ void LevelSelectionUIController::createButtons()
     level_one_button = new ButtonView();
     level_two_button = new ButtonView();
     menu_button = new ButtonView();
+}
+
+void LevelSelectionUIController::initializeBackgroundImage()
+{
+    sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+
+    background_image->initialize(Config::background_texture_path, game_window->getSize().x, game_window->getSize().y, sf::Vector2f(0, 0));
+    background_image->setImageAlpha(background_alpha);
 }
 
 void LevelSelectionUIController::initializeButtons()
@@ -74,6 +90,7 @@ void LevelSelectionUIController::menuButtonCallback()
 
 void LevelSelectionUIController::update()
 {
+    background_image->update();
     level_one_button->update();
     level_two_button->update();
     menu_button->update();
@@ -81,7 +98,7 @@ void LevelSelectionUIController::update()
 
 void LevelSelectionUIController::render()
 {
-    ServiceLocator::getInstance()->getGraphicService()->drawBackground();
+    background_image->render();
     level_one_button->render();
     level_two_button->render();
     menu_button->render();
@@ -89,6 +106,7 @@ void LevelSelectionUIController::render()
 
 void LevelSelectionUIController::show()
 {
+    background_image->show();
     level_one_button->show();
     level_two_button->show();
     menu_button->show();
@@ -96,6 +114,7 @@ void LevelSelectionUIController::show()
 
 void LevelSelectionUIController::destroy()
 {
+    delete (background_image);
     delete (level_one_button);
     delete (level_two_button);
     delete (menu_button);

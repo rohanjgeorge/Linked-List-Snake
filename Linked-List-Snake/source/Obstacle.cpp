@@ -43,11 +43,8 @@ void Obstacle::render()
 
 sf::Vector2f Obstacle::getObstacleImagePosition()
 {
-	float left_offset = LevelView::border_offset_left + LevelView::border_thickness;
-	float top_offset = LevelView::border_offset_top + LevelView::border_thickness;
-
-	float screen_position_x = left_offset + (cell_width * grid_position.x);
-	float screen_position_y = top_offset + (cell_height * grid_position.y);
+	float screen_position_x = LevelView::border_offset_left + (cell_width * grid_position.x);
+	float screen_position_y = LevelView::border_offset_top + (cell_height * grid_position.y);
 
 	return sf::Vector2f(screen_position_x, screen_position_y);
 }
