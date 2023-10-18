@@ -38,7 +38,7 @@ protected:
 
 public:
 	Node();
-	~Node();
+	virtual ~Node();
 
 	void initialize(float width, float height, sf::Vector2i pos, Direction dir);
 	void updateNode(Direction dir);
@@ -46,6 +46,7 @@ public:
 
 	void setNextNodeReference(Node* node);
 	Node* getNextNode();
+
 	Direction getDirection();
 	sf::Vector2i getPosition();
 	sf::Vector2i getNextNodePosition();

@@ -135,6 +135,8 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="source\CreditsScreenUIController.cpp" />
+    <ClCompile Include="source\DoubleLinkedList.cpp" />
+    <ClCompile Include="source\DoubleNode.cpp" />
     <ClCompile Include="source\ElementService.cpp" />
     <ClCompile Include="source\EventService.cpp" />
     <ClCompile Include="source\Food.cpp" />
@@ -151,6 +153,7 @@
     <ClCompile Include="source\ButtonView.cpp" />
     <ClCompile Include="source\Config.cpp" />
     <ClCompile Include="source\ImageView.cpp" />
+    <ClCompile Include="source\LinkedList.cpp" />
     <ClCompile Include="source\MainMenuUIController.cpp" />
     <ClCompile Include="source\Node.cpp" />
     <ClCompile Include="source\Obstacle.cpp" />
@@ -159,6 +162,7 @@
     <ClCompile Include="source\RectangleShapeView.cpp" />
     <ClCompile Include="source\ServiceLocator.cpp" />
     <ClCompile Include="source\SingleLinkedList.cpp" />
+    <ClCompile Include="source\SingleNode.cpp" />
     <ClCompile Include="source\SoundService.cpp" />
     <ClCompile Include="source\SplashScreenUIController.cpp" />
     <ClCompile Include="source\TimeService.cpp" />
@@ -168,6 +172,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\CreditsScreenUIController.h" />
+    <ClInclude Include="header\DoubleLinkedList.h" />
+    <ClInclude Include="header\DoubleNode.h" />
     <ClInclude Include="header\ElementService.h" />
     <ClInclude Include="header\AnimatedImageView.h" />
     <ClInclude Include="header\ButtonView.h" />
@@ -188,6 +194,7 @@
     <ClInclude Include="header\LevelSelectionUIController.h" />
     <ClInclude Include="header\LevelView.h" />
     <ClInclude Include="header\LevelService.h" />
+    <ClInclude Include="header\LinkedList.h" />
     <ClInclude Include="header\MainMenuUIController.h" />
     <ClInclude Include="header\Node.h" />
     <ClInclude Include="header\Obstacle.h" />
@@ -196,6 +203,7 @@
     <ClInclude Include="header\RectangleShapeView.h" />
     <ClInclude Include="header\ServiceLocator.h" />
     <ClInclude Include="header\SingleLinkedList.h" />
+    <ClInclude Include="header\SingleNode.h" />
     <ClInclude Include="header\SoundService.h" />
     <ClInclude Include="header\SplashScreenUIController.h" />
     <ClInclude Include="header\TimeService.h" />

@@ -3,7 +3,7 @@
 #include "Node.h"
 #include <vector>
 
-class SingleLinkedList;
+class LinkedList;
 enum class Direction;
 enum class FoodType;
 
@@ -37,7 +37,7 @@ private:
 	int player_score;
 	TimeComplexity time_complexity;
 
-	SingleLinkedList* single_linked_list;
+	LinkedList* linked_list;
 
 	void createLinkedList();
 

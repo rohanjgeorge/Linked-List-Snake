@@ -1,18 +1,18 @@
-#include "../header/SingleLinkedList.h"
+#include "../header/DoubleLinkedList.h"
 #include "../header/LevelView.h"
 #include "../header/Config.h"
-#include "../header/SingleNode.h"
+#include "../header/DoubleNode.h"
 
-Node* SingleLinkedList::createNode()
+Node* DoubleLinkedList::createNode()
 {
-    return new SingleNode();
+    return new DoubleNode();
 }
 
-SingleLinkedList::SingleLinkedList() = default;
+DoubleLinkedList::DoubleLinkedList() = default;
 
-SingleLinkedList::~SingleLinkedList() = default;
+DoubleLinkedList::~DoubleLinkedList() = default;
 
-void SingleLinkedList::insertNodeAtTail()
+void DoubleLinkedList::insertNodeAtTail()
 {
     linked_list_size++;
     Node* new_node = createNode();
@@ -21,6 +21,7 @@ void SingleLinkedList::insertNodeAtTail()
     if (cur_node == nullptr)
     {
         head_node = new_node;
+        static_cast<DoubleNode*>(new_node)->setPreviousNodeReference(nullptr);
         initializeNode(new_node, nullptr, Operation::TAIL);
         return;
     }
@@ -31,27 +32,32 @@ void SingleLinkedList::insertNodeAtTail()
     }
 
     cur_node->setNextNodeReference(new_node);
+    static_cast<DoubleNode*>(new_node)->setPreviousNodeReference(cur_node);
     initializeNode(new_node, cur_node, Operation::TAIL);
 }
 
-void SingleLinkedList::insertNodeAtHead()
+void DoubleLinkedList::insertNodeAtHead()
 {
     linked_list_size++;
-    Node* new_node = createNode();
+    Node* new_node = createNode(); 
 
     if (head_node == nullptr)
     {
         head_node = new_node;
+        static_cast<DoubleNode*>(new_node)->setPreviousNodeReference(nullptr);
         initializeNode(new_node, nullptr, Operation::HEAD);
         return;
     }
 
     initializeNode(new_node, head_node, Operation::HEAD);
+
     new_node->setNextNodeReference(head_node);
+    static_cast<DoubleNode*>(head_node)->setPreviousNodeReference(new_node);
+
     head_node = new_node;
 }
 
-void SingleLinkedList::insertNodeAt(int index)
+void DoubleLinkedList::insertNodeAt(int index)
 {
     if (index < 0 || index >= linked_list_size) return;
     linked_list_size++;
@@ -66,7 +72,7 @@ void SingleLinkedList::insertNodeAt(int index)
     insertNodeAtIndex(index, new_node);
 }
 
-void SingleLinkedList::insertNodeAtIndex(int index, Node* new_node)
+void DoubleLinkedList::insertNodeAtIndex(int index, Node* new_node)
 {
     int current_index = 0;
     Node* cur_node = head_node;
@@ -82,12 +88,14 @@ void SingleLinkedList::insertNodeAtIndex(int index, Node* new_node)
     }
 
     prev_node->setNextNodeReference(new_node);
+    static_cast<DoubleNode*>(new_node)->setPreviousNodeReference(prev_node);
     new_node->setNextNodeReference(cur_node);
+    static_cast<DoubleNode*>(cur_node)->setPreviousNodeReference(new_node);
 
     shiftNodesAfterInsertion(new_node, cur_node, prev_node);
 }
 
-void SingleLinkedList::shiftNodesAfterInsertion(Node* new_node, Node* cur_node, Node* prev_node)
+void DoubleLinkedList::shiftNodesAfterInsertion(Node* new_node, Node* cur_node, Node* prev_node)
 {
     Node* next_node = cur_node;
     cur_node = new_node;
@@ -105,7 +113,7 @@ void SingleLinkedList::shiftNodesAfterInsertion(Node* new_node, Node* cur_node, 
     initializeNode(cur_node, prev_node, Operation::TAIL);
 }
 
-void SingleLinkedList::removeNodeAtTail()
+void DoubleLinkedList::removeNodeAtTail()
 {
     if (head_node == nullptr) return;
     linked_list_size--;
@@ -118,25 +126,31 @@ void SingleLinkedList::removeNodeAtTail()
         return;
     }
 
-    while (cur_node->getNextNode()->getNextNode() != nullptr)
+    while (cur_node->getNextNode() != nullptr)
     {
         cur_node = cur_node->getNextNode();
     }
 
-    delete (cur_node->getNextNode());
-    cur_node->setNextNodeReference(nullptr);
+    Node* previous_node = static_cast<DoubleNode*>(cur_node)->getPreviousNode();
+    previous_node->setNextNodeReference(nullptr);
+    delete (cur_node);
 }
 
-void SingleLinkedList::removeNodeAtHead()
+void DoubleLinkedList::removeNodeAtHead()
 {
     Node* cur_node = head_node;
     head_node = head_node->getNextNode();
+
+    if (head_node != nullptr) 
+    {
+        static_cast<DoubleNode*>(head_node)->setPreviousNodeReference(nullptr);
+    }
 
     cur_node->setNextNodeReference(nullptr);
     delete (cur_node);
 }
 
-void SingleLinkedList::removeNodeAt(int index)
+void DoubleLinkedList::removeNodeAt(int index)
 {
     if (index < 0 || index >= linked_list_size) return;
     linked_list_size--;
@@ -151,7 +165,7 @@ void SingleLinkedList::removeNodeAt(int index)
     }
 }
 
-void SingleLinkedList::removeNodeAtIndex(int index)
+void DoubleLinkedList::removeNodeAtIndex(int index)
 {
     int current_index = 0;
     Node* cur_node = head_node;
@@ -164,13 +178,22 @@ void SingleLinkedList::removeNodeAtIndex(int index)
         current_index++;
     }
 
-    prev_node->setNextNodeReference(cur_node->getNextNode());
+    if (prev_node != nullptr)
+    {
+        prev_node->setNextNodeReference(cur_node->getNextNode());
+    }
+
+    if (cur_node->getNextNode() != nullptr) 
+    {
+        Node* next_node = cur_node->getNextNode();
+        static_cast<DoubleNode*>(next_node)->setPreviousNodeReference(prev_node);
+    }
 
     shiftNodesAfterRemoval(cur_node);
     delete(cur_node);
 }
 
-void SingleLinkedList::shiftNodesAfterRemoval(Node* cur_node)
+void DoubleLinkedList::shiftNodesAfterRemoval(Node* cur_node)
 {
     sf::Vector2i previous_node_position = cur_node->getPosition();
     Direction previous_node_direction = cur_node->getDirection();
@@ -190,7 +213,7 @@ void SingleLinkedList::shiftNodesAfterRemoval(Node* cur_node)
     }
 }
 
-void SingleLinkedList::removeAllNodes()
+void DoubleLinkedList::removeAllNodes()
 {
     if (head_node == nullptr) return;
     linked_list_size = 0;
@@ -201,7 +224,7 @@ void SingleLinkedList::removeAllNodes()
     }
 }
 
-void SingleLinkedList::removeHalfNodes()
+void DoubleLinkedList::removeHalfNodes()
 {
     if (linked_list_size <= 1) return;
     int half_length = linked_list_size / 2;
@@ -221,7 +244,7 @@ void SingleLinkedList::removeHalfNodes()
     prev_node->setNextNodeReference(nullptr);
 }
 
-Node* SingleLinkedList::findNodeBeforeIndex(int index)
+Node* DoubleLinkedList::findNodeBeforeIndex(int index)
 {
     int current_index = 0;
     Node* cur_node = head_node;
@@ -237,7 +260,7 @@ Node* SingleLinkedList::findNodeBeforeIndex(int index)
     return prev_node;
 }
 
-Direction SingleLinkedList::reverse()
+Direction DoubleLinkedList::reverse()
 {
     Node* cur_node = head_node;
     Node* prev_node = nullptr;
@@ -247,6 +270,7 @@ Direction SingleLinkedList::reverse()
     {
         next_node = cur_node->getNextNode();
         cur_node->setNextNodeReference(prev_node);
+        static_cast<DoubleNode*>(cur_node)->setPreviousNodeReference(next_node);
 
         prev_node = cur_node;
         cur_node = next_node;
@@ -258,7 +282,7 @@ Direction SingleLinkedList::reverse()
     return head_node->getDirection();
 }
 
-void SingleLinkedList::reverseNodeDirections()
+void DoubleLinkedList::reverseNodeDirections()
 {
     Node* cur_node = head_node;
     Node* next_node = cur_node->getNextNode();
@@ -272,15 +296,15 @@ void SingleLinkedList::reverseNodeDirections()
     }
 }
 
-void SingleLinkedList::initializeNode(Node* new_node, Node* reference_node, Operation operation)
+void DoubleLinkedList::initializeNode(Node* new_node, Node* reference_node, Operation operation)
 {
-	if (reference_node == nullptr)
-	{
-		new_node->initialize(node_width, node_height, default_position, default_direction);
-		return;
-	}
+    if (reference_node == nullptr)
+    {
+        new_node->initialize(node_width, node_height, default_position, default_direction);
+        return;
+    }
 
-	sf::Vector2i position = getNewNodePosition(reference_node, operation);
+    sf::Vector2i position = getNewNodePosition(reference_node, operation);
 
-	new_node->initialize(node_width, node_height, position, reference_node->getDirection());
+    new_node->initialize(node_width, node_height, position, reference_node->getDirection());
 }

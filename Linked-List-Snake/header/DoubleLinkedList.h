@@ -1,14 +1,14 @@
 #pragma once
 #include "../header/LinkedList.h"
 
-class SingleLinkedList : public LinkedList
+class DoubleLinkedList : public LinkedList
 {
 protected:
 	virtual Node* createNode() override;
 
 public:
-	SingleLinkedList();
-	~SingleLinkedList();
+	DoubleLinkedList();
+	~DoubleLinkedList();
 
 	void initializeNode(Node* new_node, Node* reference_node, Operation operation);
 
