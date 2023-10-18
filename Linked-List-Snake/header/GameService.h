@@ -9,6 +9,7 @@ enum class GameState
 	MAIN_MENU,
 	LEVEL_SELECTION,
 	GAMEPLAY,
+	CREDITS,
 };
 
 class GameService

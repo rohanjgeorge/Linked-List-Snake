@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\CreditsScreenUIController.cpp" />
     <ClCompile Include="source\ElementService.cpp" />
     <ClCompile Include="source\EventService.cpp" />
     <ClCompile Include="source\Food.cpp" />
@@ -166,6 +167,7 @@
     <ClCompile Include="source\UIView.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\CreditsScreenUIController.h" />
     <ClInclude Include="header\ElementService.h" />
     <ClInclude Include="header\AnimatedImageView.h" />
     <ClInclude Include="header\ButtonView.h" />

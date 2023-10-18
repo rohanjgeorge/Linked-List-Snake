@@ -8,6 +8,7 @@
 #include "../header/FoodService.h"
 #include "../header/SoundService.h"
 #include "../header/FoodType.h"
+#include "../header/GameService.h"
 
 PlayerController::PlayerController()
 {
@@ -30,8 +31,8 @@ void PlayerController::initialize()
 	float width = ServiceLocator::getInstance()->getLevelService()->getCellWidth();
 	float height = ServiceLocator::getInstance()->getLevelService()->getCellHeight();
 
-	reset();
 	single_linked_list->initialize(width, height, default_position, default_direction);
+	reset();
 }
 
 void PlayerController::update()
@@ -183,7 +184,8 @@ void PlayerController::handleRestart()
 
 	if (restart_counter >= restart_duration)
 	{
-		respawnPlayer();
+		reset();
+		GameService::setGameState(GameState::CREDITS);
 	}
 }
 
@@ -197,17 +199,19 @@ void PlayerController::spawnPlayer()
 
 void PlayerController::reset()
 {
+	single_linked_list->removeAllNodes();
+
 	current_player_state = PlayerState::ALIVE;
+	time_complexity = TimeComplexity::ONE;
+
 	current_player_direction = default_direction;
 	elapsed_duration = 0.f;
 	restart_counter = 0.f;
 	player_score = 0;
-	time_complexity = TimeComplexity::ONE;
 }
 
 void PlayerController::respawnPlayer()
 {
-	single_linked_list->removeAllNodes();
 	reset();
 	spawnPlayer();
 }

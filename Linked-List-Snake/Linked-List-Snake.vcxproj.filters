@@ -78,6 +78,39 @@
     <ClCompile Include="source\TimeService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Food.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\FoodService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameplayUIController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\AnimatedImageView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ButtonView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Config.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ImageView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\RectangleShapeView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TextView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\UIView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CreditsScreenUIController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\GameService.h">
@@ -141,6 +174,48 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="header\TimeService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\AnimatedImageView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ButtonView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Food.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\FoodService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\FoodType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\GameplayUIController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ImageView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ElementData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\LevelData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\RectangleShapeView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\TextView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\UIView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\CreditsScreenUIController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

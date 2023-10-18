@@ -5,6 +5,7 @@
 #include "../header/LevelSelectionUIController.h"
 #include "../header/GameplayUIController.h"
 #include "../header/TextView.h"
+#include "../header/CreditsScreenUIController.h"
 
 UIService::UIService()
 {
@@ -12,6 +13,7 @@ UIService::UIService()
 	main_menu_controller = nullptr;
 	level_selection_ui_controller = nullptr;
 	gameplay_ui_controller = nullptr;
+	credits_screen_ui_controller = nullptr;
 
 	createControllers();
 }
@@ -22,6 +24,7 @@ void UIService::createControllers()
 	main_menu_controller = new MainMenuUIController();
 	level_selection_ui_controller = new LevelSelectionUIController();
 	gameplay_ui_controller = new GameplayUIController();
+	credits_screen_ui_controller = new CreditsScreenUIController();
 }
 
 UIService::~UIService()
@@ -71,6 +74,7 @@ void UIService::initializeControllers()
 	main_menu_controller->initialize();
 	level_selection_ui_controller->initialize();
 	gameplay_ui_controller->initialize();
+	credits_screen_ui_controller->initialize();
 }
 
 IUIController* UIService::getCurrentUIController()
@@ -89,6 +93,9 @@ IUIController* UIService::getCurrentUIController()
 	case GameState::GAMEPLAY:
 		return gameplay_ui_controller;
 
+	case GameState::CREDITS:
+		return credits_screen_ui_controller;
+
 	default:
 		return nullptr;
 	}
@@ -100,4 +107,5 @@ void UIService::destroy()
 	delete(main_menu_controller);
 	delete(level_selection_ui_controller);
 	delete(gameplay_ui_controller);
+	delete(credits_screen_ui_controller);
 }

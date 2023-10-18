@@ -5,6 +5,7 @@ class SplashScreenUIController;
 class MainMenuUIController;
 class LevelSelectionUIController;
 class GameplayUIController;
+class CreditsScreenUIController;
 
 class UIService
 {
@@ -13,6 +14,7 @@ private:
 	MainMenuUIController* main_menu_controller;
 	LevelSelectionUIController* level_selection_ui_controller;
 	GameplayUIController* gameplay_ui_controller;
+	CreditsScreenUIController* credits_screen_ui_controller;
 
 	void createControllers();
 	void initializeControllers();
