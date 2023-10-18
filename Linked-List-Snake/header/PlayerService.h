@@ -5,6 +5,7 @@
 class PlayerController;
 enum class TimeComplexity;
 enum class PlayerState;
+enum class LevelType;
 
 class PlayerService
 {
@@ -22,7 +23,7 @@ public:
 	void update();
 	void render();
 
-	void spawnPlayer();
+	void spawnPlayer(LevelType level_type);
 	std::vector<sf::Vector2i> getCurrentPlayerPositionList();
 
 	int getPlayerSize();

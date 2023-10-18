@@ -154,6 +154,7 @@
     <ClCompile Include="source\Config.cpp" />
     <ClCompile Include="source\ImageView.cpp" />
     <ClCompile Include="source\LinkedList.cpp" />
+    <ClCompile Include="source\LinkedListSelectionUIController.cpp" />
     <ClCompile Include="source\MainMenuUIController.cpp" />
     <ClCompile Include="source\Node.cpp" />
     <ClCompile Include="source\Obstacle.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="header\LevelView.h" />
     <ClInclude Include="header\LevelService.h" />
     <ClInclude Include="header\LinkedList.h" />
+    <ClInclude Include="header\LinkedListSelectionUIController.h" />
     <ClInclude Include="header\MainMenuUIController.h" />
     <ClInclude Include="header\Node.h" />
     <ClInclude Include="header\Obstacle.h" />

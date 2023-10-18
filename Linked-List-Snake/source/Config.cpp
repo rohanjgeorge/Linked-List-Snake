@@ -36,6 +36,10 @@ const sf::String Config::level_one_button_texture_path = "assets/textures/level_
 
 const sf::String Config::level_two_button_texture_path = "assets/textures/level_two_button.png";
 
+const sf::String Config::single_linked_list_button_texture_path = "assets/textures/single_linked_list_button.png";
+
+const sf::String Config::double_linked_list_button_texture_path = "assets/textures/double_linked_list_button.png";
+
 const sf::String Config::bubble_bobble_font_path = "assets/fonts/bubbleBobble.ttf";
 
 const sf::String Config::DS_DIGIB_font_path = "assets/fonts/DS_DIGIB.ttf";

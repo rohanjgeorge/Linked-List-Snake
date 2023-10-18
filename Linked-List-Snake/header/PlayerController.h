@@ -6,6 +6,7 @@
 class LinkedList;
 enum class Direction;
 enum class FoodType;
+enum class LevelType;
 
 enum class TimeComplexity
 {
@@ -39,7 +40,7 @@ private:
 
 	LinkedList* linked_list;
 
-	void createLinkedList();
+	void initializeLinkedList();
 
 	void handlePlayerInput();
 	void handleLinkedListUpdate();
@@ -63,6 +64,7 @@ public:
 	void update();
 	void render();
 
+	void createLinkedList(LevelType level_type);
 	void spawnPlayer();
 	void respawnPlayer();
 	void setPlayerState(PlayerState state);

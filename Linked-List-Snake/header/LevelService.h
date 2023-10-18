@@ -9,11 +9,18 @@ enum class Level
     TWO,
 };
 
+enum class LevelType
+{
+    SINGLE_LINKED_LIST,
+    DOUBLE_LINKED_LIST,
+};
+
 class LevelService 
 {
 private:
     LevelController* level_controller;
     Level current_level;
+    LevelType current_level_type;
 
     void createLevelController();
     void spawnPlayer();
@@ -29,8 +36,11 @@ public:
     void update();
     void render();
 
-    void createLevel(Level level_to_load);
+    void createLevel(LevelType level_type);
+    void setCurrentLevel(Level level_to_load);
+
     float getCellWidth();
     float getCellHeight();
     Level getCurrentLevel();
+    LevelType getCurrentLevelType();
 };

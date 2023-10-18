@@ -15,7 +15,6 @@
 PlayerController::PlayerController()
 {
 	linked_list = nullptr;
-	createLinkedList();
 }
 
 PlayerController::~PlayerController()
@@ -23,12 +22,22 @@ PlayerController::~PlayerController()
 	destroy();
 }
 
-void PlayerController::createLinkedList()
+void PlayerController::createLinkedList(LevelType level_type)
 {
-	linked_list = new DoubleLinkedList();
+	switch (level_type)
+	{
+	case LevelType::SINGLE_LINKED_LIST:
+		linked_list = new SingleLinkedList();
+		break;
+	case LevelType::DOUBLE_LINKED_LIST:
+		linked_list = new DoubleLinkedList();
+		break;
+	}
+
+	initializeLinkedList();
 }
 
-void PlayerController::initialize()
+void PlayerController::initializeLinkedList()
 {
 	float width = ServiceLocator::getInstance()->getLevelService()->getCellWidth();
 	float height = ServiceLocator::getInstance()->getLevelService()->getCellHeight();
@@ -36,6 +45,8 @@ void PlayerController::initialize()
 	linked_list->initialize(width, height, default_position, default_direction);
 	reset();
 }
+
+void PlayerController::initialize() { }
 
 void PlayerController::update()
 {
