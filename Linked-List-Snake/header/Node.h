@@ -2,7 +2,6 @@
 #include <SFML/Graphics.hpp>
 
 class ImageView;
-class RectangleShapeView;
 
 enum class Direction
 {
@@ -17,7 +16,7 @@ class Node
 protected:
 	Node* next_node;
 
-	RectangleShapeView* node_rectangle;
+	ImageView* node_image;
 
 	sf::Vector2i grid_position;
 	Direction node_direction;

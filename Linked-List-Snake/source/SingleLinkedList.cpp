@@ -107,7 +107,7 @@ void SingleLinkedList::insertNodeAtHead()
 
 void SingleLinkedList::insertNodeAt(int index)
 {
-    if (index < 0 || index > linked_list_size) return;
+    if (index < 0 || index >= linked_list_size) return;
     linked_list_size++;
 
     if (index == 0)

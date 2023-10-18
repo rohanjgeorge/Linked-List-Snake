@@ -2,7 +2,7 @@
 #include "../header/ServiceLocator.h"
 #include "../header/LevelView.h"
 #include "../header/LevelModel.h"
-#include "../header/RectangleShapeView.h"
+#include "../header/ImageView.h"
 #include "../header/Config.h"
 #include <random>
 
@@ -60,7 +60,7 @@ sf::Vector2f Node::getNodeScreenPosition()
 
 void Node::render()
 {
-	node_rectangle->render();
+	node_image->render();
 }
 
 void Node::setNextNodeReference(Node* node)
@@ -152,7 +152,7 @@ sf::Vector2i Node::getNextPositionLeft()
 
 float Node::getRotationAngle()
 {
-	switch (direction)
+	switch (node_direction)
 	{
 	case Direction::UP:
 		return 270.f;
