@@ -31,7 +31,7 @@ public:
 	void render();
 
 	void insertNodeAtTail();
-	void removeNodeAtTail();
+	void removeNodeAtHead();
 	void removeAllNodes();
 
 	bool handleNodeCollision();
