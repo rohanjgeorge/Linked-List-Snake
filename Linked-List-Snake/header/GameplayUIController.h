@@ -12,7 +12,7 @@ private:
 	const float text_y_position = 7.f;
 	const float level_number_text_x_position = 65.f;
 	const float score_text_x_position = 800.f;
-	const float time_complexity_text_x_position = 1320.f;
+	const float time_complexity_text_x_position = 1330.f;
 
 	TextView* level_number_text;
 	TextView* score_text;
