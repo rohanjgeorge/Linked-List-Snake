@@ -244,7 +244,7 @@ int PlayerController::getPlayreSize()
 
 int PlayerController::getRandomNodeIndex()
 {
-	return std::rand() % (single_linked_list->getLinkedListSize() + 1);
+	return std::rand() % (single_linked_list->getLinkedListSize() - 1);
 }
 
 void PlayerController::destroy()

@@ -43,13 +43,20 @@ public:
 	void insertNodeAtTail();
 	void insertNodeAtHead();
 	void insertNodeAt(int index);
+	void insertNodeAtIndex(int index, Node* new_node);
+
+	void shiftNodesAfterInsertion(Node* new_node, Node* cur_node, Node* prev_node);
 
 	void removeNodeAtTail();
 	void removeNodeAtHead();
 	void removeNodeAt(int index);
+	void removeNodeAtIndex(int index);
 	void removeAllNodes();
-
 	void removeHalfNodes();
+
+	void shiftNodesAfterRemoval(Node* cur_node);
+
+	Node* findNodeBeforeIndex(int index);
 	Direction reverse();
 	void reverseNodeDirections();
 
