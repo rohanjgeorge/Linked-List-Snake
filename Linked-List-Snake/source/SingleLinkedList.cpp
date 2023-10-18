@@ -85,50 +85,23 @@ void SingleLinkedList::insertNodeAtTail()
 	new_node->initialize(node_width, node_height, getNewNodePosition(cur_node), cur_node->getDirection());
 }
 
-void SingleLinkedList::removeNodeAtTail()
+void SingleLinkedList::removeNodeAtHead()
 {
-	if (head_node == nullptr) return;
-
 	Node* cur_node = head_node;
+	head_node = head_node->getNextNode();
 
-	if (cur_node->getNextNode() == nullptr)
-	{
-		delete(head_node);
-		head_node = nullptr;
-	}
-
-	while (cur_node->getNextNode()->getNextNode() != nullptr )
-	{
-		cur_node = cur_node->getNextNode();
-	}
-	
-	delete (cur_node->getNextNode());
 	cur_node->setNextNodeReference(nullptr);
+	delete (cur_node);
 }
 
 void SingleLinkedList::removeAllNodes()
 {
 	if (head_node == nullptr) return;
 
-	Node* cur_node = head_node;
-
-	if (cur_node->getNextNode() == nullptr)
+	while (head_node != nullptr)
 	{
-		delete(head_node);
-		head_node = nullptr;
+		removeNodeAtHead();
 	}
-
-	while (cur_node->getNextNode()->getNextNode() != nullptr)
-	{
-		Node* temp_node = cur_node;
-		cur_node = cur_node->getNextNode();
-
-		temp_node->setNextNodeReference(nullptr);
-		delete(temp_node);
-	}
-
-	delete(cur_node);
-	head_node = nullptr;
 }
 
 Node* SingleLinkedList::createNode()

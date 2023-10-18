@@ -9,12 +9,13 @@ Node::Node()
 {
 	next_node = nullptr;
 	grid_position = sf::Vector2i(0, 0);
-	node_image = new ImageView();
+
+	createNodeUI();
 }
 
 Node::~Node()
 {
-	delete (node_image);
+	destroy();
 }
 
 void Node::initialize(float width, float height, sf::Vector2i pos, Direction dir)
@@ -27,9 +28,15 @@ void Node::initialize(float width, float height, sf::Vector2i pos, Direction dir
 	initializeNodeUI();
 }
 
+void Node::createNodeUI()
+{
+	node_image = new ImageView();
+}
+
 void Node::initializeNodeUI()
 {
 	node_image->initialize(Config::snake_body_texture_path, node_width, node_height, getNodeScreenPosition());
+	node_image->setOriginAtCentre();
 }
 
 void Node::updateNode(Direction dir)
@@ -38,13 +45,14 @@ void Node::updateNode(Direction dir)
 	grid_position = getNextNodePosition();
 
 	node_image->setPosition(getNodeScreenPosition());
+	node_image->setRotation(getRotationAngle());
 	node_image->update();
 }
 
 sf::Vector2f Node::getNodeScreenPosition()
 {
-	float x_screen_position = LevelView::border_offset_left + (grid_position.x * node_width);
-	float y_screen_position = LevelView::border_offset_top + (grid_position.y * node_height);
+	float x_screen_position = LevelView::border_offset_left + (grid_position.x * node_width) + (node_width / 2);
+	float y_screen_position = LevelView::border_offset_top + (grid_position.y * node_height) + (node_height / 2);
 
 	return sf::Vector2f(x_screen_position, y_screen_position);
 }
@@ -124,6 +132,21 @@ sf::Vector2i Node::getNextPositionLeft()
 	}
 }
 
+float Node::getRotationAngle()
+{
+	switch (direction)
+	{
+	case Direction::UP:
+		return 270.f;
+	case Direction::DOWN:
+		return 90.f;
+	case Direction::RIGHT:
+		return 0;
+	case Direction::LEFT:
+		return 180.f;
+	}
+}
+
 Node* Node::getNextNode()
 {
 	return next_node;
@@ -137,4 +160,9 @@ Direction Node::getDirection()
 sf::Vector2i Node::getPosition()
 {
 	return grid_position;
+}
+
+void Node::destroy()
+{
+	delete (node_image);
 }
