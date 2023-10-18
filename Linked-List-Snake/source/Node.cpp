@@ -10,12 +10,13 @@ Node::Node()
 {
 	next_node = nullptr;
 	grid_position = sf::Vector2i(0, 0);
-	node_rectangle = new RectangleShapeView();
+
+	createNodeUI();
 }
 
 Node::~Node()
 {
-	delete (node_rectangle);
+	destroy();
 }
 
 void Node::initialize(float width, float height, sf::Vector2i pos, Direction dir)
@@ -28,19 +29,15 @@ void Node::initialize(float width, float height, sf::Vector2i pos, Direction dir
 	initializeNodeUI();
 }
 
-void Node::initializeNodeUI()
+void Node::createNodeUI()
 {
-	node_rectangle->initialize(sf::Vector2f(node_width, node_height), sf::Vector2f(grid_position.x, grid_position.y), 0, getRandomColor());
+	node_image = new ImageView();
 }
 
-sf::Color Node::getRandomColor()
+void Node::initializeNodeUI()
 {
-	// Generate random values for red, green, and blue components
-	sf::Uint8 red = std::rand() % 170;
-	sf::Uint8 green = std::rand() % 170;
-	sf::Uint8 blue = std::rand() % 170;
-
-	return sf::Color(red, green, blue);
+	node_image->initialize(Config::snake_body_texture_path, node_width, node_height, getNodeScreenPosition());
+	node_image->setOriginAtCentre();
 }
 
 void Node::updateNode(Direction dir)
@@ -48,14 +45,15 @@ void Node::updateNode(Direction dir)
 	node_direction = dir;
 	grid_position = getNextNodePosition();
 
-	node_rectangle->setPosition(getNodeScreenPosition());
-	node_rectangle->update();
+	node_image->setPosition(getNodeScreenPosition());
+	node_image->setRotation(getRotationAngle());
+	node_image->update();
 }
 
 sf::Vector2f Node::getNodeScreenPosition()
 {
-	float x_screen_position = LevelView::border_offset_left + (grid_position.x * node_width);
-	float y_screen_position = LevelView::border_offset_top + (grid_position.y * node_height);
+	float x_screen_position = LevelView::border_offset_left + (grid_position.x * node_width) + (node_width / 2);
+	float y_screen_position = LevelView::border_offset_top + (grid_position.y * node_height) + (node_height / 2);
 
 	return sf::Vector2f(x_screen_position, y_screen_position);
 }
@@ -152,6 +150,21 @@ sf::Vector2i Node::getNextPositionLeft()
 	}
 }
 
+float Node::getRotationAngle()
+{
+	switch (direction)
+	{
+	case Direction::UP:
+		return 270.f;
+	case Direction::DOWN:
+		return 90.f;
+	case Direction::RIGHT:
+		return 0;
+	case Direction::LEFT:
+		return 180.f;
+	}
+}
+
 Node* Node::getNextNode()
 {
 	return next_node;
@@ -190,4 +203,9 @@ void Node::setNodePosition(sf::Vector2i position)
 void Node::setNodeDirection(Direction direction)
 {
 	node_direction = direction;
+}
+
+void Node::destroy()
+{
+	delete (node_image);
 }

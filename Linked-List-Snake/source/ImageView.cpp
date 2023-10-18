@@ -48,6 +48,16 @@ void ImageView::setPosition(sf::Vector2f position)
     image_sprite.setPosition(position);
 }
 
+void ImageView::setRotation(float rotation_angle)
+{
+    image_sprite.setRotation(rotation_angle);
+}
+
+void ImageView::setOriginAtCentre()
+{
+    image_sprite.setOrigin(image_sprite.getLocalBounds().width / 2, image_sprite.getLocalBounds().height / 2);
+}
+
 void ImageView::setImageAlpha(float alpha)
 {
     sf::Color color = image_sprite.getColor();

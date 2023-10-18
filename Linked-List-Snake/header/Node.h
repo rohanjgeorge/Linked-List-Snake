@@ -14,7 +14,7 @@ enum class Direction
 
 class Node
 {
-private:
+protected:
 	Node* next_node;
 
 	RectangleShapeView* node_rectangle;
@@ -25,15 +25,17 @@ private:
 	float node_width;
 	float node_height;
 
+	void createNodeUI();
 	void initializeNodeUI();
 	sf::Vector2f getNodeScreenPosition();
+	float getRotationAngle();
 
 	sf::Vector2i getNextPositionUp();
 	sf::Vector2i getNextPositionDown();
 	sf::Vector2i getNextPositionLeft();
 	sf::Vector2i getNextPositionRight();
 
-	sf::Color getRandomColor();
+	void destroy();
 
 public:
 	Node();
