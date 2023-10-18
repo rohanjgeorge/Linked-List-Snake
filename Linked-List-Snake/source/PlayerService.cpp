@@ -43,6 +43,11 @@ std::vector<sf::Vector2i> PlayerService::getCurrentPlayerPositionList()
 	return player_controller->getCurrentPlayerPositionList();
 }
 
+int PlayerService::getPlayerSize()
+{
+	return player_controller->getPlayreSize();
+}
+
 int PlayerService::getPlayerScore()
 {
 	return player_controller->getPlayerScore();
@@ -51,6 +56,11 @@ int PlayerService::getPlayerScore()
 TimeComplexity PlayerService::getTimeComplexity()
 {
 	return player_controller->getTimeComplexity();
+}
+
+PlayerState PlayerService::getPlayerState()
+{
+	return player_controller->getPlayerState();
 }
 
 void PlayerService::destroy()

@@ -17,6 +17,7 @@ class FoodService
 {
 private:
 	const float spawn_duration = 5.f;
+	const int minimum_player_size = 10;
 
 	float elapsed_duration;
 

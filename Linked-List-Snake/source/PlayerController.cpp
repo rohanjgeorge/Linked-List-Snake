@@ -40,8 +40,8 @@ void PlayerController::update()
 	{
 	case PlayerState::ALIVE:
 		handlePlayerInput();
-		handleLinkedListUpdate();
 		handlePlayerCollision();
+		handleLinkedListUpdate();
 		break;
 
 	case PlayerState::DEAD:
@@ -146,7 +146,7 @@ void PlayerController::performOperation(FoodType food_type)
 		break;
 
 	case FoodType::CHEESE:
-		single_linked_list->insertNodeAt(2);
+		single_linked_list->insertNodeAt(getRandomNodeIndex());
 		time_complexity = TimeComplexity::N;
 		break;
 
@@ -161,15 +161,18 @@ void PlayerController::performOperation(FoodType food_type)
 		break;
 
 	case FoodType::ORANGE:
-		single_linked_list->removeNodeAt(3);
+		single_linked_list->removeNodeAt(getRandomNodeIndex());
 		time_complexity = TimeComplexity::N;
 		break;
 
 	case FoodType::POISION:
 		single_linked_list->removeHalfNodes();
+		time_complexity = TimeComplexity::N;
 		break;
 
 	case FoodType::ALCOHOL:	
+		current_player_direction = single_linked_list->reverse();
+		time_complexity = TimeComplexity::N;
 		break;
 	}
 } 
@@ -232,6 +235,16 @@ int PlayerController::getPlayerScore()
 TimeComplexity PlayerController::getTimeComplexity()
 {
 	return time_complexity;
+}
+
+int PlayerController::getPlayreSize()
+{
+	return single_linked_list->getLinkedListSize();
+}
+
+int PlayerController::getRandomNodeIndex()
+{
+	return std::rand() % (single_linked_list->getLinkedListSize() + 1);
 }
 
 void PlayerController::destroy()

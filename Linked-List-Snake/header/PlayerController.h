@@ -40,13 +40,17 @@ private:
 	SingleLinkedList* single_linked_list;
 
 	void createLinkedList();
+
 	void handlePlayerInput();
 	void handleLinkedListUpdate();
 	void handlePlayerCollision();
 	void handleNodeCollision();
 	void handleElementsCollision();
 	void handleFoodCollision();
+
 	void performOperation(FoodType food_type);
+	int getRandomNodeIndex();
+
 	void handleRestart();
 	void reset();
 	void destroy();
@@ -65,6 +69,7 @@ public:
 	PlayerState getPlayerState();
 
 	std::vector<sf::Vector2i> getCurrentPlayerPositionList();
-	int getPlayerScore();
 	TimeComplexity getTimeComplexity();
+	int getPlayerScore();
+	int getPlayreSize();
 };

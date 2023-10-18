@@ -6,6 +6,7 @@
 #include "../header/PlayerService.h"
 #include "../header/Node.h"
 #include "../header/FoodType.h"
+#include "../header/PlayerController.h"
 
 FoodService::FoodService() : random_engine(random_device())
 {
@@ -91,9 +92,16 @@ sf::Vector2i FoodService::getRandomPosition()
 
 FoodType FoodService::getRandomFoodType()
 {
-	std::uniform_int_distribution<int> distribution(0, Food::number_of_foods - 1);
-
-	return static_cast<FoodType>(distribution(random_engine));
+	if (ServiceLocator::getInstance()->getPlayerService()->getPlayerSize() < minimum_player_size)
+	{
+		int randomValue = std::rand() % (Food::number_of_foods - Food::number_of_healthy_foods);
+		return static_cast<FoodType>(randomValue);
+	}
+	else
+	{
+		int randomValue = std::rand() % (Food::number_of_foods);
+		return static_cast<FoodType>(randomValue);
+	}
 }
 
 bool FoodService::isValidPosition(std::vector<sf::Vector2i> player_position_data, std::vector<sf::Vector2i> elements_position_data, sf::Vector2i food_position)
@@ -124,6 +132,8 @@ void FoodService::updateElapsedDuration()
 
 void FoodService::handleFoodSpawning()
 {
+	if (ServiceLocator::getInstance()->getPlayerService()->getPlayerState() == PlayerState::DEAD) return;
+
 	if (elapsed_duration >= spawn_duration)
 	{
 		destroyFood();

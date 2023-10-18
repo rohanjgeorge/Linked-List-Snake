@@ -4,6 +4,7 @@
 
 class PlayerController;
 enum class TimeComplexity;
+enum class PlayerState;
 
 class PlayerService
 {
@@ -24,6 +25,8 @@ public:
 	void spawnPlayer();
 	std::vector<sf::Vector2i> getCurrentPlayerPositionList();
 
+	int getPlayerSize();
 	int getPlayerScore();
 	TimeComplexity getTimeComplexity();
+	PlayerState getPlayerState();
 };

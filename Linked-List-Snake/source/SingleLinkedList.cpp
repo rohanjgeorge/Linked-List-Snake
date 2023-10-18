@@ -206,6 +206,7 @@ void SingleLinkedList::removeNodeAt(int index)
 	if (index == 0)
 	{
 		removeNodeAtHead();
+		return;
 	}
 
 	// Find the node at the index to be removed.
@@ -307,18 +308,35 @@ Direction SingleLinkedList::reverse()
 	while (cur_node != nullptr)
 	{
 		next_node = cur_node->getNextNode();
-
 		cur_node->setNextNodeReference(prev_node);
-		cur_node->setNodeDirection(cur_node->getReverseNodeDirection());
 
 		prev_node = cur_node;
 		cur_node = next_node;
 	}
 
-	// Update the head_node to the new first node.
 	head_node = prev_node;
 
+	reverseNodeDirections();
 	return head_node->getDirection();
+}
+
+void SingleLinkedList::reverseNodeDirections()
+{
+	if (head_node->getNextNode() == nullptr)
+	{
+		head_node->setNodeDirection(head_node->getReverseNodeDirection());
+		return;
+	}
+
+	Node* cur_node = head_node;
+	Node* next_node = head_node->getNextNode();
+
+	while (cur_node != nullptr && next_node != nullptr)
+	{
+		cur_node->setNodeDirection(next_node->getReverseNodeDirection());
+		cur_node = next_node;
+		next_node = next_node->getNextNode();
+	}
 }
 
 Node* SingleLinkedList::createNode()

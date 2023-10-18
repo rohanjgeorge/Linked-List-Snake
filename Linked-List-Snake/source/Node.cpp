@@ -2,19 +2,20 @@
 #include "../header/ServiceLocator.h"
 #include "../header/LevelView.h"
 #include "../header/LevelModel.h"
-#include "../header/ImageView.h"
+#include "../header/RectangleShapeView.h"
 #include "../header/Config.h"
+#include <random>
 
 Node::Node()
 {
 	next_node = nullptr;
 	grid_position = sf::Vector2i(0, 0);
-	node_image = new ImageView();
+	node_rectangle = new RectangleShapeView();
 }
 
 Node::~Node()
 {
-	delete (node_image);
+	delete (node_rectangle);
 }
 
 void Node::initialize(float width, float height, sf::Vector2i pos, Direction dir)
@@ -29,7 +30,17 @@ void Node::initialize(float width, float height, sf::Vector2i pos, Direction dir
 
 void Node::initializeNodeUI()
 {
-	node_image->initialize(Config::snake_body_texture_path, node_width, node_height, getNodeScreenPosition());
+	node_rectangle->initialize(sf::Vector2f(node_width, node_height), sf::Vector2f(grid_position.x, grid_position.y), 0, getRandomColor());
+}
+
+sf::Color Node::getRandomColor()
+{
+	// Generate random values for red, green, and blue components
+	sf::Uint8 red = std::rand() % 170;
+	sf::Uint8 green = std::rand() % 170;
+	sf::Uint8 blue = std::rand() % 170;
+
+	return sf::Color(red, green, blue);
 }
 
 void Node::updateNode(Direction dir)
@@ -37,8 +48,8 @@ void Node::updateNode(Direction dir)
 	node_direction = dir;
 	grid_position = getNextNodePosition();
 
-	node_image->setPosition(getNodeScreenPosition());
-	node_image->update();
+	node_rectangle->setPosition(getNodeScreenPosition());
+	node_rectangle->update();
 }
 
 sf::Vector2f Node::getNodeScreenPosition()
@@ -51,7 +62,7 @@ sf::Vector2f Node::getNodeScreenPosition()
 
 void Node::render()
 {
-	node_image->render();
+	node_rectangle->render();
 }
 
 void Node::setNextNodeReference(Node* node)
@@ -179,9 +190,4 @@ void Node::setNodePosition(sf::Vector2i position)
 void Node::setNodeDirection(Direction direction)
 {
 	node_direction = direction;
-}
-
-void Node::setHeadImage(sf::String path)
-{
-	node_image->setTexture(path);
 }

@@ -51,6 +51,7 @@ public:
 
 	void removeHalfNodes();
 	Direction reverse();
+	void reverseNodeDirections();
 
 	bool handleNodeCollision();
 	Node* getHeadNode();

@@ -42,6 +42,7 @@ void ServiceLocator::createServices()
 
 void ServiceLocator::initialize()
 {
+	srand(time(NULL));
 	graphic_service->initialize();
 	sound_service->initialize();
 	time_service->initialize();

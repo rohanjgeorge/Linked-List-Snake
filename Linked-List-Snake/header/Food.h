@@ -22,6 +22,7 @@ private:
 
 public:
     static const int number_of_foods = 8;
+    static const int number_of_healthy_foods = 4;
 
     Food();
     ~Food();

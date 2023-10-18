@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 class ImageView;
+class RectangleShapeView;
 
 enum class Direction
 {
@@ -16,7 +17,7 @@ class Node
 private:
 	Node* next_node;
 
-	ImageView* node_image;
+	RectangleShapeView* node_rectangle;
 
 	sf::Vector2i grid_position;
 	Direction node_direction;
@@ -31,6 +32,8 @@ private:
 	sf::Vector2i getNextPositionDown();
 	sf::Vector2i getNextPositionLeft();
 	sf::Vector2i getNextPositionRight();
+
+	sf::Color getRandomColor();
 
 public:
 	Node();
@@ -50,5 +53,4 @@ public:
 
 	void setNodePosition(sf::Vector2i position);
 	void setNodeDirection(Direction direction);
-	void setHeadImage(sf::String path);
 };
