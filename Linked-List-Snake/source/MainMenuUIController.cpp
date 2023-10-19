@@ -77,6 +77,7 @@ void MainMenuUIController::playButtonCallback()
 void MainMenuUIController::instructionsButtonCallback()
 {
     ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
+    GameService::setGameState(GameState::INSTRUCTIONS);
 }
 
 void MainMenuUIController::quitButtonCallback()

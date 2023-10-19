@@ -144,6 +144,7 @@
     <ClCompile Include="source\GameplayUIController.cpp" />
     <ClCompile Include="source\GameService.cpp" />
     <ClCompile Include="source\GraphicService.cpp" />
+    <ClCompile Include="source\InstructionsScreenUIController.cpp" />
     <ClCompile Include="source\LevelController.cpp" />
     <ClCompile Include="source\LevelModel.cpp" />
     <ClCompile Include="source\LevelSelectionUIController.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="header\GameService.h" />
     <ClInclude Include="header\GraphicService.h" />
     <ClInclude Include="header\ImageView.h" />
+    <ClInclude Include="header\InstructionsScreenUIController.h" />
     <ClInclude Include="header\IUIController.h" />
     <ClInclude Include="header\ElementData.h" />
     <ClInclude Include="header\LevelController.h" />

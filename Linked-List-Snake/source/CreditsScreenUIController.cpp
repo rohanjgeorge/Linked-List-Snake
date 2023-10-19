@@ -46,10 +46,8 @@ void CreditsScreenUIController::createButtons()
 
 void CreditsScreenUIController::initializeText()
 {
-    sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
-    float x_position = (game_window->getSize().x - calculateTextWidth(game_title)) / 2;
-
-    title_text->initialize(game_title, sf::Vector2f(x_position, text_top_offset), FontType::BUBBLE_BOBBLE, font_size, text_color);
+    title_text->initialize(game_title, sf::Vector2f(0, text_top_offset), FontType::BUBBLE_BOBBLE, font_size, text_color);
+    title_text->setTextCentreAlign();
 }
 
 void CreditsScreenUIController::initializeBackgroundImage()
@@ -122,17 +120,4 @@ float CreditsScreenUIController::calculateLeftOffsetForButton()
 {
     sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
     return (static_cast<float>(game_window->getSize().x) / 2) - button_width / 2;
-}
-
-float CreditsScreenUIController::calculateTextWidth(sf::String text_value)
-{
-    sf::Text text;
-    sf::Font font;
-    if (!font.loadFromFile(Config::bubble_bobble_font_path)) return 0;
-
-    text.setFont(font);
-    text.setString(text_value);
-    text.setCharacterSize(font_size);
-
-    return text.getLocalBounds().width;
 }

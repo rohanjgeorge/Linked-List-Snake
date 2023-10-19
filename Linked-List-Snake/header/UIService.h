@@ -7,12 +7,14 @@ class LevelSelectionUIController;
 class LinkedListSelectionUIController;
 class GameplayUIController;
 class CreditsScreenUIController;
+class InstructionsScreenUIController;
 
 class UIService
 {
 private:
 	SplashScreenUIController* splash_screen_controller;
 	MainMenuUIController* main_menu_controller;
+	InstructionsScreenUIController* instructions_screen_ui_controller;
 	LevelSelectionUIController* level_selection_ui_controller;
 	LinkedListSelectionUIController* linked_list_selection_ui_controller;
 	GameplayUIController* gameplay_ui_controller;

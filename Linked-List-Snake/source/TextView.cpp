@@ -77,3 +77,11 @@ void TextView::setTextColor(sf::Color color)
 {
 	text.setFillColor(color);
 }
+
+void TextView::setTextCentreAlign()
+{
+	float x_position = (game_window->getSize().x - text.getLocalBounds().width) / 2;
+	float y_position = text.getGlobalBounds().getPosition().y;
+
+	text.setPosition(sf::Vector2f(x_position, y_position));
+}

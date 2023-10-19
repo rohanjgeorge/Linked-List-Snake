@@ -35,4 +35,5 @@ public:
 	virtual void render() override;
 	
 	void setText(sf::String text_value);
+	void setTextCentreAlign();
 };

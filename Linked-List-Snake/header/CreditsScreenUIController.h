@@ -12,14 +12,14 @@ private:
 	// Constants:
 	const sf::String game_title = "Outscal Presents - Snake Game";
 
-	const float text_top_offset = 240.f;
-	const int font_size = 100;
+	const float text_top_offset = 260.f;
+	const int font_size = 120;
 
 	const float button_width = 400.f;
 	const float button_height = 140.f;
 
-	const float menu_button_y_position = 500.f;
-	const float quit_button_y_position = 700.f;
+	const float menu_button_y_position = 600.f;
+	const float quit_button_y_position = 800.f;
 
 	const float background_alpha = 85.f;
 
