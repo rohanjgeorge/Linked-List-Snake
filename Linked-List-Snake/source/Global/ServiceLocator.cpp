@@ -10,6 +10,8 @@ namespace Global
 	using namespace Element;
 	using namespace UI;
 	using namespace Main;
+	using namespace Time;
+	using namespace Player;
 
 	ServiceLocator::ServiceLocator()
 	{
@@ -18,6 +20,8 @@ namespace Global
 		sound_service = nullptr;
 		level_service = nullptr;
 		element_service = nullptr;
+		time_service = nullptr;
+		player_service = nullptr;
 		ui_service = nullptr;
 
 		createServices();
@@ -32,6 +36,8 @@ namespace Global
 		sound_service = new SoundService();
 		level_service = new LevelService();
 		element_service = new ElementService();
+		time_service = new TimeService();
+		player_service = new PlayerService();
 		ui_service = new UIService();
 	}
 
@@ -42,6 +48,8 @@ namespace Global
 		event_service->initialize();
 		level_service->initialize();
 		element_service->initialize();
+		time_service->initialize();
+		player_service->initialize();
 		ui_service->initialize();
 	}
 
@@ -49,11 +57,13 @@ namespace Global
 	{
 		graphic_service->update();
 		event_service->update();
+		time_service->update();
 
 		if (GameService::getGameState() == GameState::GAMEPLAY)
 		{
 			level_service->update();
 			element_service->update();
+			player_service->update();
 		}
 
 		ui_service->update();
@@ -67,6 +77,7 @@ namespace Global
 		{
 			level_service->render();
 			element_service->render();
+			player_service->render();
 		}
 
 		ui_service->render();
@@ -75,11 +86,13 @@ namespace Global
 	void ServiceLocator::clearAllServices()
 	{
 		delete(ui_service);
+		delete(player_service);
 		delete(element_service);
 		delete(level_service);
 		delete(graphic_service);
 		delete(sound_service);
 		delete(event_service);
+		delete(time_service);
 	}
 
 	ServiceLocator* ServiceLocator::getInstance()
@@ -97,6 +110,10 @@ namespace Global
 	Level::LevelService* ServiceLocator::getLevelService() { return level_service; }
 
 	Element::ElementService* ServiceLocator::getElementService() { return element_service; }
+
+	Time::TimeService* ServiceLocator::getTimeService() { return time_service; }
+
+	Player::PlayerService* ServiceLocator::getPlayerService() { return player_service; }
 
 	UIService* ServiceLocator::getUIService() { return ui_service; }
 

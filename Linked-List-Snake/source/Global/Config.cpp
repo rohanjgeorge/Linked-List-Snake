@@ -8,6 +8,8 @@ namespace Global
 
 	const sf::String Config::obstacle_texture_path = "assets/textures/obstacle.png";
 
+	const sf::String Config::snake_body_texture_path = "assets/textures/snake_body.png";
+
 	const sf::String Config::play_button_texture_path = "assets/textures/play_button.png";
 
 	const sf::String Config::instructions_button_texture_path = "assets/textures/instructions_button.png";
