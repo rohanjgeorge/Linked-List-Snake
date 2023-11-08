@@ -1,6 +1,7 @@
 #pragma once
 #include "UI/MainMenu/MainMenuUIController.h"
 #include "UI/SplashScreen/SplashScreenUIController.h"
+#include "UI/LevelSelection/LevelSelectionUIController.h"
 #include "UI/Interface/IUIController.h"
 
 namespace UI
@@ -10,6 +11,7 @@ namespace UI
 	private:
 		SplashScreen::SplashScreenUIController* splash_screen_controller;
 		MainMenu::MainMenuUIController* main_menu_controller;
+		LevelSelection::LevelSelectionUIController* level_selection_ui_controller;
 
 		void createControllers();
 		void initializeControllers();

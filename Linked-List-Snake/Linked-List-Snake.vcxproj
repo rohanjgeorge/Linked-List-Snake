@@ -134,14 +134,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="source\Obstacle.cpp" />
-    <ClCompile Include="source\RectangleShapeView.cpp" />
-    <ClCompile Include="source\ElementService.cpp" />
-    <ClCompile Include="source\LevelController.cpp" />
-    <ClCompile Include="source\LevelModel.cpp" />
-    <ClCompile Include="source\LevelSelectionUIController.cpp" />
-    <ClCompile Include="source\LevelView.cpp" />
-    <ClCompile Include="source\LevelService.cpp" />
+    <ClCompile Include="source\Element\Obstacle.cpp" />
+    <ClCompile Include="source\UI\UIElement\RectangleShapeView.cpp" />
+    <ClCompile Include="source\Element\ElementService.cpp" />
+    <ClCompile Include="source\Level\LevelController.cpp" />
+    <ClCompile Include="source\Level\LevelModel.cpp" />
+    <ClCompile Include="source\UI\LevelSelection\LevelSelectionUIController.cpp" />
+    <ClCompile Include="source\Level\LevelView.cpp" />
+    <ClCompile Include="source\Level\LevelService.cpp" />
     <ClCompile Include="source\UI\UIElement\AnimatedImageView.cpp" />
     <ClCompile Include="source\UI\UIElement\ButtonView.cpp" />
     <ClCompile Include="source\Global\Config.cpp" />
@@ -158,16 +158,16 @@
     <ClCompile Include="source\UI\UIElement\UIView.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header\ElementService.h" />
-    <ClInclude Include="header\ElementData.h" />
-    <ClInclude Include="header\LevelController.h" />
-    <ClInclude Include="header\LevelData.h" />
-    <ClInclude Include="header\LevelModel.h" />
-    <ClInclude Include="header\LevelSelectionUIController.h" />
-    <ClInclude Include="header\LevelView.h" />
-    <ClInclude Include="header\LevelService.h" />
-    <ClInclude Include="header\Obstacle.h" />
-    <ClInclude Include="header\RectangleShapeView.h" />
+    <ClInclude Include="include\Element\ElementService.h" />
+    <ClInclude Include="include\Element\ElementData.h" />
+    <ClInclude Include="include\Level\LevelController.h" />
+    <ClInclude Include="include\Level\LevelData.h" />
+    <ClInclude Include="include\Level\LevelModel.h" />
+    <ClInclude Include="include\UI\LevelSelection\LevelSelectionUIController.h" />
+    <ClInclude Include="include\Level\LevelView.h" />
+    <ClInclude Include="include\Level\LevelService.h" />
+    <ClInclude Include="include\Element\Obstacle.h" />
+    <ClInclude Include="include\UI\UIElement\RectangleShapeView.h" />
     <ClInclude Include="include\UI\UIElement\AnimatedImageView.h" />
     <ClInclude Include="include\UI\UIElement\ButtonView.h" />
     <ClInclude Include="include\Global\Config.h" />

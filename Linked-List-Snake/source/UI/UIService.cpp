@@ -7,6 +7,7 @@ namespace UI
 	using namespace Main;
 	using namespace MainMenu;
 	using namespace SplashScreen;
+	using namespace LevelSelection;
 	using namespace UIElement;
 	using namespace Interface;
 
@@ -14,6 +15,7 @@ namespace UI
 	{
 		splash_screen_controller = nullptr;
 		main_menu_controller = nullptr;
+		level_selection_ui_controller = nullptr;
 
 		createControllers();
 	}
@@ -22,6 +24,7 @@ namespace UI
 	{
 		splash_screen_controller = new SplashScreenUIController();
 		main_menu_controller = new MainMenuUIController();
+		level_selection_ui_controller = new LevelSelectionUIController();
 	}
 
 	UIService::~UIService()
@@ -57,6 +60,7 @@ namespace UI
 	{
 		splash_screen_controller->initialize();
 		main_menu_controller->initialize();
+		level_selection_ui_controller->initialize();
 	}
 
 	IUIController* UIService::getCurrentUIController()
@@ -69,6 +73,9 @@ namespace UI
 		case GameState::MAIN_MENU:
 			return main_menu_controller;
 
+		case GameState::LEVEL_SELECTION:
+			return level_selection_ui_controller;
+
 		default:
 			return nullptr;
 		}
@@ -78,5 +85,6 @@ namespace UI
 	{
 		delete(splash_screen_controller);
 		delete(main_menu_controller);
+		delete(level_selection_ui_controller);
 	}
 }

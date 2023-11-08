@@ -3,6 +3,8 @@
 #include "Event/EventService.h"
 #include "UI/UIService.h"
 #include "Sound/SoundService.h"
+#include "Level/LevelService.h"
+#include "Element/ElementService.h"
 
 namespace Global
 {
@@ -12,6 +14,8 @@ namespace Global
         Event::EventService* event_service;
         Graphics::GraphicService* graphic_service;
         Sound::SoundService* sound_service;
+        Level::LevelService* level_service;
+        Element::ElementService* element_service;
         UI::UIService* ui_service;
 
         ServiceLocator();
@@ -30,6 +34,8 @@ namespace Global
         Event::EventService* getEventService();
         Graphics::GraphicService* getGraphicService();
         Sound::SoundService* getSoundService();
+        Level::LevelService* getLevelService();
+        Element::ElementService* getElementService();
         UI::UIService* getUIService();
         void deleteServiceLocator();
     };
