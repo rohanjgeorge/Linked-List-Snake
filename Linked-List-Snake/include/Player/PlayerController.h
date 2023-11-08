@@ -48,5 +48,7 @@ namespace Player
 		void respawnPlayer();
 		void setPlayerState(PlayerState state);
 		PlayerState getPlayerState();
+
+		std::vector<sf::Vector2i> getCurrentPlayerPositionList();
 	};
 }

@@ -34,5 +34,7 @@ namespace LinkedList
 
 		bool handleNodeCollision();
 		Node* getHeadNode();
+
+		std::vector<sf::Vector2i> getNodesPositionList();
 	};
 }

@@ -141,6 +141,11 @@ namespace Player
 		return current_player_state;
 	}
 
+	std::vector<sf::Vector2i> PlayerController::getCurrentPlayerPositionList()
+	{
+		return single_linked_list->getNodesPositionList();
+	}
+
 	void PlayerController::destroy()
 	{
 		delete (single_linked_list);

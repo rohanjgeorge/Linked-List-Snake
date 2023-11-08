@@ -40,6 +40,11 @@ namespace Player
 		player_controller->spawnPlayer();
 	}
 
+	std::vector<sf::Vector2i> PlayerService::getCurrentPlayerPositionList()
+	{
+		return player_controller->getCurrentPlayerPositionList();
+	}
+
 	void PlayerService::destroy()
 	{
 		delete (player_controller);

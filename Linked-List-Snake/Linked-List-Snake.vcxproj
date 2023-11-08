@@ -134,14 +134,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="source\Food.cpp" />
-    <ClCompile Include="source\FoodService.cpp" />
+    <ClCompile Include="source\Food\FoodItem.cpp" />
+    <ClCompile Include="source\Food\FoodService.cpp" />
     <ClCompile Include="source\LinkedList\SingleLinkedList.cpp" />
     <ClCompile Include="source\Player\PlayerController.cpp" />
     <ClCompile Include="source\Player\PlayerService.cpp" />
     <ClCompile Include="source\Time\TimeService.cpp" />
     <ClCompile Include="source\LinkedList\Node.cpp" />
     <ClCompile Include="source\Element\Obstacle.cpp" />
+    <ClCompile Include="source\UI\GameplayUI\GameplayUIController.cpp" />
     <ClCompile Include="source\UI\UIElement\RectangleShapeView.cpp" />
     <ClCompile Include="source\Element\ElementService.cpp" />
     <ClCompile Include="source\Level\LevelController.cpp" />
@@ -165,9 +166,9 @@
     <ClCompile Include="source\UI\UIElement\UIView.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header\Food.h" />
-    <ClInclude Include="header\FoodService.h" />
-    <ClInclude Include="header\FoodType.h" />
+    <ClInclude Include="include\Food\FoodItem.h" />
+    <ClInclude Include="include\Food\FoodService.h" />
+    <ClInclude Include="include\Food\FoodType.h" />
     <ClInclude Include="include\LinkedList\Node.h" />
     <ClInclude Include="include\LinkedList\SingleLinkedList.h" />
     <ClInclude Include="include\Player\PlayerController.h" />
@@ -198,6 +199,7 @@
     <ClInclude Include="include\UI\UIElement\TextView.h" />
     <ClInclude Include="include\UI\UIService.h" />
     <ClInclude Include="include\UI\UIElement\UIView.h" />
+    <ClInclude Include="include\UI\GameplayUI\GameplayUIController.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

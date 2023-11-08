@@ -10,6 +10,22 @@ namespace Global
 
 	const sf::String Config::snake_body_texture_path = "assets/textures/snake_body.png";
 
+	const sf::String Config::apple_texture_path = "assets/textures/apple.png";
+
+	const sf::String Config::mango_texture_path = "assets/textures/mango.png";
+
+	const sf::String Config::orange_texture_path = "assets/textures/orange.png";
+
+	const sf::String Config::pizza_texture_path = "assets/textures/pizza.png";
+
+	const sf::String Config::burger_texture_path = "assets/textures/burger.png";
+
+	const sf::String Config::cheese_texture_path = "assets/textures/cheese.png";
+
+	const sf::String Config::poision_texture_path = "assets/textures/poision.png";
+
+	const sf::String Config::alcohol_texture_path = "assets/textures/alcohol.png";
+
 	const sf::String Config::play_button_texture_path = "assets/textures/play_button.png";
 
 	const sf::String Config::instructions_button_texture_path = "assets/textures/instructions_button.png";
