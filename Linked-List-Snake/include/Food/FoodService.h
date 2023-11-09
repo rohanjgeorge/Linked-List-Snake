@@ -40,7 +40,7 @@ namespace Food
 		sf::Vector2i getRandomPosition();
 		FoodType getRandomFoodType();
 
-		bool isValidPosition(std::vector<sf::Vector2i> player_position_data, std::vector<sf::Vector2i> elements_position_data, sf::Vector2i food_position);
+		bool isValidPosition(std::vector<sf::Vector2i> position_data, sf::Vector2i food_position);
 
 		void destroyFood();
 		void updateElapsedDuration();
