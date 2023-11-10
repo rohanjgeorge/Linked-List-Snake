@@ -57,6 +57,17 @@ namespace Food
 		reset();
 	}
 
+	bool FoodService::processFoodCollision(LinkedList::Node* head_node, FoodType& out_food_type)
+	{
+		if (current_food_item && current_food_item->getFoodPosition() == head_node->getPosition())
+		{
+			out_food_type = current_food_item->getFoodType();
+			return true;
+		}
+
+		return false;
+	}
+
 	FoodItem* FoodService::createFood(sf::Vector2i position, FoodType type)
 	{
 		FoodItem* food = new FoodItem();
@@ -112,6 +123,7 @@ namespace Food
 	void FoodService::destroyFood()
 	{
 		if (current_food_item) delete(current_food_item);
+		current_food_item = nullptr;
 	}
 
 	void FoodService::updateElapsedDuration()

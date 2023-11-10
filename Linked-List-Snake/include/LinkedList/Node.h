@@ -20,7 +20,7 @@ namespace LinkedList
 		UI::UIElement::ImageView* node_image;
 
 		sf::Vector2i grid_position;
-		Direction direction;
+		Direction node_direction;
 
 		float node_width;
 		float node_height;
@@ -50,5 +50,10 @@ namespace LinkedList
 		Direction getDirection();
 		sf::Vector2i getPosition();
 		sf::Vector2i getNextNodePosition();
+		sf::Vector2i getPrevNodePosition();
+		Direction getReverseNodeDirection();
+
+		void setNodePosition(sf::Vector2i position);
+		void setNodeDirection(Direction direction);
 	};
 }

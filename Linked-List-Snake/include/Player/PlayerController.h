@@ -2,9 +2,16 @@
 #include <SFML/System/Vector2.hpp>
 #include "LinkedList/Node.h"
 #include "LinkedList/SingleLinkedList.h"
+#include "Food/FoodType.h"
 
 namespace Player
 {
+	enum class TimeComplexity
+	{
+		ONE,
+		N,
+	};
+
 	enum class PlayerState
 	{
 		ALIVE,
@@ -26,12 +33,22 @@ namespace Player
 		float restart_counter;
 		LinkedList::Direction current_player_direction;
 
+		int player_score;
+		TimeComplexity time_complexity;
+
 		LinkedList::SingleLinkedList* single_linked_list;
 
 		void createLinkedList();
 		void handlePlayerInput();
 		void handleLinkedListUpdate();
-		void handlePlayerCollision();
+		void processPlayerCollision();
+		void processNodeCollision();
+		void processElementsCollision();
+		void processFoodCollision();
+
+		void performOperation(Food::FoodType food_type);
+		int getRandomNodeIndex();
+
 		void handleRestart();
 		void reset();
 		void destroy();
@@ -50,5 +67,8 @@ namespace Player
 		PlayerState getPlayerState();
 
 		std::vector<sf::Vector2i> getCurrentPlayerPositionList();
+		TimeComplexity getTimeComplexity();
+		int getPlayerScore();
+		int getPlayreSize();
 	};
 }

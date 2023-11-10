@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <SFML/System/Vector2.hpp>
+#include "Player/PlayerController.h"
 
 namespace Player
 {
@@ -24,5 +25,10 @@ namespace Player
 
 		void spawnPlayer();
 		std::vector<sf::Vector2i> getCurrentPlayerPositionList();
+
+		int getPlayerSize();
+		int getPlayerScore();
+		TimeComplexity getTimeComplexity();
+		PlayerState getPlayerState();
 	};
 }

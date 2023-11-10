@@ -45,6 +45,27 @@ namespace Player
 		return player_controller->getCurrentPlayerPositionList();
 	}
 
+	int PlayerService::getPlayerSize()
+	{
+		return player_controller->getPlayreSize();
+	}
+
+	int PlayerService::getPlayerScore()
+	{
+		return player_controller->getPlayerScore();
+	}
+
+	TimeComplexity PlayerService::getTimeComplexity()
+	{
+		return player_controller->getTimeComplexity();
+	}
+
+	PlayerState PlayerService::getPlayerState()
+	{
+		return player_controller->getPlayerState();
+	}
+
+
 	void PlayerService::destroy()
 	{
 		delete (player_controller);

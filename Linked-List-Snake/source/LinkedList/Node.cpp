@@ -27,7 +27,7 @@ namespace LinkedList
 	{
 		node_width = width;
 		node_height = height;
-		direction = dir;
+		node_direction = dir;
 		grid_position = pos;
 
 		initializeNodeUI();
@@ -46,7 +46,7 @@ namespace LinkedList
 
 	void Node::updateNode(Direction dir)
 	{
-		direction = dir;
+		node_direction = dir;
 		grid_position = getNextNodePosition();
 
 		node_image->setPosition(getNodeScreenPosition());
@@ -74,7 +74,7 @@ namespace LinkedList
 
 	sf::Vector2i Node::getNextNodePosition()
 	{
-		switch (direction)
+		switch (node_direction)
 		{
 		case Direction::UP:
 			return getNextPositionUp();
@@ -87,6 +87,48 @@ namespace LinkedList
 		default:
 			return grid_position;
 		}
+	}
+
+	sf::Vector2i Node::getPrevNodePosition()
+	{
+		switch (node_direction)
+		{
+		case Direction::UP:
+			return getNextPositionDown();
+		case Direction::DOWN:
+			return getNextPositionUp();
+		case Direction::RIGHT:
+			return getNextPositionLeft();
+		case Direction::LEFT:
+			return getNextPositionRight();
+		default:
+			return grid_position;
+		}
+	}
+
+	Direction Node::getReverseNodeDirection()
+	{
+		switch (node_direction)
+		{
+		case Direction::UP:
+			return Direction::DOWN;
+		case Direction::DOWN:
+			return Direction::UP;
+		case Direction::LEFT:
+			return Direction::RIGHT;
+		case Direction::RIGHT:
+			return Direction::LEFT;
+		}
+	}
+
+	void Node::setNodePosition(sf::Vector2i position)
+	{
+		grid_position = position;
+	}
+
+	void Node::setNodeDirection(Direction direction)
+	{
+		node_direction = direction;
 	}
 
 	sf::Vector2i Node::getNextPositionDown()
@@ -139,7 +181,7 @@ namespace LinkedList
 
 	float Node::getRotationAngle()
 	{
-		switch (direction)
+		switch (node_direction)
 		{
 		case Direction::UP:
 			return 270.f;
@@ -159,7 +201,7 @@ namespace LinkedList
 
 	Direction Node::getDirection()
 	{
-		return direction;
+		return node_direction;
 	}
 
 	sf::Vector2i Node::getPosition()
