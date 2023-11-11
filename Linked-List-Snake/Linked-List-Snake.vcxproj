@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)sfml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sfml\include; $(SolutionDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -121,7 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)sfml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)sfml\include; $(SolutionDir)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,86 +134,88 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="source\CreditsScreenUIController.cpp" />
     <ClCompile Include="source\DoubleLinkedList.cpp" />
     <ClCompile Include="source\DoubleNode.cpp" />
-    <ClCompile Include="source\ElementService.cpp" />
-    <ClCompile Include="source\EventService.cpp" />
-    <ClCompile Include="source\Food.cpp" />
-    <ClCompile Include="source\FoodService.cpp" />
-    <ClCompile Include="source\GameplayUIController.cpp" />
-    <ClCompile Include="source\GameService.cpp" />
-    <ClCompile Include="source\GraphicService.cpp" />
     <ClCompile Include="source\InstructionsScreenUIController.cpp" />
-    <ClCompile Include="source\LevelController.cpp" />
-    <ClCompile Include="source\LevelModel.cpp" />
     <ClCompile Include="source\LevelSelectionUIController.cpp" />
-    <ClCompile Include="source\LevelView.cpp" />
-    <ClCompile Include="source\LevelService.cpp" />
-    <ClCompile Include="source\AnimatedImageView.cpp" />
-    <ClCompile Include="source\ButtonView.cpp" />
-    <ClCompile Include="source\Config.cpp" />
-    <ClCompile Include="source\ImageView.cpp" />
-    <ClCompile Include="source\LinkedList.cpp" />
     <ClCompile Include="source\LinkedListSelectionUIController.cpp" />
-    <ClCompile Include="source\MainMenuUIController.cpp" />
-    <ClCompile Include="source\Node.cpp" />
-    <ClCompile Include="source\Obstacle.cpp" />
-    <ClCompile Include="source\PlayerController.cpp" />
-    <ClCompile Include="source\PlayerService.cpp" />
-    <ClCompile Include="source\RectangleShapeView.cpp" />
-    <ClCompile Include="source\ServiceLocator.cpp" />
-    <ClCompile Include="source\SingleLinkedList.cpp" />
+    <ClCompile Include="source\LinkedList.cpp" />
     <ClCompile Include="source\SingleNode.cpp" />
-    <ClCompile Include="source\SoundService.cpp" />
-    <ClCompile Include="source\SplashScreenUIController.cpp" />
-    <ClCompile Include="source\TimeService.cpp" />
-    <ClCompile Include="source\TextView.cpp" />
-    <ClCompile Include="source\UIService.cpp" />
-    <ClCompile Include="source\UIView.cpp" />
+    <ClCompile Include="source\UI\Credits\CreditsScreenUIController.cpp" />
+    <ClCompile Include="source\Food\FoodItem.cpp" />
+    <ClCompile Include="source\Food\FoodService.cpp" />
+    <ClCompile Include="source\LinkedList\SingleLinkedList.cpp" />
+    <ClCompile Include="source\Player\PlayerController.cpp" />
+    <ClCompile Include="source\Player\PlayerService.cpp" />
+    <ClCompile Include="source\Time\TimeService.cpp" />
+    <ClCompile Include="source\LinkedList\Node.cpp" />
+    <ClCompile Include="source\Element\Obstacle.cpp" />
+    <ClCompile Include="source\UI\GameplayUI\GameplayUIController.cpp" />
+    <ClCompile Include="source\UI\UIElement\RectangleShapeView.cpp" />
+    <ClCompile Include="source\Element\ElementService.cpp" />
+    <ClCompile Include="source\Level\LevelController.cpp" />
+    <ClCompile Include="source\Level\LevelModel.cpp" />
+    <ClCompile Include="source\UI\LevelSelection\LevelSelectionUIController.cpp" />
+    <ClCompile Include="source\Level\LevelView.cpp" />
+    <ClCompile Include="source\Level\LevelService.cpp" />
+    <ClCompile Include="source\UI\UIElement\AnimatedImageView.cpp" />
+    <ClCompile Include="source\UI\UIElement\ButtonView.cpp" />
+    <ClCompile Include="source\Global\Config.cpp" />
+    <ClCompile Include="source\Event\EventService.cpp" />
+    <ClCompile Include="source\Main\GameService.cpp" />
+    <ClCompile Include="source\Graphics\GraphicService.cpp" />
+    <ClCompile Include="source\UI\UIElement\ImageView.cpp" />
+    <ClCompile Include="source\UI\MainMenu\MainMenuUIController.cpp" />
+    <ClCompile Include="source\Global\ServiceLocator.cpp" />
+    <ClCompile Include="source\Sound\SoundService.cpp" />
+    <ClCompile Include="source\UI\SplashScreen\SplashScreenUIController.cpp" />
+    <ClCompile Include="source\UI\UIElement\TextView.cpp" />
+    <ClCompile Include="source\UI\UIService.cpp" />
+    <ClCompile Include="source\UI\UIElement\UIView.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header\CreditsScreenUIController.h" />
     <ClInclude Include="header\DoubleLinkedList.h" />
     <ClInclude Include="header\DoubleNode.h" />
-    <ClInclude Include="header\ElementService.h" />
-    <ClInclude Include="header\AnimatedImageView.h" />
-    <ClInclude Include="header\ButtonView.h" />
-    <ClInclude Include="header\Config.h" />
-    <ClInclude Include="header\EventService.h" />
-    <ClInclude Include="header\Food.h" />
-    <ClInclude Include="header\FoodService.h" />
-    <ClInclude Include="header\FoodType.h" />
-    <ClInclude Include="header\GameplayUIController.h" />
-    <ClInclude Include="header\GameService.h" />
-    <ClInclude Include="header\GraphicService.h" />
-    <ClInclude Include="header\ImageView.h" />
     <ClInclude Include="header\InstructionsScreenUIController.h" />
-    <ClInclude Include="header\IUIController.h" />
-    <ClInclude Include="header\ElementData.h" />
-    <ClInclude Include="header\LevelController.h" />
-    <ClInclude Include="header\LevelData.h" />
-    <ClInclude Include="header\LevelModel.h" />
     <ClInclude Include="header\LevelSelectionUIController.h" />
-    <ClInclude Include="header\LevelView.h" />
-    <ClInclude Include="header\LevelService.h" />
-    <ClInclude Include="header\LinkedList.h" />
     <ClInclude Include="header\LinkedListSelectionUIController.h" />
-    <ClInclude Include="header\MainMenuUIController.h" />
-    <ClInclude Include="header\Node.h" />
-    <ClInclude Include="header\Obstacle.h" />
-    <ClInclude Include="header\PlayerController.h" />
-    <ClInclude Include="header\PlayerService.h" />
-    <ClInclude Include="header\RectangleShapeView.h" />
-    <ClInclude Include="header\ServiceLocator.h" />
-    <ClInclude Include="header\SingleLinkedList.h" />
+    <ClInclude Include="header\LinkedList.h" />
     <ClInclude Include="header\SingleNode.h" />
-    <ClInclude Include="header\SoundService.h" />
-    <ClInclude Include="header\SplashScreenUIController.h" />
-    <ClInclude Include="header\TimeService.h" />
-    <ClInclude Include="header\TextView.h" />
-    <ClInclude Include="header\UIService.h" />
-    <ClInclude Include="header\UIView.h" />
+    <ClInclude Include="include\UI\Credits\CreditsScreenUIController.h" />
+    <ClInclude Include="include\Food\FoodItem.h" />
+    <ClInclude Include="include\Food\FoodService.h" />
+    <ClInclude Include="include\Food\FoodType.h" />
+    <ClInclude Include="include\LinkedList\Node.h" />
+    <ClInclude Include="include\LinkedList\SingleLinkedList.h" />
+    <ClInclude Include="include\Player\PlayerController.h" />
+    <ClInclude Include="include\Player\PlayerService.h" />
+    <ClInclude Include="include\Time\TimeService.h" />
+    <ClInclude Include="include\Element\ElementService.h" />
+    <ClInclude Include="include\Element\ElementData.h" />
+    <ClInclude Include="include\Level\LevelController.h" />
+    <ClInclude Include="include\Level\LevelData.h" />
+    <ClInclude Include="include\Level\LevelModel.h" />
+    <ClInclude Include="include\UI\LevelSelection\LevelSelectionUIController.h" />
+    <ClInclude Include="include\Level\LevelView.h" />
+    <ClInclude Include="include\Level\LevelService.h" />
+    <ClInclude Include="include\Element\Obstacle.h" />
+    <ClInclude Include="include\UI\UIElement\RectangleShapeView.h" />
+    <ClInclude Include="include\UI\UIElement\AnimatedImageView.h" />
+    <ClInclude Include="include\UI\UIElement\ButtonView.h" />
+    <ClInclude Include="include\Global\Config.h" />
+    <ClInclude Include="include\Event\EventService.h" />
+    <ClInclude Include="include\Main\GameService.h" />
+    <ClInclude Include="include\Graphics\GraphicService.h" />
+    <ClInclude Include="include\UI\UIElement\ImageView.h" />
+    <ClInclude Include="include\UI\Interface\IUIController.h" />
+    <ClInclude Include="include\UI\MainMenu\MainMenuUIController.h" />
+    <ClInclude Include="include\Global\ServiceLocator.h" />
+    <ClInclude Include="include\Sound\SoundService.h" />
+    <ClInclude Include="include\UI\SplashScreen\SplashScreenUIController.h" />
+    <ClInclude Include="include\UI\UIElement\TextView.h" />
+    <ClInclude Include="include\UI\UIService.h" />
+    <ClInclude Include="include\UI\UIElement\UIView.h" />
+    <ClInclude Include="include\UI\GameplayUI\GameplayUIController.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
