@@ -51,18 +51,18 @@ namespace LinkedList
         }
     }
 
-    bool SingleLinkedList::processNodeCollision()
-    {
-        if (head_node == nullptr) return false;
+	bool SingleLinkedList::processNodeCollision()
+	{
+		if (head_node == nullptr) return false;
 
         sf::Vector2i predicted_position = head_node->getNextNodePosition();
 
-        Node* cur_node = head_node->getNextNode();
-        while (cur_node != nullptr)
-        {
-            if (cur_node->getPosition() == predicted_position) return true;
-            cur_node = cur_node->getNextNode();
-        }
+		Node* cur_node = head_node->getNextNode();
+		while (cur_node != nullptr)
+		{
+			if (cur_node->getPosition() == predicted_position || cur_node->getPosition() == head_node->getPosition()) return true;
+			cur_node = cur_node->getNextNode();
+		}
 
         return false;
     }
