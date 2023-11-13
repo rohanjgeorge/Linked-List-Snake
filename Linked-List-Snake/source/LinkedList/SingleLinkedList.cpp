@@ -50,7 +50,7 @@ namespace LinkedList
 		}
 	}
 
-	bool SingleLinkedList::handleNodeCollision()
+	bool SingleLinkedList::processNodeCollision()
 	{
 		if (head_node == nullptr) return false;
 
@@ -59,7 +59,7 @@ namespace LinkedList
 		Node* cur_node = head_node->getNextNode();
 		while (cur_node != nullptr)
 		{
-			if (cur_node->getPosition() == predicted_position) return true;
+			if (cur_node->getPosition() == predicted_position || cur_node->getPosition() == head_node->getPosition()) return true;
 			cur_node = cur_node->getNextNode();
 		}
 

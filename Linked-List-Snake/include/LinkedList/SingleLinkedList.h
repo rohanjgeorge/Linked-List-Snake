@@ -32,7 +32,7 @@ namespace LinkedList
 		void removeNodeAtHead();
 		void removeAllNodes();
 
-		bool handleNodeCollision();
+		bool processNodeCollision();
 		Node* getHeadNode();
 	};
 }

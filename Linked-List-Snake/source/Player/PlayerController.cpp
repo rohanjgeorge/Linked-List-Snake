@@ -41,9 +41,9 @@ namespace Player
 		switch (current_player_state)
 		{
 		case PlayerState::ALIVE:
-			handlePlayerInput();
-			handleLinkedListUpdate();
-			handlePlayerCollision();
+			processPlayerInput();
+			processLinkedListUpdate();
+			processPlayerCollision();
 			break;
 
 		case PlayerState::DEAD:
@@ -57,7 +57,7 @@ namespace Player
 		single_linked_list->render();
 	}
 
-	void PlayerController::handlePlayerInput()
+	void PlayerController::processPlayerInput()
 	{
 		EventService* event_service = ServiceLocator::getInstance()->getEventService();
 
@@ -79,7 +79,7 @@ namespace Player
 		}
 	}
 
-	void PlayerController::handleLinkedListUpdate()
+	void PlayerController::processLinkedListUpdate()
 	{
 		elapsed_duration += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
@@ -90,9 +90,9 @@ namespace Player
 		}
 	}
 
-	void PlayerController::handlePlayerCollision()
+	void PlayerController::processPlayerCollision()
 	{
-		if (single_linked_list->handleNodeCollision())
+		if (single_linked_list->processNodeCollision())
 		{
 			current_player_state = PlayerState::DEAD;
 		}
