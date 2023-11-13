@@ -48,9 +48,9 @@ namespace Player
 		switch (current_player_state)
 		{
 		case PlayerState::ALIVE:
-			handlePlayerInput();
+			processPlayerInput();
 			processPlayerCollision();
-			handleLinkedListUpdate();
+			processLinkedListUpdate();
 			break;
 
 		case PlayerState::DEAD:
@@ -64,7 +64,7 @@ namespace Player
 		single_linked_list->render();
 	}
 
-	void PlayerController::handlePlayerInput()
+	void PlayerController::processPlayerInput()
 	{
 		EventService* event_service = ServiceLocator::getInstance()->getEventService();
 
@@ -86,7 +86,7 @@ namespace Player
 		}
 	}
 
-	void PlayerController::handleLinkedListUpdate()
+	void PlayerController::processLinkedListUpdate()
 	{
 		elapsed_duration += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
@@ -134,13 +134,13 @@ namespace Player
 			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::PICKUP);
 
 			food_service->destroyFood();
-			performOperation(food_type);
+			performLinkedListOperation(food_type);
 
 			player_score++;
 		}
 	}
 
-	void PlayerController::performOperation(FoodType food_type)
+	void PlayerController::performLinkedListOperation(FoodType food_type)
 	{
 		switch (food_type)
 		{

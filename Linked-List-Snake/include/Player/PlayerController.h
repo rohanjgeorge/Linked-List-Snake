@@ -39,14 +39,14 @@ namespace Player
 		LinkedList::SingleLinkedList* single_linked_list;
 
 		void createLinkedList();
-		void handlePlayerInput();
-		void handleLinkedListUpdate();
+		void processPlayerInput();
+		void processLinkedListUpdate();
 		void processPlayerCollision();
 		void processNodeCollision();
 		void processElementsCollision();
 		void processFoodCollision();
 
-		void performOperation(Food::FoodType food_type);
+		void performLinkedListOperation(Food::FoodType food_type);
 		int getRandomNodeIndex();
 
 		void handleRestart();
