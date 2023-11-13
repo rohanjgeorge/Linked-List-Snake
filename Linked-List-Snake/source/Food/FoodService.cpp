@@ -57,7 +57,7 @@ namespace Food
 		reset();
 	}
 
-	bool FoodService::processFoodCollision(LinkedList::Node* head_node, FoodType& out_food_type)
+	bool FoodService::processFoodCollision(LinkedListLib::Node* head_node, FoodType& out_food_type)
 	{
 		if (current_food_item && current_food_item->getFoodPosition() == head_node->getPosition())
 		{
@@ -106,9 +106,16 @@ namespace Food
 
 	FoodType FoodService::getRandomFoodType()
 	{
-		std::uniform_int_distribution<int> distribution(0, FoodItem::number_of_foods - 1);
-
-		return static_cast<FoodType>(distribution(random_engine));
+		if (ServiceLocator::getInstance()->getPlayerService()->getPlayerSize() < minimum_player_size)
+		{
+			int randomValue = std::rand() % (FoodItem::number_of_foods - FoodItem::number_of_healthy_foods);
+			return static_cast<FoodType>(randomValue);
+		}
+		else
+		{
+			int randomValue = std::rand() % (FoodItem::number_of_foods);
+			return static_cast<FoodType>(randomValue);
+		}
 	}
 
 	bool FoodService::isValidPosition(std::vector<sf::Vector2i> position_data, sf::Vector2i food_position)

@@ -5,10 +5,14 @@
 #include "Element/ElementService.h"
 #include "Food/FoodService.h"
 #include "Main/GameService.h"
+#include "LinkedListLib/SingleLinked/SingleLinkedList.h"
+#include "LinkedListLib/DoubleLinked/DoubleLinkedList.h"
 
 namespace Player
 {
-	using namespace LinkedList;
+	using namespace LinkedListLib;
+	using namespace SingleLinked;
+	using namespace DoubleLinked;
 	using namespace Global;
 	using namespace Level;
 	using namespace Event;
@@ -20,8 +24,7 @@ namespace Player
 
 	PlayerController::PlayerController()
 	{
-		single_linked_list = nullptr;
-		createLinkedList();
+		linked_list = nullptr;
 	}
 
 	PlayerController::~PlayerController()
@@ -29,19 +32,31 @@ namespace Player
 		destroy();
 	}
 
-	void PlayerController::createLinkedList()
+	void PlayerController::createLinkedList(LevelType level_type)
 	{
-		single_linked_list = new SingleLinkedList();
+		switch (level_type)
+		{
+		case LevelType::SINGLE_LINKED_LIST:
+			linked_list = new SingleLinkedList();
+			break;
+		case LevelType::DOUBLE_LINKED_LIST:
+			linked_list = new DoubleLinkedList();
+			break;
+		}
+
+		initializeLinkedList();
 	}
 
-	void PlayerController::initialize()
+	void PlayerController::initializeLinkedList()
 	{
 		float width = ServiceLocator::getInstance()->getLevelService()->getCellWidth();
 		float height = ServiceLocator::getInstance()->getLevelService()->getCellHeight();
 
-		single_linked_list->initialize(width, height, default_position, default_direction);
+		linked_list->initialize(width, height, default_position, default_direction);
 		reset();
 	}
+
+	void PlayerController::initialize() { }
 
 	void PlayerController::update()
 	{
@@ -49,7 +64,7 @@ namespace Player
 		{
 		case PlayerState::ALIVE:
 			handlePlayerInput();
-			processPlayerCollision();
+			handlePlayerCollision();
 			handleLinkedListUpdate();
 			break;
 
@@ -61,7 +76,7 @@ namespace Player
 
 	void PlayerController::render()
 	{
-		single_linked_list->render();
+		linked_list->render();
 	}
 
 	void PlayerController::handlePlayerInput()
@@ -92,44 +107,44 @@ namespace Player
 
 		if (elapsed_duration >= movement_frame_duration)
 		{
-			single_linked_list->update(current_player_direction);
+			linked_list->update(current_player_direction);
 			elapsed_duration = 0.f;
 		}
 	}
 
-	void PlayerController::processPlayerCollision()
+	void PlayerController::handlePlayerCollision()
 	{
-		processNodeCollision();
-		processElementsCollision();
-		processFoodCollision();
+		handleNodeCollision();
+		handleElementsCollision();
+		handleFoodCollision();
 	}
 
-	void PlayerController::processNodeCollision()
+	void PlayerController::handleNodeCollision()
 	{
-		if (single_linked_list->processNodeCollision())
+		if (linked_list->handleNodeCollision())
 		{
 			current_player_state = PlayerState::DEAD;
 			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::DEATH);
 		}
 	}
 
-	void PlayerController::processElementsCollision()
+	void PlayerController::handleElementsCollision()
 	{
 		ElementService* element_service = ServiceLocator::getInstance()->getElementService();
 
-		if (element_service->processElementsCollision(single_linked_list->getHeadNode()))
+		if (element_service->processElementsCollision(linked_list->getHeadNode()))
 		{
 			current_player_state = PlayerState::DEAD;
 			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::DEATH);
 		}
 	}
 
-	void PlayerController::processFoodCollision()
+	void PlayerController::handleFoodCollision()
 	{
 		FoodService* food_service = ServiceLocator::getInstance()->getFoodService();
 		FoodType food_type;
 
-		if (food_service->processFoodCollision(single_linked_list->getHeadNode(), food_type))
+		if (food_service->processFoodCollision(linked_list->getHeadNode(), food_type))
 		{
 			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::PICKUP);
 
@@ -145,42 +160,42 @@ namespace Player
 		switch (food_type)
 		{
 		case FoodType::PIZZA:
-			single_linked_list->insertNodeAtHead();
+			linked_list->insertNodeAtHead();
 			time_complexity = TimeComplexity::ONE;
 			break;
 
 		case FoodType::BURGER:
-			single_linked_list->insertNodeAtTail();
+			linked_list->insertNodeAtTail();
 			time_complexity = TimeComplexity::N;
 			break;
 
 		case FoodType::CHEESE:
-			single_linked_list->insertNodeAt(getRandomNodeIndex());
+			linked_list->insertNodeAt(getRandomNodeIndex());
 			time_complexity = TimeComplexity::N;
 			break;
 
 		case FoodType::APPLE:
-			single_linked_list->removeNodeAtHead();
+			linked_list->removeNodeAtHead();
 			time_complexity = TimeComplexity::ONE;
 			break;
 
 		case FoodType::MANGO:
-			single_linked_list->removeNodeAtTail();
+			linked_list->removeNodeAtTail();
 			time_complexity = TimeComplexity::N;
 			break;
 
 		case FoodType::ORANGE:
-			single_linked_list->removeNodeAt(getRandomNodeIndex());
+			linked_list->removeNodeAt(getRandomNodeIndex());
 			time_complexity = TimeComplexity::N;
 			break;
 
 		case FoodType::POISION:
-			single_linked_list->removeHalfNodes();
+			linked_list->removeHalfNodes();
 			time_complexity = TimeComplexity::N;
 			break;
 
 		case FoodType::ALCOHOL:
-			current_player_direction = single_linked_list->reverse();
+			current_player_direction = linked_list->reverse();
 			time_complexity = TimeComplexity::N;
 			break;
 		}
@@ -201,13 +216,13 @@ namespace Player
 	{
 		for (int i = 0; i < initial_snake_length; i++)
 		{
-			single_linked_list->insertNodeAtTail();
+			linked_list->insertNodeAtTail();
 		}
 	}
 
 	void PlayerController::reset()
 	{
-		single_linked_list->removeAllNodes();
+		linked_list->removeAllNodes();
 
 		current_player_state = PlayerState::ALIVE;
 		time_complexity = TimeComplexity::ONE;
@@ -236,7 +251,7 @@ namespace Player
 
 	std::vector<sf::Vector2i> PlayerController::getCurrentPlayerPositionList()
 	{
-		return single_linked_list->getNodesPositionList();
+		return linked_list->getNodesPositionList();
 	}
 
 	int PlayerController::getPlayerScore()
@@ -251,16 +266,16 @@ namespace Player
 
 	int PlayerController::getPlayreSize()
 	{
-		return single_linked_list->getLinkedListSize();
+		return linked_list->getLinkedListSize();
 	}
 
 	int PlayerController::getRandomNodeIndex()
 	{
-		return std::rand() % (single_linked_list->getLinkedListSize() - 1);
+		return std::rand() % (linked_list->getLinkedListSize() - 1);
 	}
 
 	void PlayerController::destroy()
 	{
-		delete (single_linked_list);
+		delete (linked_list);
 	}
 }

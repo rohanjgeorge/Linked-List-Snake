@@ -2,6 +2,7 @@
 #include <vector>
 #include <SFML/System/Vector2.hpp>
 #include "Player/PlayerController.h"
+#include "Level/LevelService.h"
 
 namespace Player
 {
@@ -23,7 +24,7 @@ namespace Player
 		void update();
 		void render();
 
-		void spawnPlayer();
+		void spawnPlayer(Level::LevelType level_type);
 		std::vector<sf::Vector2i> getCurrentPlayerPositionList();
 
 		int getPlayerSize();

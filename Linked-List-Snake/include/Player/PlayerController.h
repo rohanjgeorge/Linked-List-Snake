@@ -1,8 +1,9 @@
 #pragma once
 #include <SFML/System/Vector2.hpp>
-#include "LinkedList/Node.h"
-#include "LinkedList/SingleLinkedList.h"
+#include "LinkedListLib/Node.h"
+#include "LinkedListLib/LinkedList.h"
 #include "Food/FoodType.h"
+#include "Level/LevelConfig.h"
 
 namespace Player
 {
@@ -26,25 +27,26 @@ namespace Player
 		const float restart_duration = 2.f;
 
 		const sf::Vector2i default_position = sf::Vector2i(25, 13);
-		const LinkedList::Direction default_direction = LinkedList::Direction::RIGHT;
+		const LinkedListLib::Direction default_direction = LinkedListLib::Direction::RIGHT;
 
 		PlayerState current_player_state;
 		float elapsed_duration;
 		float restart_counter;
-		LinkedList::Direction current_player_direction;
+		LinkedListLib::Direction current_player_direction;
 
 		int player_score;
 		TimeComplexity time_complexity;
 
-		LinkedList::SingleLinkedList* single_linked_list;
+		LinkedListLib::LinkedList* linked_list;
 
-		void createLinkedList();
+		void initializeLinkedList();
+
 		void handlePlayerInput();
 		void handleLinkedListUpdate();
-		void processPlayerCollision();
-		void processNodeCollision();
-		void processElementsCollision();
-		void processFoodCollision();
+		void handlePlayerCollision();
+		void handleNodeCollision();
+		void handleElementsCollision();
+		void handleFoodCollision();
 
 		void performOperation(Food::FoodType food_type);
 		int getRandomNodeIndex();
@@ -61,6 +63,7 @@ namespace Player
 		void update();
 		void render();
 
+		void createLinkedList(Level::LevelType level_type);
 		void spawnPlayer();
 		void respawnPlayer();
 		void setPlayerState(PlayerState state);

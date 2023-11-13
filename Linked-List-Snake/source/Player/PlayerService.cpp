@@ -3,6 +3,8 @@
 
 namespace Player
 {
+	using namespace Level;
+
 	PlayerService::PlayerService()
 	{
 		player_controller = nullptr;
@@ -35,8 +37,9 @@ namespace Player
 		player_controller->render();
 	}
 
-	void PlayerService::spawnPlayer()
+	void PlayerService::spawnPlayer(LevelType level_type)
 	{
+		player_controller->createLinkedList(level_type);
 		player_controller->spawnPlayer();
 	}
 
@@ -64,7 +67,6 @@ namespace Player
 	{
 		return player_controller->getPlayerState();
 	}
-
 
 	void PlayerService::destroy()
 	{

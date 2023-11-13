@@ -134,21 +134,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="source\DoubleLinkedList.cpp" />
-    <ClCompile Include="source\DoubleNode.cpp" />
-    <ClCompile Include="source\InstructionsScreenUIController.cpp" />
-    <ClCompile Include="source\LevelSelectionUIController.cpp" />
-    <ClCompile Include="source\LinkedListSelectionUIController.cpp" />
-    <ClCompile Include="source\LinkedList.cpp" />
-    <ClCompile Include="source\SingleNode.cpp" />
+    <ClCompile Include="source\LinkedListLib\DoubleLinked\DoubleLinkedList.cpp" />
+    <ClCompile Include="source\LinkedListLib\DoubleLinked\DoubleNode.cpp" />
+    <ClCompile Include="source\UI\Instructions\InstructionsScreenUIController.cpp" />
+    <ClCompile Include="source\UI\LinkedListUI\LinkedListSelectionUIController.cpp" />
+    <ClCompile Include="source\LinkedListLib\LinkedList.cpp" />
+    <ClCompile Include="source\LinkedListLib\SingleLinked\SingleNode.cpp" />
     <ClCompile Include="source\UI\Credits\CreditsScreenUIController.cpp" />
     <ClCompile Include="source\Food\FoodItem.cpp" />
     <ClCompile Include="source\Food\FoodService.cpp" />
-    <ClCompile Include="source\LinkedList\SingleLinkedList.cpp" />
+    <ClCompile Include="source\LinkedListLib\SingleLinked\SingleLinkedList.cpp" />
     <ClCompile Include="source\Player\PlayerController.cpp" />
     <ClCompile Include="source\Player\PlayerService.cpp" />
     <ClCompile Include="source\Time\TimeService.cpp" />
-    <ClCompile Include="source\LinkedList\Node.cpp" />
+    <ClCompile Include="source\LinkedListLib\Node.cpp" />
     <ClCompile Include="source\Element\Obstacle.cpp" />
     <ClCompile Include="source\UI\GameplayUI\GameplayUIController.cpp" />
     <ClCompile Include="source\UI\UIElement\RectangleShapeView.cpp" />
@@ -174,19 +173,19 @@
     <ClCompile Include="source\UI\UIElement\UIView.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header\DoubleLinkedList.h" />
-    <ClInclude Include="header\DoubleNode.h" />
-    <ClInclude Include="header\InstructionsScreenUIController.h" />
-    <ClInclude Include="header\LevelSelectionUIController.h" />
-    <ClInclude Include="header\LinkedListSelectionUIController.h" />
-    <ClInclude Include="header\LinkedList.h" />
-    <ClInclude Include="header\SingleNode.h" />
+    <ClInclude Include="include\Level\LevelConfig.h" />
+    <ClInclude Include="include\LinkedListLib\DoubleLinked\DoubleLinkedList.h" />
+    <ClInclude Include="include\LinkedListLib\DoubleLinked\DoubleNode.h" />
+    <ClInclude Include="include\UI\Instructions\InstructionsScreenUIController.h" />
+    <ClInclude Include="include\UI\LinkedListUI\LinkedListSelectionUIController.h" />
+    <ClInclude Include="include\LinkedListLib\LinkedList.h" />
+    <ClInclude Include="include\LinkedListLib\SingleLinked\SingleNode.h" />
     <ClInclude Include="include\UI\Credits\CreditsScreenUIController.h" />
     <ClInclude Include="include\Food\FoodItem.h" />
     <ClInclude Include="include\Food\FoodService.h" />
     <ClInclude Include="include\Food\FoodType.h" />
-    <ClInclude Include="include\LinkedList\Node.h" />
-    <ClInclude Include="include\LinkedList\SingleLinkedList.h" />
+    <ClInclude Include="include\LinkedListLib\Node.h" />
+    <ClInclude Include="include\LinkedListLib\SingleLinked\SingleLinkedList.h" />
     <ClInclude Include="include\Player\PlayerController.h" />
     <ClInclude Include="include\Player\PlayerService.h" />
     <ClInclude Include="include\Time\TimeService.h" />

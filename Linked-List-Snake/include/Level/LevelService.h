@@ -1,20 +1,16 @@
 #pragma once
 
+#include "Level/LevelConfig.h"
+
 namespace Level
 {
     class LevelController;
 
-    enum class LevelNumber
-    {
-        ONE,
-        TWO,
-    };
-
     class LevelService
     {
-    private:
         LevelController* level_controller;
         LevelNumber current_level;
+        LevelType current_level_type;
 
         void createLevelController();
         void spawnPlayer();
@@ -30,9 +26,12 @@ namespace Level
         void update();
         void render();
 
-        void createLevel(LevelNumber level_to_load);
+        void createLevel(LevelType level_type);
+        void setCurrentLevel(LevelNumber level_to_load);
+
         float getCellWidth();
         float getCellHeight();
         LevelNumber getCurrentLevel();
+        LevelType getCurrentLevelType();
     };
 }
