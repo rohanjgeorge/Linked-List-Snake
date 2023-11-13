@@ -29,9 +29,9 @@ namespace Player
 		LinkedList::SingleLinkedList* single_linked_list;
 
 		void createLinkedList();
-		void handlePlayerInput();
-		void handleLinkedListUpdate();
-		void handlePlayerCollision();
+		void processPlayerInput();
+		void processLinkedListUpdate();
+		void processPlayerCollision();
 		void handleRestart();
 		void reset();
 		void destroy();
