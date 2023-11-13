@@ -41,6 +41,7 @@ namespace Player
 
 		void initializeLinkedList();
 
+		void createLinkedList();
 		void processPlayerInput();
 		void processLinkedListUpdate();
 		void processPlayerCollision();
@@ -48,7 +49,7 @@ namespace Player
 		void processElementsCollision();
 		void processFoodCollision();
 
-		void performOperation(Food::FoodType food_type);
+		void performLinkedListOperation(Food::FoodType food_type);
 		int getRandomNodeIndex();
 
 		void handleRestart();

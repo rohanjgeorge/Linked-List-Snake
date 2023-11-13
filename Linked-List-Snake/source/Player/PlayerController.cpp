@@ -149,13 +149,13 @@ namespace Player
 			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::PICKUP);
 
 			food_service->destroyFood();
-			performOperation(food_type);
+			performLinkedListOperation(food_type);
 
 			player_score++;
 		}
 	}
 
-	void PlayerController::performOperation(FoodType food_type)
+	void PlayerController::performLinkedListOperation(FoodType food_type)
 	{
 		switch (food_type)
 		{
