@@ -63,9 +63,9 @@ namespace Player
 		switch (current_player_state)
 		{
 		case PlayerState::ALIVE:
-			handlePlayerInput();
-			handlePlayerCollision();
-			handleLinkedListUpdate();
+			processPlayerInput();
+			processPlayerCollision();
+			processLinkedListUpdate();
 			break;
 
 		case PlayerState::DEAD:
@@ -79,7 +79,7 @@ namespace Player
 		linked_list->render();
 	}
 
-	void PlayerController::handlePlayerInput()
+	void PlayerController::processPlayerInput()
 	{
 		EventService* event_service = ServiceLocator::getInstance()->getEventService();
 
@@ -101,7 +101,7 @@ namespace Player
 		}
 	}
 
-	void PlayerController::handleLinkedListUpdate()
+	void PlayerController::processLinkedListUpdate()
 	{
 		elapsed_duration += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
@@ -112,23 +112,23 @@ namespace Player
 		}
 	}
 
-	void PlayerController::handlePlayerCollision()
+	void PlayerController::processPlayerCollision()
 	{
-		handleNodeCollision();
-		handleElementsCollision();
-		handleFoodCollision();
+		processNodeCollision();
+		processElementsCollision();
+		processFoodCollision();
 	}
 
-	void PlayerController::handleNodeCollision()
+	void PlayerController::processNodeCollision()
 	{
-		if (linked_list->handleNodeCollision())
+		if (linked_list->processNodeCollision())
 		{
 			current_player_state = PlayerState::DEAD;
 			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::DEATH);
 		}
 	}
 
-	void PlayerController::handleElementsCollision()
+	void PlayerController::processElementsCollision()
 	{
 		ElementService* element_service = ServiceLocator::getInstance()->getElementService();
 
@@ -139,7 +139,7 @@ namespace Player
 		}
 	}
 
-	void PlayerController::handleFoodCollision()
+	void PlayerController::processFoodCollision()
 	{
 		FoodService* food_service = ServiceLocator::getInstance()->getFoodService();
 		FoodType food_type;
@@ -267,6 +267,11 @@ namespace Player
 	int PlayerController::getPlayreSize()
 	{
 		return linked_list->getLinkedListSize();
+	}
+
+	bool PlayerController::isPlayerDead()
+	{
+		return current_player_state == PlayerState::DEAD;
 	}
 
 	int PlayerController::getRandomNodeIndex()

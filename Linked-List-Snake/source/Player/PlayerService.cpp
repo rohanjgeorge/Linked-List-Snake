@@ -68,6 +68,11 @@ namespace Player
 		return player_controller->getPlayerState();
 	}
 
+	bool PlayerService::isPlayerDead()
+	{
+		return player_controller->isPlayerDead();
+	}
+
 	void PlayerService::destroy()
 	{
 		delete (player_controller);

@@ -18,7 +18,7 @@ namespace Food
 	class FoodService
 	{
 	private:
-		const float spawn_duration = 4.f;
+		const float spawn_duration = 5.f;
 		const int minimum_player_size = 10;
 
 		float elapsed_duration;
@@ -42,7 +42,7 @@ namespace Food
 		sf::Vector2i getRandomPosition();
 		FoodType getRandomFoodType();
 
-		bool isValidPosition(std::vector<sf::Vector2i> position_data, sf::Vector2i food_position);
+		bool isValidPosition(std::vector<sf::Vector2i> player_position_data, std::vector<sf::Vector2i> elements_position_data, sf::Vector2i food_position);
 
 		void updateElapsedDuration();
 		void handleFoodSpawning();
@@ -59,7 +59,7 @@ namespace Food
 		void startFoodSpawning(float width, float height);
 		void stopFoodSpawning();
 
-		bool processFoodCollision(LinkedListLib::Node* head_node, FoodType& out_food_type);
 		void destroyFood();
+		bool processFoodCollision(LinkedListLib::Node * head_node, FoodType& out_food_type);
 	};
 }

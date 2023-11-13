@@ -31,5 +31,6 @@ namespace Player
 		int getPlayerScore();
 		TimeComplexity getTimeComplexity();
 		PlayerState getPlayerState();
+		bool isPlayerDead();
 	};
 }

@@ -41,12 +41,12 @@ namespace Player
 
 		void initializeLinkedList();
 
-		void handlePlayerInput();
-		void handleLinkedListUpdate();
-		void handlePlayerCollision();
-		void handleNodeCollision();
-		void handleElementsCollision();
-		void handleFoodCollision();
+		void processPlayerInput();
+		void processLinkedListUpdate();
+		void processPlayerCollision();
+		void processNodeCollision();
+		void processElementsCollision();
+		void processFoodCollision();
 
 		void performOperation(Food::FoodType food_type);
 		int getRandomNodeIndex();
@@ -73,5 +73,7 @@ namespace Player
 		TimeComplexity getTimeComplexity();
 		int getPlayerScore();
 		int getPlayreSize();
+
+		bool isPlayerDead();
 	};
 }

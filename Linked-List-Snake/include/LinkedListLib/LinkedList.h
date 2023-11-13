@@ -50,7 +50,7 @@ namespace LinkedListLib
 
 		virtual Direction reverse() = 0;
 
-		bool handleNodeCollision();
+		bool processNodeCollision();
 		Node* getHeadNode();
 		int getLinkedListSize();
 
