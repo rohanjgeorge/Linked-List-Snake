@@ -5,13 +5,13 @@
 
 namespace Player
 {
-	enum class PlayerState
+	enum class SnakeState
 	{
 		ALIVE,
 		DEAD,
 	};
 
-	class PlayerController
+	class SnakeController
 	{
 	private:
 		const int initial_snake_length = 10;
@@ -21,32 +21,32 @@ namespace Player
 		const sf::Vector2i default_position = sf::Vector2i(25, 13);
 		const LinkedList::Direction default_direction = LinkedList::Direction::RIGHT;
 
-		PlayerState current_player_state;
+		SnakeState current_snake_state;
 		float elapsed_duration;
 		float restart_counter;
-		LinkedList::Direction current_player_direction;
+		LinkedList::Direction current_snake_direction;
 
 		LinkedList::SingleLinkedList* single_linked_list;
 
 		void createLinkedList();
 		void processPlayerInput();
 		void processLinkedListUpdate();
-		void processPlayerCollision();
+		void processSnakeCollision();
 		void handleRestart();
 		void reset();
 		void destroy();
 
 	public:
-		PlayerController();
-		~PlayerController();
+		SnakeController();
+		~SnakeController();
 
 		void initialize();
 		void update();
 		void render();
 
-		void spawnPlayer();
-		void respawnPlayer();
-		void setPlayerState(PlayerState state);
-		PlayerState getPlayerState();
+		void spawnSnake();
+		void respawnSnake();
+		void setSnakeState(SnakeState state);
+		SnakeState getSnakeState();
 	};
 }

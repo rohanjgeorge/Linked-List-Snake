@@ -1,5 +1,5 @@
 #include "Player/PlayerService.h"
-#include "Player/PlayerController.h"
+#include "Player/SnakeController.h"
 
 namespace Player
 {
@@ -17,7 +17,7 @@ namespace Player
 
 	void PlayerService::createController()
 	{
-		player_controller = new PlayerController();
+		player_controller = new SnakeController();
 	}
 
 	void PlayerService::initialize()
@@ -37,7 +37,7 @@ namespace Player
 
 	void PlayerService::spawnPlayer()
 	{
-		player_controller->spawnPlayer();
+		player_controller->spawnSnake();
 	}
 
 	void PlayerService::destroy()

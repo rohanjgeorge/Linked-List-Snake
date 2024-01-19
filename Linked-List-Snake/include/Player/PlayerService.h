@@ -2,12 +2,12 @@
 
 namespace Player
 {
-	class PlayerController;
+	class SnakeController;
 
 	class PlayerService
 	{
 	private:
-		PlayerController* player_controller;
+		SnakeController* player_controller;
 
 		void createController();
 		void destroy();
