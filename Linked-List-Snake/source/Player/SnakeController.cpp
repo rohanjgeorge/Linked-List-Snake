@@ -42,7 +42,7 @@ namespace Player
 		{
 		case SnakeState::ALIVE:
 			processPlayerInput();
-			processLinkedListUpdate();
+			moveSnake();
 			processSnakeCollision();
 			break;
 
@@ -79,7 +79,7 @@ namespace Player
 		}
 	}
 
-	void SnakeController::processLinkedListUpdate()
+	void SnakeController::moveSnake()
 	{
 		elapsed_duration += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 

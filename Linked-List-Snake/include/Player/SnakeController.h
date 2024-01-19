@@ -30,7 +30,7 @@ namespace Player
 
 		void createLinkedList();
 		void processPlayerInput();
-		void processLinkedListUpdate();
+		void moveSnake();
 		void processSnakeCollision();
 		void handleRestart();
 		void reset();
