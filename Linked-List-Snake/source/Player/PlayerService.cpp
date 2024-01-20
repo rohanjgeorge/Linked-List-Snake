@@ -40,9 +40,9 @@ namespace Player
 		snake_controller->spawnSnake();
 	}
 
-	std::vector<sf::Vector2i> PlayerService::getCurrentPlayerPositionList()
+	std::vector<sf::Vector2i> PlayerService::getCurrentSnakePositionList()
 	{
-		return player_controller->getCurrentPlayerPositionList();
+		return snake_controller->getCurrentSnakePositionList();
 	}
 
 	void PlayerService::destroy()

@@ -71,7 +71,7 @@ namespace Food
 
 	sf::Vector2i FoodService::getValidSpawnPosition()
 	{
-		std::vector<sf::Vector2i> player_position_data = ServiceLocator::getInstance()->getPlayerService()->getCurrentPlayerPositionList();
+		std::vector<sf::Vector2i> player_position_data = ServiceLocator::getInstance()->getPlayerService()->getCurrentSnakePositionList();
 		std::vector<sf::Vector2i> elements_position_data = ServiceLocator::getInstance()->getElementService()->getElementsPositionList();
 		sf::Vector2i spawn_position;
 
