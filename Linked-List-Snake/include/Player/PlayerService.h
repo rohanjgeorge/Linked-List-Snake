@@ -7,7 +7,7 @@ namespace Player
 	class PlayerService
 	{
 	private:
-		SnakeController* player_controller;
+		SnakeController* snake_controller;
 
 		void createController();
 		void destroy();
