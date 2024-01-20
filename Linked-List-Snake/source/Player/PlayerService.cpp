@@ -1,11 +1,11 @@
 #include "Player/PlayerService.h"
-#include "Player/PlayerController.h"
+#include "Player/SnakeController.h"
 
 namespace Player
 {
 	PlayerService::PlayerService()
 	{
-		player_controller = nullptr;
+		snake_controller = nullptr;
 
 		createController();
 	}
@@ -17,27 +17,27 @@ namespace Player
 
 	void PlayerService::createController()
 	{
-		player_controller = new PlayerController();
+		snake_controller = new SnakeController();
 	}
 
 	void PlayerService::initialize()
 	{
-		player_controller->initialize();
+		snake_controller->initialize();
 	}
 
 	void PlayerService::update()
 	{
-		player_controller->update();
+		snake_controller->update();
 	}
 
 	void PlayerService::render()
 	{
-		player_controller->render();
+		snake_controller->render();
 	}
 
 	void PlayerService::spawnPlayer()
 	{
-		player_controller->spawnPlayer();
+		snake_controller->spawnSnake();
 	}
 
 	std::vector<sf::Vector2i> PlayerService::getCurrentPlayerPositionList()
@@ -47,6 +47,6 @@ namespace Player
 
 	void PlayerService::destroy()
 	{
-		delete (player_controller);
+		delete (snake_controller);
 	}
 }

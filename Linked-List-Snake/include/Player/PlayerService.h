@@ -4,12 +4,12 @@
 
 namespace Player
 {
-	class PlayerController;
+	class SnakeController;
 
 	class PlayerService
 	{
 	private:
-		PlayerController* player_controller;
+		SnakeController* snake_controller;
 
 		void createController();
 		void destroy();
