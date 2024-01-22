@@ -1,4 +1,4 @@
-#include "Player/PlayerController.h"
+#include "Player/SnakeController.h"
 #include "Global/ServiceLocator.h"
 #include "Level/LevelService.h"
 #include "Event/EventService.h"
@@ -17,22 +17,21 @@ namespace Player
 	using namespace Level;
 	using namespace Event;
 	using namespace Time;
-	using namespace Element;
 	using namespace Sound;
-	using namespace Main;
+	using namespace Element;
 	using namespace Food;
 
-	PlayerController::PlayerController()
+	SnakeController::SnakeController()
 	{
 		linked_list = nullptr;
 	}
 
-	PlayerController::~PlayerController()
+	SnakeController::~SnakeController()
 	{
 		destroy();
 	}
 
-	void PlayerController::createLinkedList(LevelType level_type)
+	void SnakeController::createLinkedList(LevelType level_type)
 	{
 		switch (level_type)
 		{
@@ -47,99 +46,100 @@ namespace Player
 		initializeLinkedList();
 	}
 
-	void PlayerController::initializeLinkedList()
+	void SnakeController::initializeLinkedList()
 	{
 		float width = ServiceLocator::getInstance()->getLevelService()->getCellWidth();
 		float height = ServiceLocator::getInstance()->getLevelService()->getCellHeight();
 
 		linked_list->initialize(width, height, default_position, default_direction);
 		reset();
+		single_linked_list->initialize(width, height, default_position, default_direction);
 	}
 
-	void PlayerController::initialize() { }
+	void SnakeController::initialize() { }
 
-	void PlayerController::update()
+	void SnakeController::update()
 	{
-		switch (current_player_state)
+		switch (current_snake_state)
 		{
-		case PlayerState::ALIVE:
+		case SnakeState::ALIVE:
 			processPlayerInput();
-			processPlayerCollision();
-			processLinkedListUpdate();
+			moveSnake();
+			processSnakeCollision();
 			break;
 
-		case PlayerState::DEAD:
+		case SnakeState::DEAD:
 			handleRestart();
 			break;
 		}
 	}
 
-	void PlayerController::render()
+	void SnakeController::render()
 	{
 		linked_list->render();
 	}
 
-	void PlayerController::processPlayerInput()
+	void SnakeController::processPlayerInput()
 	{
 		EventService* event_service = ServiceLocator::getInstance()->getEventService();
 
-		if (event_service->pressedUpArrowKey() && current_player_direction != Direction::DOWN)
+		if (event_service->pressedUpArrowKey() && current_snake_direction != Direction::DOWN)
 		{
-			current_player_direction = Direction::UP;
+			current_snake_direction = Direction::UP;
 		}
-		else if (event_service->pressedDownArrowKey() && current_player_direction != Direction::UP)
+		else if (event_service->pressedDownArrowKey() && current_snake_direction != Direction::UP)
 		{
-			current_player_direction = Direction::DOWN;
+			current_snake_direction = Direction::DOWN;
 		}
-		else if (event_service->pressedLeftArrowKey() && current_player_direction != Direction::RIGHT)
+		else if (event_service->pressedLeftArrowKey() && current_snake_direction != Direction::RIGHT)
 		{
-			current_player_direction = Direction::LEFT;
+			current_snake_direction = Direction::LEFT;
 		}
-		else if (event_service->pressedRightArrowKey() && current_player_direction != Direction::LEFT)
+		else if (event_service->pressedRightArrowKey() && current_snake_direction != Direction::LEFT)
 		{
-			current_player_direction = Direction::RIGHT;
+			current_snake_direction = Direction::RIGHT;
 		}
 	}
 
-	void PlayerController::processLinkedListUpdate()
+	void SnakeController::moveSnake()
 	{
 		elapsed_duration += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 		if (elapsed_duration >= movement_frame_duration)
 		{
-			linked_list->update(current_player_direction);
+			linked_list->update(current_snake_direction);
 			elapsed_duration = 0.f;
 		}
 	}
 
-	void PlayerController::processPlayerCollision()
+	void SnakeController::processSnakeCollision()
 	{
-		processNodeCollision();
+		processBodyCollision();
 		processElementsCollision();
 		processFoodCollision();
 	}
 
-	void PlayerController::processNodeCollision()
+	void SnakeController::processBodyCollision()
 	{
 		if (linked_list->processNodeCollision())
 		{
-			current_player_state = PlayerState::DEAD;
+			current_snake_state = SnakeState::DEAD;
 			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::DEATH);
 		}
 	}
 
-	void PlayerController::processElementsCollision()
+	void SnakeController::processElementsCollision()
 	{
 		ElementService* element_service = ServiceLocator::getInstance()->getElementService();
 
 		if (element_service->processElementsCollision(linked_list->getHeadNode()))
 		{
-			current_player_state = PlayerState::DEAD;
+			current_snake_state = SnakeState::DEAD;
 			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::DEATH);
 		}
 	}
 
-	void PlayerController::processFoodCollision()
+	void SnakeController::processFoodCollision()
 	{
 		FoodService* food_service = ServiceLocator::getInstance()->getFoodService();
 		FoodType food_type;
@@ -149,13 +149,13 @@ namespace Player
 			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::PICKUP);
 
 			food_service->destroyFood();
-			performLinkedListOperation(food_type);
+			OnFoodCollected(food_type);
 
 			player_score++;
 		}
 	}
 
-	void PlayerController::performLinkedListOperation(FoodType food_type)
+	void SnakeController::OnFoodCollected(FoodType food_type)
 	{
 		switch (food_type)
 		{
@@ -170,7 +170,7 @@ namespace Player
 			break;
 
 		case FoodType::CHEESE:
-			linked_list->insertNodeAt(getRandomNodeIndex());
+			linked_list->insertNodeAt(getRandomBodyPartIndex());
 			time_complexity = TimeComplexity::N;
 			break;
 
@@ -185,7 +185,7 @@ namespace Player
 			break;
 
 		case FoodType::ORANGE:
-			linked_list->removeNodeAt(getRandomNodeIndex());
+			linked_list->removeNodeAt(getRandomBodyPartIndex());
 			time_complexity = TimeComplexity::N;
 			break;
 
@@ -195,24 +195,23 @@ namespace Player
 			break;
 
 		case FoodType::ALCOHOL:
-			current_player_direction = linked_list->reverse();
+			current_snake_direction = linked_list->reverse();
 			time_complexity = TimeComplexity::N;
 			break;
 		}
 	}
 
-	void PlayerController::handleRestart()
+	void SnakeController::handleRestart()
 	{
 		restart_counter += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
 		if (restart_counter >= restart_duration)
 		{
-			reset();
-			GameService::setGameState(GameState::CREDITS);
+			respawnSnake();
 		}
 	}
 
-	void PlayerController::spawnPlayer()
+	void SnakeController::spawnSnake()
 	{
 		for (int i = 0; i < initial_snake_length; i++)
 		{
@@ -220,51 +219,46 @@ namespace Player
 		}
 	}
 
-	void PlayerController::reset()
+	void SnakeController::reset()
 	{
 		linked_list->removeAllNodes();
 
-		current_player_state = PlayerState::ALIVE;
-		time_complexity = TimeComplexity::ONE;
+		current_snake_state = SnakeState::ALIVE;
+		current_snake_direction = default_direction;
 
-		current_player_direction = default_direction;
+		time_complexity = TimeComplexity::ONE;
 		elapsed_duration = 0.f;
 		restart_counter = 0.f;
-		player_score = 0;
 	}
 
-	void PlayerController::respawnPlayer()
+	void SnakeController::respawnSnake()
 	{
+		single_linked_list->removeAllNodes();
 		reset();
-		spawnPlayer();
+		spawnSnake();
 	}
 
-	void PlayerController::setPlayerState(PlayerState state)
+	void SnakeController::setSnakeState(SnakeState state)
 	{
-		current_player_state = state;
+		current_snake_state = state;
 	}
 
-	PlayerState PlayerController::getPlayerState()
+	SnakeState SnakeController::getSnakeState()
 	{
-		return current_player_state;
+		return current_snake_state;
 	}
 
-	std::vector<sf::Vector2i> PlayerController::getCurrentPlayerPositionList()
-	{
-		return linked_list->getNodesPositionList();
-	}
-
-	int PlayerController::getPlayerScore()
+	int SnakeController::getPlayerScore()
 	{
 		return player_score;
 	}
 
-	TimeComplexity PlayerController::getTimeComplexity()
+	TimeComplexity SnakeController::getTimeComplexity()
 	{
 		return time_complexity;
 	}
 
-	int PlayerController::getPlayreSize()
+	int SnakeController::getSnakeSize()
 	{
 		return linked_list->getLinkedListSize();
 	}
@@ -274,12 +268,17 @@ namespace Player
 		return current_player_state == PlayerState::DEAD;
 	}
 
-	int PlayerController::getRandomNodeIndex()
+	int SnakeController::getRandomBodyPartIndex()
 	{
 		return std::rand() % (linked_list->getLinkedListSize() - 1);
 	}
 
-	void PlayerController::destroy()
+	std::vector<sf::Vector2i> SnakeController::getCurrentSnakePositionList()
+	{
+		return linked_list->getNodesPositionList();
+	}
+
+	void SnakeController::destroy()
 	{
 		delete (linked_list);
 	}

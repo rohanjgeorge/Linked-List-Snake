@@ -13,13 +13,13 @@ namespace Player
 		N,
 	};
 
-	enum class PlayerState
+	enum class SnakeState
 	{
 		ALIVE,
 		DEAD,
 	};
 
-	class PlayerController
+	class SnakeController
 	{
 	private:
 		const int initial_snake_length = 10;
@@ -29,10 +29,10 @@ namespace Player
 		const sf::Vector2i default_position = sf::Vector2i(25, 13);
 		const LinkedListLib::Direction default_direction = LinkedListLib::Direction::RIGHT;
 
-		PlayerState current_player_state;
+		SnakeState current_snake_state;
 		float elapsed_duration;
 		float restart_counter;
-		LinkedListLib::Direction current_player_direction;
+		LinkedList::Direction current_snake_direction;
 
 		int player_score;
 		TimeComplexity time_complexity;
@@ -43,38 +43,39 @@ namespace Player
 
 		void createLinkedList();
 		void processPlayerInput();
-		void processLinkedListUpdate();
-		void processPlayerCollision();
-		void processNodeCollision();
+
+		void moveSnake();
+		void processSnakeCollision();
+		
+		void processBodyCollision();
 		void processElementsCollision();
 		void processFoodCollision();
 
-		void performLinkedListOperation(Food::FoodType food_type);
-		int getRandomNodeIndex();
+		void OnFoodCollected(Food::FoodType food_type);
+		int getRandomBodyPartIndex();
 
 		void handleRestart();
 		void reset();
 		void destroy();
 
 	public:
-		PlayerController();
-		~PlayerController();
+		SnakeController();
+		~SnakeController();
 
 		void initialize();
 		void update();
 		void render();
 
 		void createLinkedList(Level::LevelType level_type);
-		void spawnPlayer();
-		void respawnPlayer();
-		void setPlayerState(PlayerState state);
-		PlayerState getPlayerState();
+		void spawnSnake();
+		void respawnSnake();
+		void setSnakeState(SnakeState state);
+		SnakeState getSnakeState();
 
-		std::vector<sf::Vector2i> getCurrentPlayerPositionList();
+		std::vector<sf::Vector2i> getCurrentSnakePositionList();
 		TimeComplexity getTimeComplexity();
 		int getPlayerScore();
-		int getPlayreSize();
-
 		bool isPlayerDead();
+		int getSnakeSize();
 	};
 }

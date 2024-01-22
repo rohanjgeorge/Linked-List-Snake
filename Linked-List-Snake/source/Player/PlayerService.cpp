@@ -1,5 +1,5 @@
 #include "Player/PlayerService.h"
-#include "Player/PlayerController.h"
+#include "Player/SnakeController.h"
 
 namespace Player
 {
@@ -7,7 +7,7 @@ namespace Player
 
 	PlayerService::PlayerService()
 	{
-		player_controller = nullptr;
+		snake_controller = nullptr;
 
 		createController();
 	}
@@ -19,53 +19,53 @@ namespace Player
 
 	void PlayerService::createController()
 	{
-		player_controller = new PlayerController();
+		snake_controller = new SnakeController();
 	}
 
 	void PlayerService::initialize()
 	{
-		player_controller->initialize();
+		snake_controller->initialize();
 	}
 
 	void PlayerService::update()
 	{
-		player_controller->update();
+		snake_controller->update();
 	}
 
 	void PlayerService::render()
 	{
-		player_controller->render();
+		snake_controller->render();
 	}
 
 	void PlayerService::spawnPlayer(LevelType level_type)
 	{
-		player_controller->createLinkedList(level_type);
-		player_controller->spawnPlayer();
+		snake_controller->createLinkedList(level_type);
+		snake_controller->spawnSnake();
 	}
 
-	std::vector<sf::Vector2i> PlayerService::getCurrentPlayerPositionList()
+	std::vector<sf::Vector2i> PlayerService::getCurrentSnakePositionList()
 	{
-		return player_controller->getCurrentPlayerPositionList();
+		return snake_controller->getCurrentSnakePositionList();
 	}
 
-	int PlayerService::getPlayerSize()
+	int PlayerService::getSnakeSize()
 	{
-		return player_controller->getPlayreSize();
+		return snake_controller->getSnakeSize();
 	}
 
 	int PlayerService::getPlayerScore()
 	{
-		return player_controller->getPlayerScore();
+		return snake_controller->getPlayerScore();
 	}
 
 	TimeComplexity PlayerService::getTimeComplexity()
 	{
-		return player_controller->getTimeComplexity();
+		return snake_controller->getTimeComplexity();
 	}
 
-	PlayerState PlayerService::getPlayerState()
+	SnakeState PlayerService::getSnakeState()
 	{
-		return player_controller->getPlayerState();
+		return snake_controller->getSnakeState();
 	}
 
 	bool PlayerService::isPlayerDead()
@@ -75,6 +75,6 @@ namespace Player
 
 	void PlayerService::destroy()
 	{
-		delete (player_controller);
+		delete (snake_controller);
 	}
 }
