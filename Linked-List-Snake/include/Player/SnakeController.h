@@ -44,11 +44,11 @@ namespace Player
 		void moveSnake();
 		void processSnakeCollision();
 		
-		void processNodeCollision();
+		void processBodyCollision();
 		void processElementsCollision();
 		void processFoodCollision();
 
-		void performLinkedListOperation(Food::FoodType food_type);
+		void OnFoodCollected(Food::FoodType food_type);
 		int getRandomNodeIndex();
 
 		void handleRestart();
@@ -71,6 +71,6 @@ namespace Player
 		std::vector<sf::Vector2i> getCurrentSnakePositionList();
 		TimeComplexity getTimeComplexity();
 		int getPlayerScore();
-		int getPlayreSize();
+		int getSnakeSize();
 	};
 }

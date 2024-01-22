@@ -45,24 +45,24 @@ namespace Player
 		return snake_controller->getCurrentSnakePositionList();
 	}
 
-	int PlayerService::getPlayerSize()
+	int PlayerService::getSnakeSize()
 	{
-		return player_controller->getPlayreSize();
+		return snake_controller->getSnakeSize();
 	}
 
 	int PlayerService::getPlayerScore()
 	{
-		return player_controller->getPlayerScore();
+		return snake_controller->getPlayerScore();
 	}
 
 	TimeComplexity PlayerService::getTimeComplexity()
 	{
-		return player_controller->getTimeComplexity();
+		return snake_controller->getTimeComplexity();
 	}
 
-	PlayerState PlayerService::getPlayerState()
+	SnakeState PlayerService::getSnakeState()
 	{
-		return player_controller->getPlayerState();
+		return snake_controller->getSnakeState();
 	}
 
 

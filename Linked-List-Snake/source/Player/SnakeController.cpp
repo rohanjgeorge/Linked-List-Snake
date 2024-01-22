@@ -10,6 +10,9 @@ namespace Player
 	using namespace Level;
 	using namespace Event;
 	using namespace Time;
+	using namespace Sound;
+	using namespace Element;
+	using namespace Food;
 
 	SnakeController::SnakeController()
 	{
@@ -92,9 +95,90 @@ namespace Player
 
 	void SnakeController::processSnakeCollision()
 	{
+		processBodyCollision();
+		processElementsCollision();
+		processFoodCollision();
+	}
+
+	void SnakeController::processBodyCollision()
+	{
 		if (single_linked_list->processNodeCollision())
 		{
 			current_snake_state = SnakeState::DEAD;
+			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::DEATH);
+		}
+	}
+
+	void SnakeController::processElementsCollision()
+	{
+		ElementService* element_service = ServiceLocator::getInstance()->getElementService();
+
+		if (element_service->processElementsCollision(single_linked_list->getHeadNode()))
+		{
+			current_snake_state = SnakeState::DEAD;
+			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::DEATH);
+		}
+	}
+
+	void SnakeController::processFoodCollision()
+	{
+		FoodService* food_service = ServiceLocator::getInstance()->getFoodService();
+		FoodType food_type;
+
+		if (food_service->processFoodCollision(single_linked_list->getHeadNode(), food_type))
+		{
+			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::PICKUP);
+
+			food_service->destroyFood();
+			OnFoodCollected(food_type);
+
+			player_score++;
+		}
+	}
+
+	void SnakeController::OnFoodCollected(FoodType food_type)
+	{
+		switch (food_type)
+		{
+		case FoodType::PIZZA:
+			single_linked_list->insertNodeAtHead();
+			time_complexity = TimeComplexity::ONE;
+			break;
+
+		case FoodType::BURGER:
+			single_linked_list->insertNodeAtTail();
+			time_complexity = TimeComplexity::N;
+			break;
+
+		case FoodType::CHEESE:
+			single_linked_list->insertNodeAt(getRandomNodeIndex());
+			time_complexity = TimeComplexity::N;
+			break;
+
+		case FoodType::APPLE:
+			single_linked_list->removeNodeAtHead();
+			time_complexity = TimeComplexity::ONE;
+			break;
+
+		case FoodType::MANGO:
+			single_linked_list->removeNodeAtTail();
+			time_complexity = TimeComplexity::N;
+			break;
+
+		case FoodType::ORANGE:
+			single_linked_list->removeNodeAt(getRandomNodeIndex());
+			time_complexity = TimeComplexity::N;
+			break;
+
+		case FoodType::POISION:
+			single_linked_list->removeHalfNodes();
+			time_complexity = TimeComplexity::N;
+			break;
+
+		case FoodType::ALCOHOL:
+			current_snake_direction = single_linked_list->reverse();
+			time_complexity = TimeComplexity::N;
+			break;
 		}
 	}
 
@@ -139,6 +223,26 @@ namespace Player
 	SnakeState SnakeController::getSnakeState()
 	{
 		return current_snake_state;
+	}
+
+	int SnakeController::getPlayerScore()
+	{
+		return player_score;
+	}
+
+	TimeComplexity SnakeController::getTimeComplexity()
+	{
+		return time_complexity;
+	}
+
+	int SnakeController::getSnakeSize()
+	{
+		return single_linked_list->getLinkedListSize();
+	}
+
+	int SnakeController::getRandomNodeIndex()
+	{
+		return std::rand() % (single_linked_list->getLinkedListSize() - 1);
 	}
 
 	std::vector<sf::Vector2i> SnakeController::getCurrentSnakePositionList()
