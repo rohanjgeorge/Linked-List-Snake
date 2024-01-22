@@ -15,7 +15,7 @@ namespace LinkedList
 		next_node = nullptr;
 		grid_position = sf::Vector2i(0, 0);
 
-		createNodeUI();
+		createNodeImage();
 	}
 
 	Node::~Node()
@@ -30,15 +30,15 @@ namespace LinkedList
 		node_direction = dir;
 		grid_position = pos;
 
-		initializeNodeUI();
+		initializeNodeImage();
 	}
 
-	void Node::createNodeUI()
+	void Node::createNodeImage()
 	{
 		node_image = new ImageView();
 	}
 
-	void Node::initializeNodeUI()
+	void Node::initializeNodeImage()
 	{
 		node_image->initialize(Config::snake_body_texture_path, node_width, node_height, getNodeScreenPosition());
 		node_image->setOriginAtCentre();

@@ -5,12 +5,12 @@
 
 namespace Player
 {
-	class PlayerController;
+	class SnakeController;
 
 	class PlayerService
 	{
 	private:
-		PlayerController* player_controller;
+		SnakeController* snake_controller;
 
 		void createController();
 		void destroy();
@@ -24,11 +24,11 @@ namespace Player
 		void render();
 
 		void spawnPlayer();
-		std::vector<sf::Vector2i> getCurrentPlayerPositionList();
 
 		int getPlayerSize();
 		int getPlayerScore();
 		TimeComplexity getTimeComplexity();
 		PlayerState getPlayerState();
+		std::vector<sf::Vector2i> getCurrentSnakePositionList();
 	};
 }

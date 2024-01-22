@@ -25,8 +25,8 @@ namespace LinkedList
 		float node_width;
 		float node_height;
 
-		void createNodeUI();
-		void initializeNodeUI();
+		void createNodeImage();
+		void initializeNodeImage();
 		sf::Vector2f getNodeScreenPosition();
 		float getRotationAngle();
 

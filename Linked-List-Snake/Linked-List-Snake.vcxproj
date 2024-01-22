@@ -138,7 +138,7 @@
     <ClCompile Include="source\Food\FoodItem.cpp" />
     <ClCompile Include="source\Food\FoodService.cpp" />
     <ClCompile Include="source\LinkedList\SingleLinkedList.cpp" />
-    <ClCompile Include="source\Player\PlayerController.cpp" />
+    <ClCompile Include="source\Player\SnakeController.cpp" />
     <ClCompile Include="source\Player\PlayerService.cpp" />
     <ClCompile Include="source\Time\TimeService.cpp" />
     <ClCompile Include="source\LinkedList\Node.cpp" />
@@ -173,7 +173,7 @@
     <ClInclude Include="include\Food\FoodType.h" />
     <ClInclude Include="include\LinkedList\Node.h" />
     <ClInclude Include="include\LinkedList\SingleLinkedList.h" />
-    <ClInclude Include="include\Player\PlayerController.h" />
+    <ClInclude Include="include\Player\SnakeController.h" />
     <ClInclude Include="include\Player\PlayerService.h" />
     <ClInclude Include="include\Time\TimeService.h" />
     <ClInclude Include="include\Element\ElementService.h" />
