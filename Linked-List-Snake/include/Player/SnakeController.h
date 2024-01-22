@@ -49,7 +49,7 @@ namespace Player
 		void processFoodCollision();
 
 		void OnFoodCollected(Food::FoodType food_type);
-		int getRandomNodeIndex();
+		int getRandomBodyPartIndex();
 
 		void handleRestart();
 		void reset();

@@ -151,7 +151,7 @@ namespace Player
 			break;
 
 		case FoodType::CHEESE:
-			single_linked_list->insertNodeAt(getRandomNodeIndex());
+			single_linked_list->insertNodeAt(getRandomBodyPartIndex());
 			time_complexity = TimeComplexity::N;
 			break;
 
@@ -166,7 +166,7 @@ namespace Player
 			break;
 
 		case FoodType::ORANGE:
-			single_linked_list->removeNodeAt(getRandomNodeIndex());
+			single_linked_list->removeNodeAt(getRandomBodyPartIndex());
 			time_complexity = TimeComplexity::N;
 			break;
 
@@ -240,7 +240,7 @@ namespace Player
 		return single_linked_list->getLinkedListSize();
 	}
 
-	int SnakeController::getRandomNodeIndex()
+	int SnakeController::getRandomBodyPartIndex()
 	{
 		return std::rand() % (single_linked_list->getLinkedListSize() - 1);
 	}
