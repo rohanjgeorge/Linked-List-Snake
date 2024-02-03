@@ -95,7 +95,7 @@ namespace Food
 
 	FoodType FoodService::getRandomFoodType()
 	{
-		if (ServiceLocator::getInstance()->getPlayerService()->getPlayerSize() < minimum_player_size)
+		if (ServiceLocator::getInstance()->getPlayerService()->getSnakeSize() < minimum_player_size)
 		{
 			int randomValue = std::rand() % (FoodItem::number_of_foods - FoodItem::number_of_healthy_foods);
 			return static_cast<FoodType>(randomValue);

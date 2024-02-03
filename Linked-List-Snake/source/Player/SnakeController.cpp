@@ -4,7 +4,6 @@
 #include "Event/EventService.h"
 #include "Element/ElementService.h"
 #include "Food/FoodService.h"
-#include "Main/GameService.h"
 #include "LinkedListLib/SingleLinked/SingleLinkedList.h"
 #include "LinkedListLib/DoubleLinked/DoubleLinkedList.h"
 
@@ -31,14 +30,14 @@ namespace Player
 		destroy();
 	}
 
-	void SnakeController::createLinkedList(LevelType level_type)
+	void SnakeController::createLinkedList(LinkedListType level_type)
 	{
 		switch (level_type)
 		{
-		case LevelType::SINGLE_LINKED_LIST:
+		case LinkedListType::SINGLE_LINKED_LIST:
 			linked_list = new SingleLinkedList();
 			break;
-		case LevelType::DOUBLE_LINKED_LIST:
+		case LinkedListType::DOUBLE_LINKED_LIST:
 			linked_list = new DoubleLinkedList();
 			break;
 		}
@@ -53,7 +52,7 @@ namespace Player
 
 		linked_list->initialize(width, height, default_position, default_direction);
 		reset();
-		single_linked_list->initialize(width, height, default_position, default_direction);
+		linked_list->initialize(width, height, default_position, default_direction);
 	}
 
 	void SnakeController::initialize() { }
@@ -233,7 +232,7 @@ namespace Player
 
 	void SnakeController::respawnSnake()
 	{
-		single_linked_list->removeAllNodes();
+		linked_list->removeAllNodes();
 		reset();
 		spawnSnake();
 	}
@@ -263,9 +262,9 @@ namespace Player
 		return linked_list->getLinkedListSize();
 	}
 
-	bool PlayerController::isPlayerDead()
+	bool SnakeController::isSnakeDead()
 	{
-		return current_player_state == PlayerState::DEAD;
+		return current_snake_state == SnakeState::DEAD;
 	}
 
 	int SnakeController::getRandomBodyPartIndex()

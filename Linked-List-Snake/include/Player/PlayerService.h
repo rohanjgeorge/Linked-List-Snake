@@ -6,6 +6,7 @@
 
 namespace Player
 {
+	using namespace Level;
 	class SnakeController;
 
 	class PlayerService
@@ -24,7 +25,7 @@ namespace Player
 		void update();
 		void render();
 
-		void spawnPlayer();
+		void spawnPlayer(LinkedListType level_type);
 
 		int getSnakeSize();
 		int getPlayerScore();

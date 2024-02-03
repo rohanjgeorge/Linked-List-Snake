@@ -43,7 +43,7 @@ namespace Level
 		level_controller->render();
 	}
 
-	void LevelService::createLevel(LevelType level_type)
+	void LevelService::createLevel(LinkedListType level_type)
 	{
 		current_level_type = level_type;
 		spawnLevelElements(current_level);
@@ -71,7 +71,7 @@ namespace Level
 		return current_level;
 	}
 
-	LevelType LevelService::getCurrentLevelType()
+	LinkedListType LevelService::getCurrentLevelType()
 	{
 		return current_level_type;
 	}

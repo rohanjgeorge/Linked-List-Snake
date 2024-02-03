@@ -8,7 +8,7 @@ namespace Level
         TWO,
     };
 
-    enum class LevelType
+    enum class LinkedListType
     {
         SINGLE_LINKED_LIST,
         DOUBLE_LINKED_LIST,

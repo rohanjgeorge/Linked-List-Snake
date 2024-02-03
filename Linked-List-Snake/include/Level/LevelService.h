@@ -10,7 +10,7 @@ namespace Level
     {
         LevelController* level_controller;
         LevelNumber current_level;
-        LevelType current_level_type;
+        LinkedListType current_level_type;
 
         void createLevelController();
         void spawnPlayer();
@@ -26,12 +26,12 @@ namespace Level
         void update();
         void render();
 
-        void createLevel(LevelType level_type);
+        void createLevel(LinkedListType level_type);
         void setCurrentLevel(LevelNumber level_to_load);
 
         float getCellWidth();
         float getCellHeight();
         LevelNumber getCurrentLevel();
-        LevelType getCurrentLevelType();
+        LinkedListType getCurrentLevelType();
     };
 }

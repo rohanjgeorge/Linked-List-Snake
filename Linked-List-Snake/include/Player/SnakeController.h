@@ -7,6 +7,10 @@
 
 namespace Player
 {
+	using namespace Level;
+	using namespace Food;
+	using namespace LinkedListLib;
+
 	enum class TimeComplexity
 	{
 		ONE,
@@ -27,17 +31,17 @@ namespace Player
 		const float restart_duration = 2.f;
 
 		const sf::Vector2i default_position = sf::Vector2i(25, 13);
-		const LinkedListLib::Direction default_direction = LinkedListLib::Direction::RIGHT;
+		const Direction default_direction = Direction::RIGHT;
 
 		SnakeState current_snake_state;
 		float elapsed_duration;
 		float restart_counter;
-		LinkedList::Direction current_snake_direction;
+		Direction current_snake_direction;
 
 		int player_score;
 		TimeComplexity time_complexity;
 
-		LinkedListLib::LinkedList* linked_list;
+		LinkedList* linked_list;
 
 		void initializeLinkedList();
 
@@ -51,7 +55,7 @@ namespace Player
 		void processElementsCollision();
 		void processFoodCollision();
 
-		void OnFoodCollected(Food::FoodType food_type);
+		void OnFoodCollected(FoodType food_type);
 		int getRandomBodyPartIndex();
 
 		void handleRestart();
@@ -66,7 +70,7 @@ namespace Player
 		void update();
 		void render();
 
-		void createLinkedList(Level::LevelType level_type);
+		void createLinkedList(LinkedListType level_type);
 		void spawnSnake();
 		void respawnSnake();
 		void setSnakeState(SnakeState state);
@@ -75,7 +79,7 @@ namespace Player
 		std::vector<sf::Vector2i> getCurrentSnakePositionList();
 		TimeComplexity getTimeComplexity();
 		int getPlayerScore();
-		bool isPlayerDead();
+		bool isSnakeDead();
 		int getSnakeSize();
 	};
 }
