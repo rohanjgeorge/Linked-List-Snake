@@ -12,7 +12,7 @@ namespace Level
     private:
         std::vector<Element::ElementData> level_one_element_list = {};
 
-        std::vector<Element::ElementData> level_two_element_list = { 
+        std::vector<Element::ElementData> level_two_element_list = {
                                                         Element::ElementData(Element::ElementType::OBSTACLE, sf::Vector2i(25, 15)),
                                                         Element::ElementData(Element::ElementType::OBSTACLE, sf::Vector2i(26, 15)),
                                                         Element::ElementData(Element::ElementType::OBSTACLE, sf::Vector2i(27, 15)),
