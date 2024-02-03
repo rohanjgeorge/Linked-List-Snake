@@ -7,7 +7,6 @@ namespace Global
 	using namespace Event;
 	using namespace Sound;
 	using namespace Level;
-	using namespace Element;
 	using namespace UI;
 	using namespace Main;
 	using namespace Time;

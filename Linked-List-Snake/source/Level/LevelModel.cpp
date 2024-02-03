@@ -1,11 +1,8 @@
 #include "Level/LevelModel.h"
 #include "Level/LevelService.h"
-#include "Element/ElementService.h"
 
 namespace Level
 {
-	using namespace Element;
-
 	LevelModel::LevelModel() = default;
 
 	LevelModel::~LevelModel() = default;
@@ -27,11 +24,6 @@ namespace Level
 	const std::vector<LevelData>& LevelModel::getLevelDataList()
 	{
 		return level_configurations;
-	}
-
-	const std::vector<ElementData>& LevelModel::getElementDataList(int level_to_load)
-	{
-		return *level_configurations[level_to_load].element_data_list;
 	}
 
 	float LevelModel::getCellWidth()

@@ -141,7 +141,6 @@
     <ClCompile Include="source\LinkedList\Node.cpp" />
     <ClCompile Include="source\Element\Obstacle.cpp" />
     <ClCompile Include="source\UI\UIElement\RectangleShapeView.cpp" />
-    <ClCompile Include="source\Element\ElementService.cpp" />
     <ClCompile Include="source\Level\LevelController.cpp" />
     <ClCompile Include="source\Level\LevelModel.cpp" />
     <ClCompile Include="source\UI\LevelSelection\LevelSelectionUIController.cpp" />
@@ -176,7 +175,6 @@
     <ClInclude Include="include\UI\LevelSelection\LevelSelectionUIController.h" />
     <ClInclude Include="include\Level\LevelView.h" />
     <ClInclude Include="include\Level\LevelService.h" />
-    <ClInclude Include="include\Element\Obstacle.h" />
     <ClInclude Include="include\UI\UIElement\RectangleShapeView.h" />
     <ClInclude Include="include\UI\UIElement\AnimatedImageView.h" />
     <ClInclude Include="include\UI\UIElement\ButtonView.h" />
