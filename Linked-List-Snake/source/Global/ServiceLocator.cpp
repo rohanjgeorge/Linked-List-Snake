@@ -11,6 +11,7 @@ namespace Global
 	using namespace Main;
 	using namespace Time;
 	using namespace Player;
+	using namespace Element;
 
 	ServiceLocator::ServiceLocator()
 	{
