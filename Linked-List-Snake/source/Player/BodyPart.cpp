@@ -67,7 +67,7 @@ namespace Player
 
 	sf::Vector2i BodyPart::getNextPosition()
 	{
-		switch (node_direction)
+		switch (direction)
 		{
 		case Direction::UP:
 			return getNextPositionUp();
@@ -82,9 +82,9 @@ namespace Player
 		}
 	}
 
-	sf::Vector2i Node::getPrevNodePosition()
+	sf::Vector2i BodyPart::getPrevPosition()
 	{
-		switch (node_direction)
+		switch (direction)
 		{
 		case Direction::UP:
 			return getNextPositionDown();
@@ -99,9 +99,9 @@ namespace Player
 		}
 	}
 
-	Direction Node::getReverseNodeDirection()
+	Direction BodyPart::getReverseDirection()
 	{
-		switch (node_direction)
+		switch (direction)
 		{
 		case Direction::UP:
 			return Direction::DOWN;
@@ -114,17 +114,17 @@ namespace Player
 		}
 	}
 
-	void Node::setNodePosition(sf::Vector2i position)
+	void BodyPart::setPosition(sf::Vector2i position)
 	{
 		grid_position = position;
 	}
 
-	void Node::setNodeDirection(Direction direction)
+	void BodyPart::setDirection(Direction direction)
 	{
-		node_direction = direction;
+		this->direction = direction;
 	}
 
-	sf::Vector2i Node::getNextPositionDown()
+	sf::Vector2i BodyPart::getNextPositionDown()
 	{
 		if (grid_position.y >= LevelModel::number_of_rows - 1)
 		{
@@ -174,7 +174,7 @@ namespace Player
 
 	float BodyPart::getRotationAngle()
 	{
-		switch (node_direction)
+		switch (direction)
 		{
 		case Direction::UP:
 			return 270.f;
@@ -189,7 +189,7 @@ namespace Player
 
 	Direction BodyPart::getDirection()
 	{
-		return node_direction;
+		return direction;
 	}
 
 	sf::Vector2i BodyPart::getPosition()
