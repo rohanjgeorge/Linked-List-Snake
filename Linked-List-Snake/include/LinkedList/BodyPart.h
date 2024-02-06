@@ -40,11 +40,11 @@ namespace LinkedList
 		~BodyPart();
 
 		void initialize(float width, float height, sf::Vector2i pos, Direction dir);
-		void updateNode(Direction dir);
+		void update(Direction dir);
 		void render();
 
 		Direction getDirection();
 		sf::Vector2i getPosition();
-		sf::Vector2i getNextBodyPartPosition();
+		sf::Vector2i getNextPosition();
 	};
 }

@@ -5,7 +5,7 @@ namespace LinkedList
 {
 	struct Node
 	{
-		BodyPart data;
+		BodyPart body_part;
 		Node* next_node = nullptr;
 	};
 }

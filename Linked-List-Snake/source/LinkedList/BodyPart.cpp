@@ -42,10 +42,10 @@ namespace LinkedList
 		bodypart_image->setOriginAtCentre();
 	}
 
-	void BodyPart::updateNode(Direction dir)
+	void BodyPart::update(Direction dir)
 	{
 		direction = dir;
-		grid_position = getNextBodyPartPosition();
+		grid_position = getNextPosition();
 
 		bodypart_image->setPosition(getBodyPartScreenPosition());
 		bodypart_image->setRotation(getRotationAngle());
@@ -65,7 +65,7 @@ namespace LinkedList
 		bodypart_image->render();
 	}
 
-	sf::Vector2i BodyPart::getNextBodyPartPosition()
+	sf::Vector2i BodyPart::getNextPosition()
 	{
 		switch (direction)
 		{

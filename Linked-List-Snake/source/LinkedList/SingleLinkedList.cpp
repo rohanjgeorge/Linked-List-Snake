@@ -30,7 +30,7 @@ namespace LinkedList
 
 		while (cur_node != nullptr)
 		{
-			cur_node->data.render();
+			cur_node->body_part.render();
 			cur_node = cur_node->next_node;
 		}
 	}
@@ -42,9 +42,9 @@ namespace LinkedList
 
 		while (cur_node != nullptr)
 		{
-			Direction previous_direction = cur_node->data.getDirection();
+			Direction previous_direction = cur_node->body_part.getDirection();
 
-			cur_node->data.updateNode(node_direction);
+			cur_node->body_part.update(node_direction);
 
 			node_direction = previous_direction;
 			cur_node = cur_node->next_node;
@@ -55,12 +55,12 @@ namespace LinkedList
 	{
 		if (head_node == nullptr) return false;
 
-		sf::Vector2i predicted_position = head_node->data.getNextBodyPartPosition();
+		sf::Vector2i predicted_position = head_node->body_part.getNextPosition();
 
 		Node* cur_node = head_node->next_node;
 		while (cur_node != nullptr)
 		{
-			if (cur_node->data.getPosition() == predicted_position || cur_node->data.getPosition() == head_node->data.getPosition()) return true;
+			if (cur_node->body_part.getPosition() == predicted_position || cur_node->body_part.getPosition() == head_node->body_part.getPosition()) return true;
 			cur_node = cur_node->next_node;
 		}
 
@@ -75,7 +75,7 @@ namespace LinkedList
 		if (cur_node == nullptr)
 		{
 			head_node = new_node;
-			new_node->data.initialize(node_width, node_height, default_position, default_direction);
+			new_node->body_part.initialize(node_width, node_height, default_position, default_direction);
 			return;
 		}
 
@@ -85,7 +85,7 @@ namespace LinkedList
 		}
 
 		cur_node->next_node = new_node;
-		new_node->data.initialize(node_width, node_height, getNewNodePosition(cur_node), cur_node->data.getDirection());
+		new_node->body_part.initialize(node_width, node_height, getNewNodePosition(cur_node), cur_node->body_part.getDirection());
 	}
 
 	void SingleLinkedList::removeNodeAtHead()
@@ -114,8 +114,8 @@ namespace LinkedList
 
 	sf::Vector2i SingleLinkedList::getNewNodePosition(Node* reference_node)
 	{
-		Direction reference_direction = reference_node->data.getDirection();
-		sf::Vector2i reference_position = reference_node->data.getPosition();
+		Direction reference_direction = reference_node->body_part.getDirection();
+		sf::Vector2i reference_position = reference_node->body_part.getPosition();
 
 		switch (reference_direction)
 		{
