@@ -149,11 +149,10 @@ namespace LinkedList
 
 		while (cur_node != nullptr)
 		{
-			nodes_position_list.push_back(cur_node->getPosition());
-			cur_node = cur_node->getNextNode();
+			nodes_position_list.push_back(cur_node->body_part.getPosition());
+			cur_node = cur_node->next_node;
 		}
 
 		return nodes_position_list;
 	}
-
 }

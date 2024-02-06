@@ -143,7 +143,6 @@
     <ClCompile Include="source\Player\SnakeController.cpp" />
     <ClCompile Include="source\Player\PlayerService.cpp" />
     <ClCompile Include="source\Time\TimeService.cpp" />
-    <ClCompile Include="source\LinkedList\Node.cpp" />
     <ClCompile Include="source\UI\GameplayUI\GameplayUIController.cpp" />
     <ClCompile Include="source\UI\UIElement\RectangleShapeView.cpp" />
     <ClCompile Include="source\Level\LevelController.cpp" />
