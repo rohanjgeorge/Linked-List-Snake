@@ -1,4 +1,5 @@
 #include "LinkedList/SingleLinkedList.h"
+#include "Player/BodyPart.h"
 #include "Level/LevelView.h"
 
 namespace LinkedList
@@ -29,8 +30,8 @@ namespace LinkedList
 
 		while (cur_node != nullptr)
 		{
-			cur_node->render();
-			cur_node = cur_node->getNextNode();
+			cur_node->body_part.render();
+			cur_node = cur_node->next_node;
 		}
 	}
 
@@ -41,12 +42,12 @@ namespace LinkedList
 
 		while (cur_node != nullptr)
 		{
-			Direction previous_direction = cur_node->getDirection();
+			Direction previous_direction = cur_node->body_part.getDirection();
 
-			cur_node->updateNode(node_direction);
+			cur_node->body_part.update(node_direction);
 
 			node_direction = previous_direction;
-			cur_node = cur_node->getNextNode();
+			cur_node = cur_node->next_node;
 		}
 	}
 
@@ -54,13 +55,13 @@ namespace LinkedList
 	{
 		if (head_node == nullptr) return false;
 
-		sf::Vector2i predicted_position = head_node->getNextNodePosition();
+		sf::Vector2i predicted_position = head_node->body_part.getNextPosition();
 
-		Node* cur_node = head_node->getNextNode();
+		Node* cur_node = head_node->next_node;
 		while (cur_node != nullptr)
 		{
-			if (cur_node->getPosition() == predicted_position || cur_node->getPosition() == head_node->getPosition()) return true;
-			cur_node = cur_node->getNextNode();
+			if (cur_node->body_part.getPosition() == predicted_position || cur_node->body_part.getPosition() == head_node->body_part.getPosition()) return true;
+			cur_node = cur_node->next_node;
 		}
 
 		return false;
@@ -74,25 +75,25 @@ namespace LinkedList
 		if (cur_node == nullptr)
 		{
 			head_node = new_node;
-			new_node->initialize(node_width, node_height, default_position, default_direction);
+			new_node->body_part.initialize(node_width, node_height, default_position, default_direction);
 			return;
 		}
 
-		while (cur_node->getNextNode() != nullptr)
+		while (cur_node->next_node != nullptr)
 		{
-			cur_node = cur_node->getNextNode();
+			cur_node = cur_node->next_node;
 		}
 
-		cur_node->setNextNodeReference(new_node);
-		new_node->initialize(node_width, node_height, getNewNodePosition(cur_node), cur_node->getDirection());
+		cur_node->next_node = new_node;
+		new_node->body_part.initialize(node_width, node_height, getNewNodePosition(cur_node), cur_node->body_part.getDirection());
 	}
 
 	void SingleLinkedList::removeNodeAtHead()
 	{
 		Node* cur_node = head_node;
-		head_node = head_node->getNextNode();
+		head_node = head_node->next_node;
 
-		cur_node->setNextNodeReference(nullptr);
+		cur_node->next_node = nullptr;
 		delete (cur_node);
 	}
 
@@ -113,8 +114,8 @@ namespace LinkedList
 
 	sf::Vector2i SingleLinkedList::getNewNodePosition(Node* reference_node)
 	{
-		Direction reference_direction = reference_node->getDirection();
-		sf::Vector2i reference_position = reference_node->getPosition();
+		Direction reference_direction = reference_node->body_part.getDirection();
+		sf::Vector2i reference_position = reference_node->body_part.getPosition();
 
 		switch (reference_direction)
 		{
