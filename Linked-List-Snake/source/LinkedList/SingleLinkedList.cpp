@@ -1,5 +1,5 @@
 #include "LinkedList/SingleLinkedList.h"
-#include "LinkedList/BodyPart.h"
+#include "Player/BodyPart.h"
 #include "Level/LevelView.h"
 
 namespace LinkedList

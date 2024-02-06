@@ -1,10 +1,10 @@
-#include "LinkedList/BodyPart.h"
+#include "Player/BodyPart.h"
 #include "Global/ServiceLocator.h"
 #include "Level/LevelView.h"
 #include "Level/LevelModel.h"
 #include "Global/Config.h"
 
-namespace LinkedList
+namespace Player
 {
 	using namespace Global;
 	using namespace Level;

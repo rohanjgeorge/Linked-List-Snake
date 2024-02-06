@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "UI/UIElement/ImageView.h"
 
-namespace LinkedList
+namespace Player
 {
 	enum class Direction
 	{

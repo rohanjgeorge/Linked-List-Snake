@@ -1,8 +1,10 @@
 #pragma once
-#include "LinkedList/BodyPart.h"
+#include "Player/BodyPart.h"
 
 namespace LinkedList
 {
+	using namespace Player;
+
 	struct Node
 	{
 		BodyPart body_part;

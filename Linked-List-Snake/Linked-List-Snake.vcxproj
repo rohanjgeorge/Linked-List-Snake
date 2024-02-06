@@ -136,7 +136,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="source\Element\ElementService.cpp" />
     <ClCompile Include="source\Element\Obstacle.cpp" />
-    <ClCompile Include="source\LinkedList\BodyPart.cpp" />
+    <ClCompile Include="source\Player\BodyPart.cpp" />
     <ClCompile Include="source\LinkedList\SingleLinkedList.cpp" />
     <ClCompile Include="source\Player\SnakeController.cpp" />
     <ClCompile Include="source\Player\PlayerService.cpp" />
@@ -166,7 +166,7 @@
     <ClInclude Include="include\Element\ElementData.h" />
     <ClInclude Include="include\Element\ElementService.h" />
     <ClInclude Include="include\Element\Obstacle.h" />
-    <ClInclude Include="include\LinkedList\BodyPart.h" />
+    <ClInclude Include="include\Player\BodyPart.h" />
     <ClInclude Include="include\LinkedList\Node.h" />
     <ClInclude Include="include\LinkedList\SingleLinkedList.h" />
     <ClInclude Include="include\Player\SnakeController.h" />
