@@ -1,78 +1,71 @@
-#include "LinkedList/Node.h"
+#include "Player/BodyPart.h"
 #include "Global/ServiceLocator.h"
 #include "Level/LevelView.h"
 #include "Level/LevelModel.h"
 #include "Global/Config.h"
 
-namespace LinkedList
+namespace Player
 {
 	using namespace Global;
 	using namespace Level;
 	using namespace UI::UIElement;
 
-	Node::Node()
+	BodyPart::BodyPart()
 	{
-		next_node = nullptr;
 		grid_position = sf::Vector2i(0, 0);
-
-		createNodeImage();
+		createBodyPartImage();
 	}
 
-	Node::~Node()
+	BodyPart::~BodyPart()
 	{
 		destroy();
 	}
 
-	void Node::initialize(float width, float height, sf::Vector2i pos, Direction dir)
+	void BodyPart::initialize(float width, float height, sf::Vector2i pos, Direction dir)
 	{
-		node_width = width;
-		node_height = height;
-		node_direction = dir;
+		bodypart_width = width;
+		bodypart_height = height;
+		direction = dir;
 		grid_position = pos;
 
-		initializeNodeImage();
+		initializeBodyPartImage();
 	}
 
-	void Node::createNodeImage()
+	void BodyPart::createBodyPartImage()
 	{
-		node_image = new ImageView();
+		bodypart_image = new ImageView();
 	}
 
-	void Node::initializeNodeImage()
+	void BodyPart::initializeBodyPartImage()
 	{
-		node_image->initialize(Config::snake_body_texture_path, node_width, node_height, getNodeScreenPosition());
-		node_image->setOriginAtCentre();
+		bodypart_image->initialize(Config::snake_body_texture_path, bodypart_width, bodypart_height, getBodyPartScreenPosition());
+		bodypart_image->setOriginAtCentre();
 	}
 
-	void Node::updateNode(Direction dir)
+	void BodyPart::update(Direction dir)
 	{
-		node_direction = dir;
-		grid_position = getNextNodePosition();
+		direction = dir;
+		grid_position = getNextPosition();
 
-		node_image->setPosition(getNodeScreenPosition());
-		node_image->setRotation(getRotationAngle());
-		node_image->update();
+		bodypart_image->setPosition(getBodyPartScreenPosition());
+		bodypart_image->setRotation(getRotationAngle());
+		bodypart_image->update();
 	}
 
-	sf::Vector2f Node::getNodeScreenPosition()
+	sf::Vector2f BodyPart::getBodyPartScreenPosition()
 	{
-		float x_screen_position = LevelView::border_offset_left + (grid_position.x * node_width) + (node_width / 2);
-		float y_screen_position = LevelView::border_offset_top + (grid_position.y * node_height) + (node_height / 2);
+		float x_screen_position = LevelView::border_offset_left + (grid_position.x * bodypart_width) + (bodypart_width / 2);
+		float y_screen_position = LevelView::border_offset_top + (grid_position.y * bodypart_height) + (bodypart_height / 2);
 
 		return sf::Vector2f(x_screen_position, y_screen_position);
 	}
 
-	void Node::render()
+	void BodyPart::render()
 	{
-		node_image->render();
+		bodypart_image->render();
 	}
 
-	void Node::setNextNodeReference(Node* node)
-	{
-		next_node = node;
-	}
-
-	sf::Vector2i Node::getNextNodePosition()
+	sf::Vector2i BodyPart::getNextPosition()
 	{
 		switch (node_direction)
 		{
@@ -143,7 +136,7 @@ namespace LinkedList
 		}
 	}
 
-	sf::Vector2i Node::getNextPositionUp()
+	sf::Vector2i BodyPart::getNextPositionUp()
 	{
 		if (grid_position.y <= 0)
 		{
@@ -155,7 +148,7 @@ namespace LinkedList
 		}
 	}
 
-	sf::Vector2i Node::getNextPositionRight()
+	sf::Vector2i BodyPart::getNextPositionRight()
 	{
 		if (grid_position.x >= LevelModel::number_of_columns - 1)
 		{
@@ -167,7 +160,7 @@ namespace LinkedList
 		}
 	}
 
-	sf::Vector2i Node::getNextPositionLeft()
+	sf::Vector2i BodyPart::getNextPositionLeft()
 	{
 		if (grid_position.x <= 0)
 		{
@@ -179,7 +172,7 @@ namespace LinkedList
 		}
 	}
 
-	float Node::getRotationAngle()
+	float BodyPart::getRotationAngle()
 	{
 		switch (node_direction)
 		{
@@ -194,23 +187,18 @@ namespace LinkedList
 		}
 	}
 
-	Node* Node::getNextNode()
-	{
-		return next_node;
-	}
-
-	Direction Node::getDirection()
+	Direction BodyPart::getDirection()
 	{
 		return node_direction;
 	}
 
-	sf::Vector2i Node::getPosition()
+	sf::Vector2i BodyPart::getPosition()
 	{
 		return grid_position;
 	}
 
-	void Node::destroy()
+	void BodyPart::destroy()
 	{
-		delete (node_image);
+		delete (bodypart_image);
 	}
 }

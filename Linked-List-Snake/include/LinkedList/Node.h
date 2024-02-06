@@ -1,10 +1,11 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include "UI/UIElement/ImageView.h"
+#include "Player/BodyPart.h"
 
 namespace LinkedList
 {
-	enum class Direction
+	using namespace Player;
+
+	struct Node
 	{
 		UP,
 		DOWN,
@@ -55,5 +56,7 @@ namespace LinkedList
 
 		void setNodePosition(sf::Vector2i position);
 		void setNodeDirection(Direction direction);
+		BodyPart body_part;
+		Node* next_node = nullptr;
 	};
 }
