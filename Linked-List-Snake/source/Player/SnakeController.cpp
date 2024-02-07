@@ -228,6 +228,8 @@ namespace Player
 		time_complexity = TimeComplexity::ONE;
 		elapsed_duration = 0.f;
 		restart_counter = 0.f;
+		player_score = 0;
+		time_complexity = TimeComplexity::N;
 	}
 
 	void SnakeController::respawnSnake()
