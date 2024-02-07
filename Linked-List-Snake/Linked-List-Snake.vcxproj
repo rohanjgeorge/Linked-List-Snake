@@ -135,20 +135,16 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="source\LinkedListLib\DoubleLinked\DoubleLinkedList.cpp" />
-    <ClCompile Include="source\LinkedListLib\DoubleLinked\DoubleNode.cpp" />
     <ClCompile Include="source\UI\Instructions\InstructionsScreenUIController.cpp" />
     <ClCompile Include="source\UI\LinkedListUI\LinkedListSelectionUIController.cpp" />
     <ClCompile Include="source\LinkedListLib\LinkedList.cpp" />
-    <ClCompile Include="source\LinkedListLib\SingleLinked\SingleNode.cpp" />
     <ClCompile Include="source\UI\Credits\CreditsScreenUIController.cpp" />
     <ClCompile Include="source\Food\FoodItem.cpp" />
     <ClCompile Include="source\Food\FoodService.cpp" />
-    
     <ClCompile Include="source\LinkedListLib\SingleLinked\SingleLinkedList.cpp" />
     <ClCompile Include="source\Player\SnakeController.cpp" />
     <ClCompile Include="source\Player\PlayerService.cpp" />
     <ClCompile Include="source\Time\TimeService.cpp" />
-    <ClCompile Include="source\LinkedListLib\Node.cpp" />
     <ClCompile Include="source\Element\ElementService.cpp" />
     <ClCompile Include="source\Element\Obstacle.cpp" />
     <ClCompile Include="source\Player\BodyPart.cpp" />

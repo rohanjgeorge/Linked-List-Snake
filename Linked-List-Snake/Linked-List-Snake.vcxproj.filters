@@ -69,9 +69,6 @@
     <ClCompile Include="source\Food\FoodService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Player\PlayerController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\Player\PlayerService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -108,9 +105,6 @@
     <ClCompile Include="source\LinkedListLib\DoubleLinked\DoubleLinkedList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\LinkedListLib\DoubleLinked\DoubleNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\UI\Instructions\InstructionsScreenUIController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -120,13 +114,13 @@
     <ClCompile Include="source\LinkedListLib\LinkedList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\LinkedListLib\SingleLinked\SingleNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\LinkedListLib\SingleLinked\SingleLinkedList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\LinkedListLib\Node.cpp">
+    <ClCompile Include="source\Player\SnakeController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Player\BodyPart.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -186,9 +180,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Food\FoodType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Player\PlayerController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Player\PlayerService.h">
@@ -255,6 +246,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Level\LevelConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Player\BodyPart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Player\SnakeController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

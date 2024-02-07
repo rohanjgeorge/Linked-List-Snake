@@ -5,17 +5,9 @@ namespace LinkedListLib
 {
 	namespace DoubleLinked
 	{
-		class DoubleNode : public Node
+		struct DoubleNode : public Node
 		{
-		private:
-			Node* previous_node;
-
-		public:
-			DoubleNode();
-			~DoubleNode();
-
-			void setPreviousNodeReference(Node* node);
-			Node* getPreviousNode();
+			Node* previous_node = nullptr;
 		};
 	}
 }

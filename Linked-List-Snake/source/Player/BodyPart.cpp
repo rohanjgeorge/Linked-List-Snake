@@ -1,18 +1,10 @@
-<<<<<<<< HEAD:Linked-List-Snake/source/LinkedListLib/Node.cpp
-#include "LinkedListLib/Node.h"
-========
 #include "Player/BodyPart.h"
->>>>>>>> Dev/Doubly-Linked-List-Setup:Linked-List-Snake/source/Player/BodyPart.cpp
 #include "Global/ServiceLocator.h"
 #include "Level/LevelView.h"
 #include "Level/LevelModel.h"
 #include "Global/Config.h"
 
-<<<<<<<< HEAD:Linked-List-Snake/source/LinkedListLib/Node.cpp
-namespace LinkedListLib
-========
 namespace Player
->>>>>>>> Dev/Doubly-Linked-List-Setup:Linked-List-Snake/source/Player/BodyPart.cpp
 {
 	using namespace Global;
 	using namespace Level;

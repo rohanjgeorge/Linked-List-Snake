@@ -5,11 +5,7 @@ namespace LinkedListLib
 {
 	namespace SingleLinked
 	{
-		class SingleNode : public Node
-		{
-		public:
-			SingleNode();
-			~SingleNode();
-		};
+		struct SingleNode : public Node 
+		{};
 	}
 }
