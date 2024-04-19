@@ -27,7 +27,7 @@ namespace Player
 
 		int getSnakeSize();
 		int getPlayerScore();
-		bool canTakeDamage();
+		bool isSnakeSizeMinimum();
 		TimeComplexity getTimeComplexity();
 		SnakeState getSnakeState();
 		std::vector<sf::Vector2i> getCurrentSnakePositionList();

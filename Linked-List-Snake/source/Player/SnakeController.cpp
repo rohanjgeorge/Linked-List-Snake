@@ -263,9 +263,9 @@ namespace Player
 		delete (single_linked_list);
 	}
 
-	bool SnakeController::canTakeDamage()
+	bool SnakeController::isSnakeSizeMinimum()
 	{
-		if (single_linked_list->getLinkedListSize() > 2)
+		if (single_linked_list->getLinkedListSize() <= minimum_snake_size)
 			return true;
 		return false;
 	}

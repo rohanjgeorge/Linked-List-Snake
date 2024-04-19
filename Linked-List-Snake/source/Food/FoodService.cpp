@@ -107,9 +107,23 @@ namespace Food
 
 	FoodType FoodService::getRandomFoodType()
 	{
+
+		if (ServiceLocator::getInstance()->getPlayerService()->isSnakeSizeMinimum())
+		{
+			int randomValue = std::rand() % (FoodItem::number_of_foods - FoodItem::number_of_healthy_foods);
+			return static_cast<FoodType>(randomValue);
+		}
+		else
+		{
+			int randomValue = std::rand() % (FoodItem::number_of_foods);
+			return static_cast<FoodType>(randomValue);
+		}
+
+
+
 		int food_upper_index;
 
-		if(!ServiceLocator::getInstance()->getPlayerService()->canTakeDamage())
+		if(!ServiceLocator::getInstance()->getPlayerService()->isSnakeSizeMinimum())
 			food_upper_index = FoodItem::number_of_foods - 5;
 		else
 			food_upper_index = FoodItem::number_of_foods - 1;

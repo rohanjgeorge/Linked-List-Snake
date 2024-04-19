@@ -21,9 +21,11 @@ namespace Player
 	class SnakeController
 	{
 	private:
-		const int initial_snake_length = 10;
+		const int initial_snake_length = 4;
 		const float movement_frame_duration = 0.1f;
 		const float restart_duration = 2.f;
+
+		const int minimum_snake_size = 3;
 
 		const sf::Vector2i default_position = sf::Vector2i(25, 13);
 		const LinkedList::Direction default_direction = LinkedList::Direction::RIGHT;
@@ -72,6 +74,6 @@ namespace Player
 		TimeComplexity getTimeComplexity();
 		int getPlayerScore();
 		int getSnakeSize();
-		bool canTakeDamage();
+		bool isSnakeSizeMinimum();
 	};
 }
