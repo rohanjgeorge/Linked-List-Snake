@@ -64,7 +64,6 @@ namespace LinkedListLib
         void DoubleLinkedList::insertNodeAt(int index)
         {
             if (index < 0 || index >= linked_list_size) return;
-            linked_list_size++;
 
             if (index == 0)
             {
@@ -78,6 +77,8 @@ namespace LinkedListLib
 
         void DoubleLinkedList::insertNodeAtIndex(int index, Node* new_node)
         {
+            linked_list_size++;
+
             int current_index = 0;
             Node* cur_node = head_node;
             Node* prev_node = nullptr;
@@ -120,7 +121,6 @@ namespace LinkedListLib
         void DoubleLinkedList::removeNodeAtTail()
         {
             if (head_node == nullptr) return;
-            linked_list_size--;
 
             Node* cur_node = head_node;
 
@@ -135,6 +135,7 @@ namespace LinkedListLib
                 cur_node = cur_node->next_node;
             }
 
+            linked_list_size--;
             Node* previous_node = static_cast<DoubleNode*>(cur_node)->previous_node;
             previous_node->next_node = nullptr;
             delete (cur_node);
@@ -142,6 +143,8 @@ namespace LinkedListLib
 
         void DoubleLinkedList::removeNodeAtHead()
         {
+            linked_list_size--;
+
             Node* cur_node = head_node;
             head_node = head_node->next_node;
 
@@ -157,7 +160,6 @@ namespace LinkedListLib
         void DoubleLinkedList::removeNodeAt(int index)
         {
             if (index < 0 || index >= linked_list_size) return;
-            linked_list_size--;
 
             if (index == 0)
             {
@@ -171,6 +173,8 @@ namespace LinkedListLib
 
         void DoubleLinkedList::removeNodeAtIndex(int index)
         {
+            linked_list_size--;
+
             int current_index = 0;
             Node* cur_node = head_node;
             Node* prev_node = nullptr;

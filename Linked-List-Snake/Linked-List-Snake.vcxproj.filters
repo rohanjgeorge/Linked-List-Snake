@@ -107,9 +107,6 @@
     <ClCompile Include="source\LinkedListLib\DoubleLinked\DoubleLinkedList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\UI\Instructions\InstructionsScreenUIController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\UI\LinkedListUI\LinkedListSelectionUIController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -229,9 +226,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\LinkedListLib\DoubleLinked\DoubleNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\UI\Instructions\InstructionsScreenUIController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\UI\LinkedListUI\LinkedListSelectionUIController.h">

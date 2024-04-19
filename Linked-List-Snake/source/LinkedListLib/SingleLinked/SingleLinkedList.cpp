@@ -57,7 +57,6 @@ namespace LinkedListLib
         void SingleLinkedList::insertNodeAt(int index)
         {
             if (index < 0 || index >= linked_list_size) return;
-            linked_list_size++;
 
             if (index == 0)
             {
@@ -84,6 +83,7 @@ namespace LinkedListLib
                 current_index++;
             }
 
+            linked_list_size++;
             prev_node->next_node = new_node;
             new_node->next_node = cur_node;
 
@@ -111,7 +111,6 @@ namespace LinkedListLib
         void SingleLinkedList::removeNodeAtTail()
         {
             if (head_node == nullptr) return;
-            linked_list_size--;
 
             Node* cur_node = head_node;
 
@@ -126,12 +125,14 @@ namespace LinkedListLib
                 cur_node = cur_node->next_node;
             }
 
+            linked_list_size--;
             delete (cur_node->next_node);
             cur_node->next_node = nullptr;
         }
 
         void SingleLinkedList::removeNodeAtHead()
         {
+            linked_list_size--;
             Node* cur_node = head_node;
             head_node = head_node->next_node;
 
@@ -142,7 +143,6 @@ namespace LinkedListLib
         void SingleLinkedList::removeNodeAt(int index)
         {
             if (index < 0 || index >= linked_list_size) return;
-            linked_list_size--;
 
             if (index == 0)
             {
@@ -156,6 +156,7 @@ namespace LinkedListLib
 
         void SingleLinkedList::removeNodeAtIndex(int index)
         {
+            linked_list_size--;
             int current_index = 0;
             Node* cur_node = head_node;
             Node* prev_node = nullptr;
@@ -196,7 +197,6 @@ namespace LinkedListLib
         void SingleLinkedList::removeAllNodes()
         {
             if (head_node == nullptr) return;
-            linked_list_size = 0;
 
             while (head_node != nullptr)
             {

@@ -113,7 +113,7 @@ namespace Player
 
 	void SnakeController::moveSnake()
 	{
-		single_linked_list->update(current_snake_direction);
+		linked_list->update(current_snake_direction);
 	}
 
 	void SnakeController::processSnakeCollision()
@@ -292,7 +292,7 @@ namespace Player
 
 	bool SnakeController::isSnakeSizeMinimum()
 	{
-		if (single_linked_list->getLinkedListSize() <= minimum_snake_size)
+		if (linked_list->getLinkedListSize() <= minimum_snake_size)
 			return true;
 		return false;
 	}

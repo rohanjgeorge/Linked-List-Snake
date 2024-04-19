@@ -35,7 +35,6 @@ namespace UI
 	{
 		splash_screen_controller = new SplashScreenUIController();
 		main_menu_controller = new MainMenuUIController();
-		instructions_screen_ui_controller = new InstructionsScreenUIController();
 		level_selection_ui_controller = new LevelSelectionUIController();
 		linked_list_selection_ui_controller = new LinkedListSelectionUIController();
 		gameplay_ui_controller = new GameplayUIController();
@@ -77,7 +76,6 @@ namespace UI
 	{
 		splash_screen_controller->initialize();
 		main_menu_controller->initialize();
-		instructions_screen_ui_controller->initialize();
 		level_selection_ui_controller->initialize();
 		linked_list_selection_ui_controller->initialize();
 		gameplay_ui_controller->initialize();
@@ -119,7 +117,6 @@ namespace UI
 	{
 		delete(splash_screen_controller);
 		delete(main_menu_controller);
-		delete(instructions_screen_ui_controller);
 		delete(level_selection_ui_controller);
 		delete(linked_list_selection_ui_controller);
 		delete(gameplay_ui_controller);
