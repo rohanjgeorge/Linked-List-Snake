@@ -4,7 +4,6 @@
 #include "Sound/SoundService.h"
 #include "Event/EventService.h"
 #include "Global/Config.h"
-#include "Level/LevelService.h"
 
 namespace UI
 {
@@ -15,7 +14,6 @@ namespace UI
         using namespace Sound;
         using namespace Main;
         using namespace Graphics;
-        using namespace Level;
         using namespace UI::UIElement;
 
         InstructionsScreenUIController::InstructionsScreenUIController()

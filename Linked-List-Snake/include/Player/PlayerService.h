@@ -29,6 +29,7 @@ namespace Player
 
 		int getSnakeSize();
 		int getPlayerScore();
+		bool isSnakeSizeMinimum();
 		TimeComplexity getTimeComplexity();
 		bool isPlayerDead();
 		SnakeState getSnakeState();

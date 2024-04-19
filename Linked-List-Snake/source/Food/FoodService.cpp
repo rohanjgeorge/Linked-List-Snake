@@ -3,6 +3,7 @@
 #include "Food/FoodItem.h"
 #include "Level/LevelModel.h"
 #include "Player/PlayerService.h"
+#include <iostream>
 
 namespace Food
 {
@@ -42,12 +43,12 @@ namespace Food
 		if (current_food_item) current_food_item->render();
 	}
 
-	void FoodService::startFoodSpawning(float width, float height)
+	void FoodService::startFoodSpawning()
 	{
 		current_spawning_status = FoodSpawningStatus::ACTIVE;
 
-		cell_width = width;
-		cell_height = height;
+		cell_width = ServiceLocator::getInstance()->getLevelService()->getCellWidth();
+		cell_height = ServiceLocator::getInstance()->getLevelService()->getCellHeight();
 	}
 
 	void FoodService::stopFoodSpawning()
@@ -95,7 +96,7 @@ namespace Food
 
 	FoodType FoodService::getRandomFoodType()
 	{
-		if (ServiceLocator::getInstance()->getPlayerService()->getSnakeSize() < minimum_player_size)
+		if (ServiceLocator::getInstance()->getPlayerService()->isSnakeSizeMinimum())
 		{
 			int randomValue = std::rand() % (FoodItem::number_of_foods - FoodItem::number_of_healthy_foods);
 			return static_cast<FoodType>(randomValue);

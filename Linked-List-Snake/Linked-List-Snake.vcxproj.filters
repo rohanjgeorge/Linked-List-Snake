@@ -60,9 +60,6 @@
     <ClCompile Include="source\UI\UIElement\UIView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\UI\Credits\CreditsScreenUIController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\Food\FoodItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -100,6 +97,11 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\Level\LevelService.cpp">
+    <ClCompile Include="source\LevelModel.cpp">
+    <ClCompile Include="source\UI\Credits\CreditsScreenUIController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\UI\Instructions\InstructionsScreenUIController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\LinkedListLib\DoubleLinked\DoubleLinkedList.cpp">
@@ -170,9 +172,6 @@
     <ClInclude Include="include\UI\UIElement\UIView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\UI\Credits\CreditsScreenUIController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Food\FoodItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -216,6 +215,11 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\UI\UIElement\RectangleShapeView.h">
+    <ClInclude Include="header\LevelModel.h">
+    <ClInclude Include="include\UI\Credits\CreditsScreenUIController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UI\Instructions\InstructionsScreenUIController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\UI\GameplayUI\GameplayUIController.h">
