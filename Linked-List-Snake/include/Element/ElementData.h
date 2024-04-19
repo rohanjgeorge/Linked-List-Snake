@@ -3,7 +3,10 @@
 
 namespace Element
 {
-    enum class ElementType;
+    enum class ElementType
+    {
+        OBSTACLE,
+    };
 
     struct ElementData
     {

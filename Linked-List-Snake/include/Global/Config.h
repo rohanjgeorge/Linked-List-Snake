@@ -26,11 +26,15 @@ namespace Global
 		static const sf::String menu_button_texture_path;
 		static const sf::String level_one_button_texture_path;
 		static const sf::String level_two_button_texture_path;
+		static const sf::String single_linked_list_button_texture_path;
+		static const sf::String double_linked_list_button_texture_path;
 
 		static const sf::String bubble_bobble_font_path;
 		static const sf::String DS_DIGIB_font_path;
 
 		static const sf::String background_music_path;
 		static const sf::String button_click_sound_path;
+		static const sf::String pickup_sound_path;
+		static const sf::String death_sound_path;
 	};
 }
