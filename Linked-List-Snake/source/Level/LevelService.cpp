@@ -87,7 +87,7 @@ namespace Level
 		float cell_width = level_controller->getCellWidth();
 		float cell_height = level_controller->getCellHeight();
 
-		ServiceLocator::getInstance()->getFoodService()->startFoodSpawning(cell_width, cell_height);
+		ServiceLocator::getInstance()->getFoodService()->startFoodSpawning();
 	}
 
 	void LevelService::destroy()

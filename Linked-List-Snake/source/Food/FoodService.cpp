@@ -42,12 +42,12 @@ namespace Food
 		if (current_food_item) current_food_item->render();
 	}
 
-	void FoodService::startFoodSpawning(float width, float height)
+	void FoodService::startFoodSpawning()
 	{
 		current_spawning_status = FoodSpawningStatus::ACTIVE;
 
-		cell_width = width;
-		cell_height = height;
+		cell_width = ServiceLocator::getInstance()->getLevelService()->getCellWidth();
+		cell_height = ServiceLocator::getInstance()->getLevelService()->getCellHeight();
 	}
 
 	void FoodService::stopFoodSpawning()

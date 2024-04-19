@@ -40,7 +40,7 @@ namespace Player
 
 		void createLinkedList();
 		void processPlayerInput();
-
+		void delayedUpdate();
 		void moveSnake();
 		void processSnakeCollision();
 		

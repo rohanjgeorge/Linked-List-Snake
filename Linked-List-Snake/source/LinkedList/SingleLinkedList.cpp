@@ -58,12 +58,12 @@ namespace LinkedList
 
         sf::Vector2i predicted_position = head_node->body_part.getNextPosition();
 
-        Node* cur_node = head_node->next_node;
-        while (cur_node != nullptr)
-        {
-            if (cur_node->body_part.getPosition() == predicted_position || cur_node->body_part.getPosition() == head_node->body_part.getPosition()) return true;
-            cur_node = cur_node->next_node;
-        }
+		Node* cur_node = head_node->next_node;
+		while (cur_node != nullptr)
+		{
+			if (cur_node->body_part.getNextPosition() == predicted_position || cur_node->body_part.getPosition() == head_node->body_part.getPosition()) return true;
+			cur_node = cur_node->next_node;
+		}
 
         return false;
     }
