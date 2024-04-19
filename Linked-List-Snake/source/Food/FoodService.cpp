@@ -3,6 +3,7 @@
 #include "Food/FoodItem.h"
 #include "Level/LevelModel.h"
 #include "Player/PlayerService.h"
+#include <iostream>
 
 namespace Food
 {
@@ -106,7 +107,14 @@ namespace Food
 
 	FoodType FoodService::getRandomFoodType()
 	{
-		std::uniform_int_distribution<int> distribution(0, FoodItem::number_of_foods - 1);
+		int food_upper_index;
+
+		if(!ServiceLocator::getInstance()->getPlayerService()->canTakeDamage())
+			food_upper_index = FoodItem::number_of_foods - 5;
+		else
+			food_upper_index = FoodItem::number_of_foods - 1;
+
+		std::uniform_int_distribution<int> distribution(0, food_upper_index);
 
 		return static_cast<FoodType>(distribution(random_engine));
 	}

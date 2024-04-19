@@ -247,6 +247,7 @@ namespace Player
 		return single_linked_list->getLinkedListSize();
 	}
 
+
 	int SnakeController::getRandomBodyPartIndex()
 	{
 		return std::rand() % (single_linked_list->getLinkedListSize() - 1);
@@ -261,4 +262,12 @@ namespace Player
 	{
 		delete (single_linked_list);
 	}
+
+	bool SnakeController::canTakeDamage()
+	{
+		if (single_linked_list->getLinkedListSize() > 2)
+			return true;
+		return false;
+	}
+
 }

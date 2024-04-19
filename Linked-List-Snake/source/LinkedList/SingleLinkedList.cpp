@@ -92,8 +92,8 @@ namespace LinkedList
 
     void SingleLinkedList::insertNodeAtHead()
     {
-        linked_list_size++;
         Node* new_node = createNode();
+        linked_list_size++;
 
         if (head_node == nullptr)
         {
@@ -110,7 +110,6 @@ namespace LinkedList
     void SingleLinkedList::insertNodeAt(int index)
     {
         if (index < 0 || index >= linked_list_size) return;
-        linked_list_size++;
 
         if (index == 0)
         {
@@ -139,6 +138,7 @@ namespace LinkedList
 
         prev_node->next_node = new_node;
         new_node->next_node = cur_node;
+        linked_list_size++;
 
         shiftNodesAfterInsertion(new_node, cur_node, prev_node);
     }
@@ -164,7 +164,6 @@ namespace LinkedList
     void SingleLinkedList::removeNodeAtTail()
     {
         if (head_node == nullptr) return;
-        linked_list_size--;
 
         Node* cur_node = head_node;
 
@@ -180,6 +179,7 @@ namespace LinkedList
         }
 
         delete (cur_node->next_node);
+        linked_list_size--;
         cur_node->next_node = nullptr;
     }
 
@@ -190,12 +190,12 @@ namespace LinkedList
 
         cur_node->next_node = nullptr;
         delete (cur_node);
+        linked_list_size--;
     }
 
     void SingleLinkedList::removeNodeAt(int index)
     {
         if (index < 0 || index >= linked_list_size) return;
-        linked_list_size--;
 
         if (index == 0)
         {
@@ -224,6 +224,7 @@ namespace LinkedList
 
         shiftNodesAfterRemoval(cur_node);
         delete(cur_node);
+        linked_list_size--;
     }
 
     void SingleLinkedList::shiftNodesAfterRemoval(Node* cur_node)
@@ -249,7 +250,6 @@ namespace LinkedList
     void SingleLinkedList::removeAllNodes()
     {
         if (head_node == nullptr) return;
-        linked_list_size = 0;
 
         while (head_node != nullptr)
         {

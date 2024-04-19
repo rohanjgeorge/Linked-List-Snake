@@ -72,5 +72,6 @@ namespace Player
 		TimeComplexity getTimeComplexity();
 		int getPlayerScore();
 		int getSnakeSize();
+		bool canTakeDamage();
 	};
 }

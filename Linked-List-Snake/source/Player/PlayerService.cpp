@@ -65,6 +65,10 @@ namespace Player
 		return snake_controller->getSnakeState();
 	}
 
+	bool PlayerService::canTakeDamage()
+	{
+		return snake_controller->canTakeDamage();
+	}
 
 	void PlayerService::destroy()
 	{
