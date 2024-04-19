@@ -60,7 +60,7 @@ namespace LinkedList
 		Node* cur_node = head_node->next_node;
 		while (cur_node != nullptr)
 		{
-			if (cur_node->body_part.getPosition() == predicted_position || cur_node->body_part.getPosition() == head_node->body_part.getPosition()) return true;
+			if (cur_node->body_part.getNextPosition() == predicted_position || cur_node->body_part.getPosition() == head_node->body_part.getPosition()) return true;
 			cur_node = cur_node->next_node;
 		}
 
@@ -72,7 +72,7 @@ namespace LinkedList
 		Node* new_node = createNode();
 		Node* cur_node = head_node;
 
-		if (cur_node == nullptr)
+		if (cur_node == nullptr) //If there is no head, then create a new head node
 		{
 			head_node = new_node;
 			new_node->body_part.initialize(node_width, node_height, default_position, default_direction);
