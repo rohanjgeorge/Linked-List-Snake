@@ -49,7 +49,7 @@ namespace Level
         sf::Vector2f border_position = sf::Vector2f(border_offset_left, border_offset_top);
 
         border_rectangle->initialize(border_size, border_position, border_thickness, sf::Color::Transparent, border_color);
-        background_rectangle->show();
+        border_rectangle->show();
     }
 
     void LevelView::calculateGridExtents()
