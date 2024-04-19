@@ -7,11 +7,6 @@ namespace Element
 	class Obstacle;
 	struct ElementData;
 
-	enum class ElementType
-	{
-		OBSTACLE,
-	};
-
 	class ElementService
 	{
 	private:
