@@ -9,8 +9,11 @@ namespace Main
 		BOOT,
 		SPLASH_SCREEN,
 		MAIN_MENU,
+		INSTRUCTIONS,
 		LEVEL_SELECTION,
+		LINKED_LIST_SELECTION,
 		GAMEPLAY,
+		CREDITS,
 	};
 
 	class GameService

@@ -64,6 +64,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\LevelModel.cpp">
+    <ClCompile Include="source\UI\Credits\CreditsScreenUIController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\UI\Instructions\InstructionsScreenUIController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -117,6 +121,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="header\LevelModel.h">
+    <ClInclude Include="include\UI\Credits\CreditsScreenUIController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UI\Instructions\InstructionsScreenUIController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
