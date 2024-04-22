@@ -19,7 +19,6 @@ namespace UI
         using namespace Level;
         using namespace Player;
         using namespace UI::UIElement;
-        using namespace LinkedList;
 
         GameplayUIController::GameplayUIController()
         {
