@@ -164,17 +164,19 @@ namespace Player
 		switch (food_type)
 		{
 		case FoodType::PIZZA:
-			linked_list->insertNodeAtHead();
-			time_complexity = TimeComplexity::ONE;
-			break;
-
-		case FoodType::BURGER:
-			linked_list->insertNodeAtTail();
+			single_linked_list->insertNodeAtTail();
 			time_complexity = TimeComplexity::N;
 			break;
 
+		case FoodType::BURGER:
+			single_linked_list->insertNodeAtHead();
+			time_complexity = TimeComplexity::ONE;
+			
+			break;
+
 		case FoodType::CHEESE:
-			linked_list->insertNodeAt(getRandomBodyPartIndex());
+			//Insert in MIDDLE
+			single_linked_list->insertNodeAt(getRandomBodyPartIndex());
 			time_complexity = TimeComplexity::N;
 			break;
 
@@ -184,13 +186,15 @@ namespace Player
 			break;
 
 		case FoodType::MANGO:
-			linked_list->removeNodeAtTail();
+			//Delete in MIDDLE
+			single_linked_list->removeNodeAt(getRandomBodyPartIndex());
 			time_complexity = TimeComplexity::N;
 			break;
 
 		case FoodType::ORANGE:
-			linked_list->removeNodeAt(getRandomBodyPartIndex());
+			single_linked_list->removeNodeAtTail();
 			time_complexity = TimeComplexity::N;
+			
 			break;
 
 		case FoodType::POISION:
