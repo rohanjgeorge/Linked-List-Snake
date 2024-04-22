@@ -172,50 +172,56 @@ namespace Player
 			//Insert at TAIL
 			linked_list->insertNodeAtTail();
 			time_complexity = TimeComplexity::N;
+			last_linked_list_operation = LinkedListOperations::INSERT_AT_TAIL;
 			break;
 
 		case FoodType::BURGER:
 			//Insert at HEAD
 			linked_list->insertNodeAtHead();
 			time_complexity = TimeComplexity::ONE;
-
+			last_linked_list_operation = LinkedListOperations::INSERT_AT_HEAD;
 			break;
 
 		case FoodType::CHEESE:
 			//Insert at MIDDLE
 			linked_list->insertNodeAtMiddle();
 			time_complexity = TimeComplexity::N;
+			last_linked_list_operation = LinkedListOperations::INSERT_AT_MID;
 			break;
 
 		case FoodType::APPLE:
 			//Delete at HEAD
 			linked_list->removeNodeAtHead();
 			time_complexity = TimeComplexity::ONE;
+			last_linked_list_operation = LinkedListOperations::REMOVE_AT_HEAD;
 			break;
 
 		case FoodType::MANGO:
 			//Delete at MIDDLE
 			linked_list->removeNodeAtMiddle();
 			time_complexity = TimeComplexity::N;
+			last_linked_list_operation = LinkedListOperations::REMOVE_AT_MID;
 			break;
 
 		case FoodType::ORANGE:
 			//Delete at TAIL
 			linked_list->removeNodeAtTail();
 			time_complexity = TimeComplexity::N;
-
+			last_linked_list_operation = LinkedListOperations::REMOVE_AT_TAIL;
 			break;
 
 		case FoodType::POISION:
 			//Delete half nodes
 			linked_list->removeHalfNodes();
 			time_complexity = TimeComplexity::N;
+			last_linked_list_operation = LinkedListOperations::DELETE_HALF_LIST;
 			break;
 
 		case FoodType::ALCOHOL:
 			//Reverse Direction
 			current_snake_direction = linked_list->reverse();
 			time_complexity = TimeComplexity::N;
+			last_linked_list_operation = LinkedListOperations::REVERSE_LIST;
 			break;
 		}
 	}
@@ -249,8 +255,9 @@ namespace Player
 		elapsed_duration = 0.f;
 		restart_counter = 0.f;
 		player_score = 0;
-		time_complexity = TimeComplexity::N;
 		current_input_state = InputState::WAITING;
+		time_complexity = TimeComplexity::NONE;
+		last_linked_list_operation = LinkedListOperations::NONE;
 	}
 
 	void SnakeController::respawnSnake()
@@ -278,6 +285,11 @@ namespace Player
 	TimeComplexity SnakeController::getTimeComplexity()
 	{
 		return time_complexity;
+	}
+
+	LinkedListOperations SnakeController::getLastOperation()
+	{
+		return last_linked_list_operation;
 	}
 
 	int SnakeController::getSnakeSize()

@@ -32,6 +32,7 @@ namespace Player
 		bool isSnakeSizeMinimum();
 		TimeComplexity getTimeComplexity();
 		bool isPlayerDead();
+		LinkedListOperations getLastOperation();
 		SnakeState getSnakeState();
 		std::vector<sf::Vector2i> getCurrentSnakePositionList();
 	};

@@ -13,8 +13,22 @@ namespace Player
 
 	enum class TimeComplexity
 	{
+		NONE,
 		ONE,
 		N,
+	};
+
+	enum class LinkedListOperations
+	{
+		NONE,
+		INSERT_AT_HEAD,
+		INSERT_AT_TAIL,
+		INSERT_AT_MID,
+		REMOVE_AT_HEAD,
+		REMOVE_AT_TAIL,
+		REMOVE_AT_MID,
+		DELETE_HALF_LIST,
+		REVERSE_LIST,
 	};
 
 	enum class SnakeState
@@ -49,6 +63,7 @@ namespace Player
 
 		int player_score;
 		TimeComplexity time_complexity;
+		LinkedListOperations last_linked_list_operation;
 
 		LinkedList* linked_list;
 
@@ -87,6 +102,7 @@ namespace Player
 
 		std::vector<sf::Vector2i> getCurrentSnakePositionList();
 		TimeComplexity getTimeComplexity();
+		LinkedListOperations getLastOperation();
 		int getPlayerScore();
 		bool isSnakeDead();
 		int getSnakeSize();

@@ -1,18 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\Food\FoodItem.cpp" />
+    <ClCompile Include="source\Food\FoodService.cpp" />
+    <ClCompile Include="source\Element\ElementService.cpp" />
+    <ClCompile Include="source\Element\Obstacle.cpp" />
+    <ClCompile Include="source\Player\BodyPart.cpp" />
+    <ClCompile Include="source\LinkedList\SingleLinkedList.cpp" />
+    <ClCompile Include="source\Player\SnakeController.cpp" />
+    <ClCompile Include="source\Player\PlayerService.cpp" />
+    <ClCompile Include="source\Time\TimeService.cpp" />
+    <ClCompile Include="source\UI\GameplayUI\GameplayUIController.cpp" />
+    <ClCompile Include="source\UI\UIElement\RectangleShapeView.cpp" />
+    <ClCompile Include="source\Level\LevelController.cpp" />
+    <ClCompile Include="source\Level\LevelModel.cpp" />
+    <ClCompile Include="source\UI\LevelSelection\LevelSelectionUIController.cpp" />
+    <ClCompile Include="source\Level\LevelView.cpp" />
+    <ClCompile Include="source\Level\LevelService.cpp" />
+    <ClCompile Include="source\UI\Credits\CreditsScreenUIController.cpp" />
+    <ClCompile Include="source\UI\Instructions\InstructionsScreenUIController.cpp" />
+    <ClCompile Include="source\UI\UIElement\AnimatedImageView.cpp" />
+    <ClCompile Include="source\UI\UIElement\ButtonView.cpp" />
+    <ClCompile Include="source\Global\Config.cpp" />
+    <ClCompile Include="source\Event\EventService.cpp" />
+    <ClCompile Include="source\Main\GameService.cpp" />
+    <ClCompile Include="source\Graphics\GraphicService.cpp" />
+    <ClCompile Include="source\UI\UIElement\ImageView.cpp" />
+    <ClCompile Include="source\UI\MainMenu\MainMenuUIController.cpp" />
+    <ClCompile Include="source\Global\ServiceLocator.cpp" />
+    <ClCompile Include="source\Sound\SoundService.cpp" />
+    <ClCompile Include="source\UI\SplashScreen\SplashScreenUIController.cpp" />
+    <ClCompile Include="source\UI\UIElement\TextView.cpp" />
+    <ClCompile Include="source\UI\UIService.cpp" />
+    <ClCompile Include="source\UI\UIElement\UIView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
