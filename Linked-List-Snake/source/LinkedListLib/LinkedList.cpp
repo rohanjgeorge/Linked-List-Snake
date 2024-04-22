@@ -113,4 +113,21 @@ namespace LinkedListLib
 
         return nodes_position_list;
     }
+
+    int LinkedList::findMiddleNode()
+    {
+        Node* slow = head_node;
+        Node* fast = head_node;
+        int midIndex = 0;  // This will track the index of the middle node.
+
+        // Move fast pointer at 2x speed and slow pointer at 1x speed.
+        while (fast != nullptr && fast->next_node != nullptr) {
+            slow = slow->next_node;
+            fast = fast->next_node->next_node;
+            midIndex++;
+        }
+
+        // Now, slow is at the middle node
+        return midIndex;
+    }
 }

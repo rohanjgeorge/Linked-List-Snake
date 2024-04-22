@@ -68,6 +68,17 @@ namespace LinkedListLib
             insertNodeAtIndex(index, new_node);
         }
 
+        void SingleLinkedList::insertNodeAtMiddle()
+        {
+            if (head_node == nullptr) {
+                insertNodeAtHead();             // If the list is empty, insert at the head.
+                return;
+            }
+
+            int midIndex = findMiddleNode();    // Use the existing function to find the middle index
+            insertNodeAt(midIndex);             // Use the existing function to insert the node at the found index             
+        }
+
         void SingleLinkedList::insertNodeAtIndex(int index, Node* new_node)
         {
             int current_index = 0;
@@ -138,6 +149,13 @@ namespace LinkedListLib
 
             cur_node->next_node = nullptr;
             delete (cur_node);
+        }
+
+        void SingleLinkedList::removeNodeAtMiddle() {
+            if (head_node == nullptr) return; // If the list is empty, there's nothing to remove
+
+            int midIndex = findMiddleNode();  // Use the existing function to find the middle index
+            removeNodeAt(midIndex);           // Use the existing function to remove the node at the found index
         }
 
         void SingleLinkedList::removeNodeAt(int index)

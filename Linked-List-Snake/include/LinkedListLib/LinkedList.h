@@ -29,6 +29,7 @@ namespace LinkedListLib
 		sf::Vector2i getNewNodePosition(Node* reference_node, Operation operation);
 
 		void updateNodes(Direction directionToSet);
+		int findMiddleNode();
 
 	public:
 		LinkedList();
@@ -40,10 +41,12 @@ namespace LinkedListLib
 
 		virtual void insertNodeAtTail() = 0;
 		virtual void insertNodeAtHead() = 0;
+		virtual void insertNodeAtMiddle() = 0;
 		virtual void insertNodeAt(int index) = 0;
 
 		virtual void removeNodeAtTail() = 0;
 		virtual void removeNodeAtHead() = 0;
+		virtual void removeNodeAtMiddle() = 0;
 		virtual void removeNodeAt(int index) = 0;
 		virtual void removeAllNodes() = 0;
 		virtual void removeHalfNodes() = 0;

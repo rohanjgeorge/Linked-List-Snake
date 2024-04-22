@@ -61,6 +61,17 @@ namespace LinkedListLib
             head_node = new_node;
         }
 
+        void DoubleLinkedList::insertNodeAtMiddle()
+        {
+            if (head_node == nullptr) {
+                insertNodeAtHead();             // If the list is empty, insert at the head.
+                return;
+            }
+
+            int midIndex = findMiddleNode();    // Use the existing function to find the middle index
+            insertNodeAt(midIndex);             // Use the existing function to insert the node at the found index             
+        }
+
         void DoubleLinkedList::insertNodeAt(int index)
         {
             if (index < 0 || index >= linked_list_size) return;
@@ -155,6 +166,14 @@ namespace LinkedListLib
 
             cur_node->next_node = nullptr;
             delete (cur_node);
+        }
+
+        void DoubleLinkedList::removeNodeAtMiddle()
+        {
+            if (head_node == nullptr) return; // If the list is empty, there's nothing to remove
+
+            int midIndex = findMiddleNode();  // Use the existing function to find the middle index
+            removeNodeAt(midIndex);           // Use the existing function to remove the node at the found index
         }
 
         void DoubleLinkedList::removeNodeAt(int index)

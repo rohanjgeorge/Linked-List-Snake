@@ -20,6 +20,7 @@ namespace LinkedListLib
 
 			void insertNodeAtTail() override;
 			void insertNodeAtHead() override;
+			void insertNodeAtMiddle() override; 
 			void insertNodeAt(int index) override;
 			void insertNodeAtIndex(int index, Node* new_node);
 
@@ -27,6 +28,7 @@ namespace LinkedListLib
 
 			void removeNodeAtTail() override;
 			void removeNodeAtHead() override;
+			void removeNodeAtMiddle() override;
 			void removeNodeAt(int index) override;
 			void removeNodeAtIndex(int index);
 			void removeAllNodes() override;

@@ -169,45 +169,51 @@ namespace Player
 		switch (food_type)
 		{
 		case FoodType::PIZZA:
+			//Insert at TAIL
 			linked_list->insertNodeAtTail();
 			time_complexity = TimeComplexity::N;
 			break;
 
 		case FoodType::BURGER:
+			//Insert at HEAD
 			linked_list->insertNodeAtHead();
 			time_complexity = TimeComplexity::ONE;
-			
+
 			break;
 
 		case FoodType::CHEESE:
-			//Insert in MIDDLE
-			linked_list->insertNodeAt(getRandomBodyPartIndex());
+			//Insert at MIDDLE
+			linked_list->insertNodeAtMiddle();
 			time_complexity = TimeComplexity::N;
 			break;
 
 		case FoodType::APPLE:
+			//Delete at HEAD
 			linked_list->removeNodeAtHead();
 			time_complexity = TimeComplexity::ONE;
 			break;
 
 		case FoodType::MANGO:
-			//Delete in MIDDLE
-			linked_list->removeNodeAt(getRandomBodyPartIndex());
+			//Delete at MIDDLE
+			linked_list->removeNodeAtMiddle();
 			time_complexity = TimeComplexity::N;
 			break;
 
 		case FoodType::ORANGE:
+			//Delete at TAIL
 			linked_list->removeNodeAtTail();
 			time_complexity = TimeComplexity::N;
-			
+
 			break;
 
 		case FoodType::POISION:
+			//Delete half nodes
 			linked_list->removeHalfNodes();
 			time_complexity = TimeComplexity::N;
 			break;
 
 		case FoodType::ALCOHOL:
+			//Reverse Direction
 			current_snake_direction = linked_list->reverse();
 			time_complexity = TimeComplexity::N;
 			break;
