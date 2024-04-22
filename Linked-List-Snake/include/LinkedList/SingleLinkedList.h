@@ -29,6 +29,7 @@ namespace LinkedList
 		sf::Vector2i getNewNodePosition(Node* reference_node, Operation operation);
 
 		void updateNodes(Direction directionToSet);
+		int findMiddleNode();
 
 	public:
 		SingleLinkedList();
@@ -38,8 +39,10 @@ namespace LinkedList
 		void update(Direction direction);
 		void render();
 
+
 		void insertNodeAtTail();
 		void insertNodeAtHead();
+		void insertNodeAtMiddle();
 		void insertNodeAt(int index);
 		void insertNodeAtIndex(int index, Node* new_node);
 
@@ -47,6 +50,7 @@ namespace LinkedList
 
 		void removeNodeAtTail();
 		void removeNodeAtHead();
+		void removeNodeAtMiddle();
 		void removeNodeAt(int index);
 		void removeNodeAtIndex(int index);
 		void removeAllNodes();

@@ -2,6 +2,8 @@
 #include "Player/BodyPart.h"
 #include "Level/LevelView.h"
 
+#include <iostream>
+
 namespace LinkedList
 {
     SingleLinkedList::SingleLinkedList()
@@ -34,6 +36,23 @@ namespace LinkedList
             cur_node->body_part.render();
             cur_node = cur_node->next_node;
         }
+    }
+
+    int SingleLinkedList::findMiddleNode()
+    {
+        Node* slow = head_node;
+        Node* fast = head_node;
+        int midIndex = 0;  // This will track the index of the middle node.
+
+        // Move fast pointer at 2x speed and slow pointer at 1x speed.
+        while (fast != nullptr && fast->next_node != nullptr) {
+            slow = slow->next_node;
+            fast = fast->next_node->next_node;
+            midIndex++;
+        }
+
+        // Now, slow is at the middle node
+        return midIndex;
     }
 
     void SingleLinkedList::updateNodes(Direction directionToSet)
@@ -106,6 +125,20 @@ namespace LinkedList
         new_node->next_node = head_node;
         head_node = new_node;
     }
+
+    void SingleLinkedList::insertNodeAtMiddle() 
+    {
+        if (head_node == nullptr) {
+            insertNodeAtHead();             // If the list is empty, insert at the head.
+            return;
+        }
+
+        int midIndex = findMiddleNode();    // Use the existing function to find the middle index
+        insertNodeAt(midIndex);             // Use the existing function to insert the node at the found index             
+    }
+
+
+
 
     void SingleLinkedList::insertNodeAt(int index)
     {
@@ -192,6 +225,14 @@ namespace LinkedList
         delete (cur_node);
         linked_list_size--;
     }
+
+    void SingleLinkedList::removeNodeAtMiddle() {
+        if (head_node == nullptr) return; // If the list is empty, there's nothing to remove
+
+        int midIndex = findMiddleNode();  // Use the existing function to find the middle index
+        removeNodeAt(midIndex);           // Use the existing function to remove the node at the found index
+    }
+
 
     void SingleLinkedList::removeNodeAt(int index)
     {
