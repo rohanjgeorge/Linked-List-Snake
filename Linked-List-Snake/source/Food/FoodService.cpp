@@ -99,13 +99,11 @@ namespace Food
 		if (ServiceLocator::getInstance()->getPlayerService()->isSnakeSizeMinimum())
 		{
 			int randomValue = std::rand() % (FoodItem::number_of_foods - FoodItem::number_of_healthy_foods);
-			std::cout << "UpperIndex: " << FoodItem::number_of_foods - FoodItem::number_of_healthy_foods << " Size: " << ServiceLocator::getInstance()->getPlayerService()->getSnakeSize() << std::endl;
 			return static_cast<FoodType>(randomValue);
 		}
 		else
 		{
 			int randomValue = std::rand() % (FoodItem::number_of_foods);
-			std::cout << "UpperIndex: " << FoodItem::number_of_foods << " Size: " << ServiceLocator::getInstance()->getPlayerService()->getSnakeSize() << std::endl;
 			return static_cast<FoodType>(randomValue);
 		}
 	}
