@@ -243,7 +243,6 @@ namespace LinkedListLib
         void DoubleLinkedList::removeAllNodes()
         {
             if (head_node == nullptr) return;
-            linked_list_size = 0;
 
             while (head_node != nullptr)
             {
