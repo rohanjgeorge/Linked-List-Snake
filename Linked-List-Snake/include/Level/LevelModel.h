@@ -22,7 +22,6 @@ namespace Level
 
         void initialize(int width, int height);
 
-        const std::vector<LevelData>& getLevelDataList();
         float getCellWidth();
         float getCellHeight();
     };

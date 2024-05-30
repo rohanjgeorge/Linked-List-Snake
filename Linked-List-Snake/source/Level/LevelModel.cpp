@@ -12,11 +12,6 @@ namespace Level
 		cell_height = height / number_of_rows;
 	}
 
-	const std::vector<LevelData>& LevelModel::getLevelDataList()
-	{
-		return level_configurations;
-	}
-
 	float LevelModel::getCellWidth()
 	{
 		return cell_width;
