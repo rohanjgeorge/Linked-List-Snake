@@ -140,7 +140,6 @@
     <ClCompile Include="source\LinkedList\SingleLinkedList.cpp" />
     <ClCompile Include="source\Player\SnakeController.cpp" />
     <ClCompile Include="source\Player\PlayerService.cpp" />
-    <ClCompile Include="source\Time\TimeService.cpp" />
     <ClCompile Include="source\UI\UIElement\RectangleShapeView.cpp" />
     <ClCompile Include="source\Level\LevelController.cpp" />
     <ClCompile Include="source\Level\LevelModel.cpp" />
@@ -175,7 +174,6 @@
     <ClInclude Include="include\Player\Direction.h" />
     <ClInclude Include="include\Player\SnakeController.h" />
     <ClInclude Include="include\Player\PlayerService.h" />
-    <ClInclude Include="include\Time\TimeService.h" />
     <ClInclude Include="include\Level\LevelController.h" />
     <ClInclude Include="include\Level\LevelData.h" />
     <ClInclude Include="include\Level\LevelModel.h" />
