@@ -58,7 +58,7 @@ namespace LinkedList
 
 		void shiftNodesAfterRemoval(Node* cur_node);
 
-		Node* findNodeBeforeIndex(int index);
+		Node* findNodeAtIndex(int index);
 		Direction reverse();
 		void reverseNodeDirections();
 
