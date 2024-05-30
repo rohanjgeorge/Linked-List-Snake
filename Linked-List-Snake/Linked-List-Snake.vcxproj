@@ -189,7 +189,6 @@
     <ClInclude Include="include\Player\BodyPart.h" />
     <ClInclude Include="include\Player\SnakeController.h" />
     <ClInclude Include="include\Player\PlayerService.h" />
-    <ClInclude Include="include\Time\TimeService.h" />
     <ClInclude Include="include\Level\LevelController.h" />
     <ClInclude Include="include\Level\LevelData.h" />
     <ClInclude Include="include\Level\LevelModel.h" />

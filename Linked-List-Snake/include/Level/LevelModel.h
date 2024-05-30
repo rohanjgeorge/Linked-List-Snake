@@ -81,7 +81,6 @@ namespace Level
 
         void initialize(int width, int height);
 
-        const std::vector<LevelData>& getLevelDataList();
         const std::vector<Element::ElementData>& getElementDataList(int level_to_load);
         float getCellWidth();
         float getCellHeight();
