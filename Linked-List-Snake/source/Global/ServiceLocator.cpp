@@ -23,6 +23,7 @@ namespace Global
 		time_service = nullptr;
 		player_service = nullptr;
 		ui_service = nullptr;
+		time_service = nullptr;
 
 		createServices();
 	}
@@ -39,6 +40,7 @@ namespace Global
 		time_service = new TimeService();
 		player_service = new PlayerService();
 		ui_service = new UIService();
+		time_service = new TimeService();
 	}
 
 	void ServiceLocator::initialize()
@@ -67,6 +69,7 @@ namespace Global
 		}
 
 		ui_service->update();
+		time_service->update();
 	}
 
 	void ServiceLocator::render()
@@ -116,6 +119,8 @@ namespace Global
 	Player::PlayerService* ServiceLocator::getPlayerService() { return player_service; }
 
 	UIService* ServiceLocator::getUIService() { return ui_service; }
+
+	Time::TimeService* ServiceLocator::getTimeService() { return time_service; }
 
 	void ServiceLocator::deleteServiceLocator() { delete(this); }
 }
