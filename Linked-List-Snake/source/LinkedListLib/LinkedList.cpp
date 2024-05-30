@@ -75,9 +75,6 @@ namespace LinkedListLib
 
     sf::Vector2i LinkedList::getNewNodePosition(Node* reference_node, Operation operation)
     {
-        Direction reference_direction = reference_node->body_part.getDirection();
-        sf::Vector2i reference_position = reference_node->body_part.getPosition();
-
         switch (operation)
         {
         case Operation::HEAD:

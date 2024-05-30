@@ -50,7 +50,6 @@ namespace Player
 		float width = ServiceLocator::getInstance()->getLevelService()->getCellWidth();
 		float height = ServiceLocator::getInstance()->getLevelService()->getCellHeight();
 
-		linked_list->initialize(width, height, default_position, default_direction);
 		reset();
 		linked_list->initialize(width, height, default_position, default_direction);
 	}
@@ -246,8 +245,6 @@ namespace Player
 
 	void SnakeController::reset()
 	{
-		linked_list->removeAllNodes();
-
 		current_snake_state = SnakeState::ALIVE;
 		current_snake_direction = default_direction;
 

@@ -68,7 +68,7 @@ namespace Element
 	{
 		for (int i = 0; i < obstacle_list.size(); i++)
 		{
-			if (obstacle_list[i]->getObstaclePosition() == head_node->body_part.getNextPosition() ||
+			if (obstacle_list[i]->getObstaclePosition() == head_node->body_part.getNextPosition()||
 				obstacle_list[i]->getObstaclePosition() == head_node->body_part.getPosition())
 			{
 				return true;

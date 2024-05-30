@@ -43,15 +43,15 @@ namespace Level
 		level_controller->render();
 	}
 
-	void LevelService::createLevel(LinkedListType level_type)
+	void LevelService::createLevel(LinkedListType linked_list_type)
 	{
-		current_level_type = level_type;
+		current_linked_list_type = linked_list_type;
 		spawnLevelElements(current_level);
 		spawnFood();
 		spawnPlayer();
 	}
 
-	void LevelService::setCurrentLevel(LevelNumber level_to_load)
+	void LevelService::setCurrentLevelNumber(LevelNumber level_to_load)
 	{
 		current_level = level_to_load;
 	}
@@ -71,14 +71,14 @@ namespace Level
 		return current_level;
 	}
 
-	LinkedListType LevelService::getCurrentLevelType()
+	LinkedListType LevelService::getCurrentLinkedListType()
 	{
-		return current_level_type;
+		return current_linked_list_type;
 	}
 
 	void LevelService::spawnPlayer()
 	{
-		ServiceLocator::getInstance()->getPlayerService()->spawnPlayer(current_level_type);
+		ServiceLocator::getInstance()->getPlayerService()->spawnPlayer(current_linked_list_type);
 	}
 
 	void LevelService::spawnLevelElements(LevelNumber level_to_load)

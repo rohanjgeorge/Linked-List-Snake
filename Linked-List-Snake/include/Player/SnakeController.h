@@ -69,7 +69,6 @@ namespace Player
 
 		void initializeLinkedList();
 
-		void createLinkedList();
 		void processPlayerInput();
 		void delayedUpdate();
 		void moveSnake();
