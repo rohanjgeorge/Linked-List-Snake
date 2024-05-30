@@ -18,9 +18,9 @@ namespace Global
         Sound::SoundService* sound_service;
         Level::LevelService* level_service;
         Element::ElementService* element_service;
-        Time::TimeService* time_service;
         Player::PlayerService* player_service;
         UI::UIService* ui_service;
+        Time::TimeService* time_service;
 
         ServiceLocator();
         ~ServiceLocator();
@@ -40,9 +40,9 @@ namespace Global
         Sound::SoundService* getSoundService();
         Level::LevelService* getLevelService();
         Element::ElementService* getElementService();
-        Time::TimeService* getTimeService();
         Player::PlayerService* getPlayerService();
         UI::UIService* getUIService();
+        Time::TimeService* getTimeService();
         void deleteServiceLocator();
     };
 }
