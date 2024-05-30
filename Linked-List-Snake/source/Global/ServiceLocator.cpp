@@ -51,10 +51,10 @@ namespace Global
 		event_service->initialize();
 		level_service->initialize();
 		element_service->initialize();
-		time_service->initialize();
 		player_service->initialize();
 		food_service->initialize();
 		ui_service->initialize();
+		time_service->initialize();
 	}
 
 	void ServiceLocator::update()
