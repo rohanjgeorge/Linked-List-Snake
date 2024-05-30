@@ -84,50 +84,22 @@ namespace Player
 
 	sf::Vector2i BodyPart::getNextPositionDown()
 	{
-		if (grid_position.y >= LevelModel::number_of_rows - 1)
-		{
-			return sf::Vector2i(grid_position.x, 0);
-		}
-		else
-		{
-			return sf::Vector2i(grid_position.x, grid_position.y + 1);
-		}
+		return sf::Vector2i(grid_position.x, (grid_position.y + 1) % (LevelModel::number_of_rows));
 	}
 
 	sf::Vector2i BodyPart::getNextPositionUp()
 	{
-		if (grid_position.y <= 0)
-		{
-			return sf::Vector2i(grid_position.x, LevelModel::number_of_rows - 1);
-		}
-		else
-		{
-			return sf::Vector2i(grid_position.x, grid_position.y - 1);
-		}
+		return sf::Vector2i(grid_position.x, (grid_position.y - 1 + (LevelModel::number_of_rows)) % (LevelModel::number_of_rows));
 	}
 
 	sf::Vector2i BodyPart::getNextPositionRight()
 	{
-		if (grid_position.x >= LevelModel::number_of_columns - 1)
-		{
-			return sf::Vector2i(0, grid_position.y);
-		}
-		else
-		{
-			return sf::Vector2i(grid_position.x + 1, grid_position.y);
-		}
+		return sf::Vector2i((grid_position.x + 1) % (LevelModel::number_of_columns), grid_position.y);
 	}
 
 	sf::Vector2i BodyPart::getNextPositionLeft()
 	{
-		if (grid_position.x <= 0)
-		{
-			return sf::Vector2i(LevelModel::number_of_columns - 1, grid_position.y);
-		}
-		else
-		{
-			return sf::Vector2i(grid_position.x - 1, grid_position.y);
-		}
+		return sf::Vector2i((grid_position.x - 1 + LevelModel::number_of_columns) % (LevelModel::number_of_columns), grid_position.y);
 	}
 
 	float BodyPart::getRotationAngle()
