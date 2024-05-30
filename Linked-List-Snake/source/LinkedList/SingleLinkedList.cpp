@@ -389,8 +389,6 @@ namespace LinkedList
 
     sf::Vector2i SingleLinkedList::getNewNodePosition(Node* reference_node, Operation operation)
     {
-        Direction reference_direction = reference_node->body_part.getDirection();
-        sf::Vector2i reference_position = reference_node->body_part.getPosition();
 
         switch (operation)
         {
