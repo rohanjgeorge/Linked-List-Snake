@@ -25,6 +25,7 @@ namespace Global
 		player_service = nullptr;
 		food_service = nullptr;
 		ui_service = nullptr;
+		time_service = nullptr;
 
 		createServices();
 	}
@@ -42,6 +43,7 @@ namespace Global
 		player_service = new PlayerService();
 		food_service = new FoodService();
 		ui_service = new UIService();
+		time_service = new TimeService();
 	}
 
 	void ServiceLocator::initialize()
@@ -72,6 +74,7 @@ namespace Global
 		}
 
 		ui_service->update();
+		time_service->update();
 	}
 
 	void ServiceLocator::render()
