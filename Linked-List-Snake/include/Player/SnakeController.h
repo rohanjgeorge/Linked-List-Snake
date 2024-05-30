@@ -2,6 +2,7 @@
 #include <SFML/System/Vector2.hpp>
 #include "LinkedList/Node.h"
 #include "LinkedList/SingleLinkedList.h"
+#include "LinkedList/SingleLinkedList.h"
 
 namespace Player
 {

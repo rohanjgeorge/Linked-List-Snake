@@ -171,6 +171,7 @@
     <ClInclude Include="include\Player\BodyPart.h" />
     <ClInclude Include="include\LinkedList\Node.h" />
     <ClInclude Include="include\LinkedList\SingleLinkedList.h" />
+    <ClInclude Include="include\Player\Direction.h" />
     <ClInclude Include="include\Player\SnakeController.h" />
     <ClInclude Include="include\Player\PlayerService.h" />
     <ClInclude Include="include\Time\TimeService.h" />
