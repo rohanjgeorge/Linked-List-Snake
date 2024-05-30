@@ -1,17 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "UI/UIElement/ImageView.h"
+#include "Direction.h"
 
 namespace Player
 {
-	enum class Direction
-	{
-		UP,
-		DOWN,
-		LEFT,
-		RIGHT,
-	};
-
 	class BodyPart
 	{
 	protected:
