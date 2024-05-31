@@ -21,7 +21,6 @@ namespace Global
 		sound_service = nullptr;
 		level_service = nullptr;
 		element_service = nullptr;
-		time_service = nullptr;
 		player_service = nullptr;
 		food_service = nullptr;
 		ui_service = nullptr;
@@ -39,7 +38,6 @@ namespace Global
 		sound_service = new SoundService();
 		level_service = new LevelService();
 		element_service = new ElementService();
-		time_service = new TimeService();
 		player_service = new PlayerService();
 		food_service = new FoodService();
 		ui_service = new UIService();
@@ -74,7 +72,6 @@ namespace Global
 		}
 
 		ui_service->update();
-		time_service->update();
 	}
 
 	void ServiceLocator::render()
