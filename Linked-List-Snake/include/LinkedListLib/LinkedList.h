@@ -30,6 +30,8 @@ namespace LinkedListLib
 
 		void updateNodes(Direction directionToSet);
 		int findMiddleNode();
+		Node* findNodeAtIndex(int index);
+		void initializeNode(Node* new_node, Node* reference_node, Operation operation);
 
 	public:
 		LinkedList();
@@ -53,9 +55,10 @@ namespace LinkedListLib
 
 		virtual Direction reverse() = 0;
 
-		bool processNodeCollision();
+
 		Node* getHeadNode();
 		int getLinkedListSize();
+		bool processNodeCollision();
 
 		std::vector<sf::Vector2i> getNodesPositionList();
 	};

@@ -52,6 +52,19 @@ namespace LinkedListLib
         }
     }
 
+    void LinkedList::initializeNode(Node* new_node, Node* reference_node, Operation operation)
+    {
+        if (reference_node == nullptr)
+        {
+            new_node->body_part.initialize(node_width, node_height, default_position, default_direction);
+            return;
+        }
+
+        sf::Vector2i position = getNewNodePosition(reference_node, operation);
+
+        new_node->body_part.initialize(node_width, node_height, position, reference_node->body_part.getDirection());
+    }
+
     bool LinkedList::processNodeCollision()
     {
         if (head_node == nullptr) return false;
@@ -126,5 +139,21 @@ namespace LinkedListLib
 
         // Now, slow is at the middle node
         return midIndex;
+    }
+
+    Node* LinkedList::findNodeAtIndex(int index)
+    {
+        int current_index = 0;
+        Node* cur_node = head_node;
+        Node* prev_node = nullptr;
+
+        while (cur_node != nullptr && current_index <= index)
+        {
+            prev_node = cur_node;
+            cur_node = cur_node->next_node;
+            current_index++;
+        }
+
+        return prev_node;
     }
 }

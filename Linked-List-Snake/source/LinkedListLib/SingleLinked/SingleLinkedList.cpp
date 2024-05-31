@@ -226,8 +226,9 @@ namespace LinkedListLib
         {
             if (linked_list_size <= 1) return;
             int half_length = linked_list_size / 2;
+            int new_tail_index = half_length - 1;
 
-            Node* prev_node = findNodeBeforeIndex(linked_list_size - half_length);
+            Node* prev_node = findNodeAtIndex(new_tail_index);
             Node* cur_node = prev_node->next_node;
 
             while (cur_node != nullptr)
@@ -240,22 +241,6 @@ namespace LinkedListLib
             }
 
             prev_node->next_node = nullptr;
-        }
-
-        Node* SingleLinkedList::findNodeBeforeIndex(int index)
-        {
-            int current_index = 0;
-            Node* cur_node = head_node;
-            Node* prev_node = nullptr;
-
-            while (cur_node != nullptr && current_index < index)
-            {
-                prev_node = cur_node;
-                cur_node = cur_node->next_node;
-                current_index++;
-            }
-
-            return prev_node;
         }
 
         Direction SingleLinkedList::reverse()
@@ -291,19 +276,6 @@ namespace LinkedListLib
                 cur_node = next_node;
                 next_node = cur_node->next_node;
             }
-        }
-
-        void SingleLinkedList::initializeNode(Node* new_node, Node* reference_node, Operation operation)
-        {
-            if (reference_node == nullptr)
-            {
-                new_node->body_part.initialize(node_width, node_height, default_position, default_direction);
-                return;
-            }
-
-            sf::Vector2i position = getNewNodePosition(reference_node, operation);
-
-            new_node->body_part.initialize(node_width, node_height, position, reference_node->body_part.getDirection());
         }
     }
 }

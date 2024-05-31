@@ -16,7 +16,6 @@ namespace LinkedListLib
 			SingleLinkedList();
 			~SingleLinkedList();
 
-			void initializeNode(Node* new_node, Node* reference_node, Operation operation);
 
 			void insertNodeAtTail() override;
 			void insertNodeAtHead() override;
@@ -36,7 +35,6 @@ namespace LinkedListLib
 
 			void shiftNodesAfterRemoval(Node* cur_node);
 
-			Node* findNodeBeforeIndex(int index);
 			Direction reverse() override;
 			void reverseNodeDirections();
 		};
