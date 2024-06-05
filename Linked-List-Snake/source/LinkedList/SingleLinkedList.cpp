@@ -1,6 +1,7 @@
 #include "LinkedList/SingleLinkedList.h"
 #include "Player/BodyPart.h"
 #include "Level/LevelView.h"
+#include <iostream>
 
 namespace LinkedList
 {
@@ -60,7 +61,21 @@ namespace LinkedList
 		Node* cur_node = head_node->next_node;
 		while (cur_node != nullptr)
 		{
-			if (cur_node->body_part.getNextPosition() == predicted_position || cur_node->body_part.getPosition() == head_node->body_part.getPosition()) return true;
+			// if (cur_node->body_part.getNextPosition() == predicted_position || cur_node->body_part.getPosition() == head_node->body_part.getPosition()) return true;
+			
+			if (cur_node->body_part.getNextPosition() == predicted_position)
+			{
+				return true;
+			}
+
+			/*if (cur_node->body_part.getPosition() == head_node->body_part.getPosition())
+			{
+				std::cout << "current node position = " << cur_node->body_part.getPosition().x << "," << cur_node->body_part.getPosition().y 
+							<< "\tcurrent head position = " << head_node->body_part.getPosition().x << "," << head_node->body_part.getPosition().y
+							<< "\n";
+				return true;
+			}*/
+
 			cur_node = cur_node->next_node;
 		}
 
