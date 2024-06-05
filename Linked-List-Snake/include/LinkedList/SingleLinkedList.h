@@ -18,19 +18,19 @@ namespace LinkedList
 		Node* createNode();
 		sf::Vector2i getNewNodePosition(Node* reference_node);
 
-		void updateNodes(Direction directionToSet);
 
 	public:
 		SingleLinkedList();
 		~SingleLinkedList();
 
 		void initialize(float width, float height, sf::Vector2i position, Direction direction);
-		void update(Direction direction);
 		void render();
 
 		void insertNodeAtTail();
 		void removeNodeAtHead();
 		void removeAllNodes();
+		void updateNodePosition();
+		void updateNodeDirection(Direction direction_to_set);
 
 		bool processNodeCollision();
 		Node* getHeadNode();

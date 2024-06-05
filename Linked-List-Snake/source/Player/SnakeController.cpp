@@ -94,6 +94,7 @@ namespace Player
 		if (elapsed_duration >= movement_frame_duration)
 		{
 			elapsed_duration = 0.f;
+			updateSnakeDirection();
 			processSnakeCollision();
 
 			if(current_snake_state != SnakeState::DEAD)
@@ -102,9 +103,14 @@ namespace Player
 		}
 	}
 
+	void SnakeController::updateSnakeDirection()
+	{
+		single_linked_list->updateNodeDirection(current_snake_direction);
+	}
+
 	void SnakeController::moveSnake()
 	{
-		single_linked_list->update(current_snake_direction);
+		single_linked_list->updateNodePosition();
 	}
 
 	void SnakeController::processSnakeCollision()
