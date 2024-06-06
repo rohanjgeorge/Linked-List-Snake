@@ -1,5 +1,4 @@
 #include "Level/LevelModel.h"
-#include "Level/LevelService.h"
 
 namespace Level
 {
@@ -11,11 +10,6 @@ namespace Level
 	{
 		cell_width = width / number_of_columns;
 		cell_height = height / number_of_rows;
-	}
-
-	const std::vector<LevelData>& LevelModel::getLevelDataList()
-	{
-		return level_configurations;
 	}
 
 	float LevelModel::getCellWidth()
