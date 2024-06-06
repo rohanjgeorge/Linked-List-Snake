@@ -2,6 +2,8 @@
 #include "Global/ServiceLocator.h"
 #include "Level/LevelService.h"
 #include "Event/EventService.h"
+#include <iostream>
+#include <iostream>
 
 namespace Player
 {
@@ -66,20 +68,23 @@ namespace Player
 		if (event_service->pressedUpArrowKey() && current_snake_direction != Direction::DOWN)
 		{
 			current_snake_direction = Direction::UP;
+			current_input_state = InputState::PROCESSING;
 		}
 		else if (event_service->pressedDownArrowKey() && current_snake_direction != Direction::UP)
 		{
 			current_snake_direction = Direction::DOWN;
+			current_input_state = InputState::PROCESSING;
 		}
 		else if (event_service->pressedLeftArrowKey() && current_snake_direction != Direction::RIGHT)
 		{
 			current_snake_direction = Direction::LEFT;
+			current_input_state = InputState::PROCESSING;
 		}
 		else if (event_service->pressedRightArrowKey() && current_snake_direction != Direction::LEFT)
 		{
 			current_snake_direction = Direction::RIGHT;
+			current_input_state = InputState::PROCESSING;
 		}
-		current_input_state = InputState::PROCESSING;
 	}
 
 	void SnakeController::delayedUpdate()
@@ -89,21 +94,30 @@ namespace Player
 		if (elapsed_duration >= movement_frame_duration)
 		{
 			elapsed_duration = 0.f;
-			moveSnake();
+			updateSnakeDirection();
 			processSnakeCollision();
-			current_input_state = InputState::WAITING;
+
+			if(current_snake_state != SnakeState::DEAD)
+				moveSnake();
+				current_input_state = InputState::WAITING;
 		}
+	}
+
+	void SnakeController::updateSnakeDirection()
+	{
+		single_linked_list->updateNodeDirection(current_snake_direction);
 	}
 
 	void SnakeController::moveSnake()
 	{
-		single_linked_list->update(current_snake_direction);
+		single_linked_list->updateNodePosition();
 	}
 
 	void SnakeController::processSnakeCollision()
 	{
 		if (single_linked_list->processNodeCollision())
 		{
+			std::cout << "the snake is dead\n";
 			current_snake_state = SnakeState::DEAD;
 		}
 	}
