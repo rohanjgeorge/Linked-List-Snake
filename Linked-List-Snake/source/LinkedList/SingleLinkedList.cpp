@@ -158,7 +158,7 @@ namespace LinkedList
 		while (cur_node != nullptr)
 		{
 			nodes_position_list.push_back(cur_node->body_part.getPosition());
-			cur_node = cur_node->next_node;
+			cur_node = cur_node->next;
 		}
 
 		return nodes_position_list;
