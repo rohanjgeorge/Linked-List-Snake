@@ -27,7 +27,7 @@ namespace LinkedList
 		Node* createNode();
 		void initializeNode(Node* new_node, Node* reference_node, Operation operation);
 		sf::Vector2i getNewNodePosition(Node* reference_node, Operation operation);
-
+		
 		void updateNodes(Direction directionToSet);
 		int findMiddleNode();
 
@@ -36,7 +36,6 @@ namespace LinkedList
 		~SingleLinkedList();
 
 		void initialize(float width, float height, sf::Vector2i position, Direction direction);
-		void update(Direction direction);
 		void render();
 
 
@@ -61,6 +60,8 @@ namespace LinkedList
 		Node* findNodeAtIndex(int index);
 		Direction reverse();
 		void reverseNodeDirections();
+		void updateNodePosition();
+		void updateNodeDirection(Direction direction_to_set);
 
 		bool processNodeCollision();
 		Node* getHeadNode();

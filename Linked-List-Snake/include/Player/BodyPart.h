@@ -33,10 +33,11 @@ namespace Player
 		~BodyPart();
 
 		void initialize(float width, float height, sf::Vector2i pos, Direction dir);
-		void update(Direction dir);
+		void updatePosition();
 		void render();
 
 		Direction getDirection();
+		void setDirection(Direction new_direction);
 		Direction getReverseDirection();
 		sf::Vector2i getPosition();
 		sf::Vector2i getNextPosition();

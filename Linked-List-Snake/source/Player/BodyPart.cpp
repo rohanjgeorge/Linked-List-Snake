@@ -42,9 +42,8 @@ namespace Player
 		bodypart_image->setOriginAtCentre();
 	}
 
-	void BodyPart::update(Direction dir)
+	void BodyPart::updatePosition()
 	{
-		direction = dir;
 		grid_position = getNextPosition();
 
 		bodypart_image->setPosition(getBodyPartScreenPosition());
@@ -162,6 +161,11 @@ namespace Player
 	Direction BodyPart::getDirection()
 	{
 		return direction;
+	}
+
+	void BodyPart::setDirection(Direction new_direction)
+	{
+		direction = new_direction;
 	}
 
 	sf::Vector2i BodyPart::getPosition()
