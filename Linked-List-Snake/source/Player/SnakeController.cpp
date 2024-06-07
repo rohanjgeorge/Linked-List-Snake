@@ -117,7 +117,6 @@ namespace Player
 	{
 		if (single_linked_list->processNodeCollision())
 		{
-			std::cout << "the snake is dead\n";
 			current_snake_state = SnakeState::DEAD;
 		}
 	}
