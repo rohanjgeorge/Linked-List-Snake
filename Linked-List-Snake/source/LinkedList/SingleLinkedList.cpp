@@ -30,7 +30,7 @@ namespace LinkedList
         while (cur_node != nullptr)
         {
             cur_node->body_part.render();
-            cur_node = cur_node->next_node;
+            cur_node = cur_node->next;
         }
     }
 
@@ -41,26 +41,15 @@ namespace LinkedList
         int midIndex = 0;  // This will track the index of the middle node.
 
         // Move fast pointer at 2x speed and slow pointer at 1x speed.
-        while (fast != nullptr && fast->next_node != nullptr) {
-            slow = slow->next_node;
-            fast = fast->next_node->next_node;
+        while (fast != nullptr && fast->next != nullptr) {
+            slow = slow->next;
+            fast = fast->next->next;
             midIndex++;
         }
 
         // Now, slow is at the middle node
         return midIndex;
     }
-
-	void SingleLinkedList::render()
-	{
-		Node* cur_node = head_node;
-
-		while (cur_node != nullptr)
-		{
-			cur_node->body_part.render();
-			cur_node = cur_node->next;
-		}
-	}
 
 	void SingleLinkedList::updateNodePosition()
 	{
@@ -85,17 +74,6 @@ namespace LinkedList
 			cur_node = cur_node->next;
 		}
 	}
-
-        while (cur_node != nullptr)
-        {
-            Direction previous_direction = cur_node->body_part.getDirection();
-
-            cur_node->body_part.update(node_direction);
-
-            node_direction = previous_direction;
-            cur_node = cur_node->next_node;
-        }
-    }
 
     bool SingleLinkedList::processNodeCollision()
     {
@@ -130,12 +108,12 @@ namespace LinkedList
             return;
         }
 
-        while (cur_node->next_node != nullptr)
+        while (cur_node->next != nullptr)
         {
-            cur_node = cur_node->next_node;
+            cur_node = cur_node->next;
         }
 
-        cur_node->next_node = new_node;
+        cur_node->next = new_node;
         initializeNode(new_node, cur_node, Operation::TAIL);
     }
 
@@ -152,18 +130,9 @@ namespace LinkedList
         }
 
         initializeNode(new_node, head_node, Operation::HEAD);
-        new_node->next_node = head_node;
+        new_node->next = head_node;
         head_node = new_node;
     }
-
-	void SingleLinkedList::removeNodeAtHead()
-	{
-		Node* cur_node = head_node;
-		head_node = head_node->next;
-
-		cur_node->next = nullptr;
-		delete (cur_node);
-	}
 
     void SingleLinkedList::insertNodeAtMiddle() 
     {
@@ -175,9 +144,6 @@ namespace LinkedList
         int midIndex = findMiddleNode();    // Use the existing function to find the middle index
         insertNodeAt(midIndex);             // Use the existing function to insert the node at the found index             
     }
-
-
-
 
     void SingleLinkedList::insertNodeAt(int index)
     {
@@ -199,17 +165,16 @@ namespace LinkedList
         Node* cur_node = head_node;
         Node* prev_node = nullptr;
 
-        // initializeNode(new_node, head_node, Operation::TAIL);
-
         while (cur_node != nullptr && current_index < index)
         {
             prev_node = cur_node;
-            cur_node = cur_node->next_node;
+            cur_node = cur_node->next;
             current_index++;
         }
 
-        prev_node->next_node = new_node;
-        new_node->next_node = cur_node;
+        prev_node->next = new_node;
+        new_node->next = cur_node;
+        initializeNode(new_node, prev_node, Operation::TAIL);
         linked_list_size++;
 
         shiftNodesAfterInsertion(new_node, cur_node, prev_node);
@@ -217,17 +182,17 @@ namespace LinkedList
 
     void SingleLinkedList::shiftNodesAfterInsertion(Node* new_node, Node* cur_node, Node* prev_node)
     {
-        Node* next_node = cur_node;
+        Node* next = cur_node;
         cur_node = new_node;
 
-        while (cur_node != nullptr && next_node != nullptr)
+        while (cur_node != nullptr && next != nullptr)
         {
-            cur_node->body_part.setPosition(next_node->body_part.getPosition());
-            cur_node->body_part.setDirection(next_node->body_part.getDirection());
+            cur_node->body_part.setPosition(next->body_part.getPosition());
+            cur_node->body_part.setDirection(next->body_part.getDirection());
 
             prev_node = cur_node;
-            cur_node = next_node;
-            next_node = next_node->next_node;
+            cur_node = next;
+            next = next->next;
         }
 
         initializeNode(cur_node, prev_node, Operation::TAIL);
@@ -239,28 +204,28 @@ namespace LinkedList
 
         Node* cur_node = head_node;
 
-        if (cur_node->next_node == nullptr)
+        if (cur_node->next == nullptr)
         {
             removeNodeAtHead();
             return;
         }
 
-        while (cur_node->next_node->next_node != nullptr)
+        while (cur_node->next->next != nullptr)
         {
-            cur_node = cur_node->next_node;
+            cur_node = cur_node->next;
         }
 
-        delete (cur_node->next_node);
+        delete (cur_node->next);
         linked_list_size--;
-        cur_node->next_node = nullptr;
+        cur_node->next = nullptr;
     }
 
     void SingleLinkedList::removeNodeAtHead()
     {
         Node* cur_node = head_node;
-        head_node = head_node->next_node;
+        head_node = head_node->next;
 
-        cur_node->next_node = nullptr;
+        cur_node->next = nullptr;
         delete (cur_node);
         linked_list_size--;
     }
@@ -296,11 +261,11 @@ namespace LinkedList
         while (cur_node != nullptr && current_index < index)
         {
             prev_node = cur_node;
-            cur_node = cur_node->next_node;
+            cur_node = cur_node->next;
             current_index++;
         }
 
-        prev_node->next_node = cur_node->next_node;
+        prev_node->next = cur_node->next;
 
         shiftNodesAfterRemoval(cur_node);
         delete(cur_node);
@@ -311,7 +276,7 @@ namespace LinkedList
     {
         sf::Vector2i previous_node_position = cur_node->body_part.getPosition();
         Direction previous_node_direction = cur_node->body_part.getDirection();
-        cur_node = cur_node->next_node;
+        cur_node = cur_node->next;
 
         while (cur_node != nullptr)
         {
@@ -321,7 +286,7 @@ namespace LinkedList
             cur_node->body_part.setPosition(previous_node_position);
             cur_node->body_part.setDirection(previous_node_direction);
 
-            cur_node = cur_node->next_node;
+            cur_node = cur_node->next;
             previous_node_position = temp_node_position;
             previous_node_direction = temp_node_direction;
         }
@@ -344,18 +309,18 @@ namespace LinkedList
         int new_tail_index = half_length - 1;
 
         Node* prev_node = findNodeAtIndex(new_tail_index);
-        Node* cur_node = prev_node->next_node;
+        Node* cur_node = prev_node->next;
 
         while (cur_node != nullptr)
         {
             Node* node_to_delete = cur_node;
-            cur_node = cur_node->next_node;
+            cur_node = cur_node->next;
 
             delete (node_to_delete);
             linked_list_size--;
         }
 
-        prev_node->next_node = nullptr;
+        prev_node->next = nullptr;
     }
 
     Node* SingleLinkedList::findNodeAtIndex(int index)
@@ -367,7 +332,7 @@ namespace LinkedList
         while (cur_node != nullptr && current_index <= index)
         {
             prev_node = cur_node;
-            cur_node = cur_node->next_node;
+            cur_node = cur_node->next;
             current_index++;
         }
 
@@ -378,15 +343,15 @@ namespace LinkedList
     {
         Node* cur_node = head_node;
         Node* prev_node = nullptr;
-        Node* next_node = nullptr;
+        Node* next = nullptr;
 
         while (cur_node != nullptr)
         {
-            next_node = cur_node->next_node;
-            cur_node->next_node = prev_node;
+            next = cur_node->next;
+            cur_node->next = prev_node;
 
             prev_node = cur_node;
-            cur_node = next_node;
+            cur_node = next;
         }
 
         head_node = prev_node;
@@ -398,14 +363,14 @@ namespace LinkedList
     void SingleLinkedList::reverseNodeDirections()
     {
         Node* cur_node = head_node;
-        Node* next_node = cur_node->next_node;
+        Node* next = cur_node->next;
 
-        while (cur_node != nullptr && next_node != nullptr)
+        while (cur_node != nullptr && next != nullptr)
         {
-            cur_node->body_part.setDirection(next_node->body_part.getReverseDirection());
+            cur_node->body_part.setDirection(next->body_part.getReverseDirection());
 
-            cur_node = next_node;
-            next_node = cur_node->next_node;
+            cur_node = next;
+            next = cur_node->next;
         }
     }
 
@@ -460,7 +425,7 @@ namespace LinkedList
         while (cur_node != nullptr)
         {
             nodes_position_list.push_back(cur_node->body_part.getPosition());
-            cur_node = cur_node->next_node;
+            cur_node = cur_node->next;
         }
 
         return nodes_position_list;

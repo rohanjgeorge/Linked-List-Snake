@@ -163,11 +163,6 @@ namespace Player
 		return direction;
 	}
 
-	void BodyPart::setDirection(Direction new_direction)
-	{
-		direction = new_direction;
-	}
-
 	sf::Vector2i BodyPart::getPosition()
 	{
 		return grid_position;

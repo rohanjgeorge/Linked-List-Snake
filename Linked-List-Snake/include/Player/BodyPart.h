@@ -37,13 +37,13 @@ namespace Player
 		void render();
 
 		Direction getDirection();
-		void setDirection(Direction new_direction);
-		Direction getReverseDirection();
+		void setDirection(Direction direction);
 		sf::Vector2i getPosition();
+		void setPosition(sf::Vector2i position);
+
+		Direction getReverseDirection();
 		sf::Vector2i getNextPosition();
 		sf::Vector2i getPrevPosition();
 
-		void setPosition(sf::Vector2i position);
-		void setDirection(Direction direction);
 	};
 }
