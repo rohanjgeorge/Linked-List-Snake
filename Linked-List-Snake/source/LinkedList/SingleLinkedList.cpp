@@ -142,10 +142,10 @@ namespace LinkedList
         }
 
         int midIndex = findMiddleNode();    // Use the existing function to find the middle index
-        insertNodeAt(midIndex);             // Use the existing function to insert the node at the found index             
+        insertNodeAtIndex(midIndex);             // Use the existing function to insert the node at the found index             
     }
 
-    void SingleLinkedList::insertNodeAt(int index)
+    void SingleLinkedList::insertNodeAtIndex(int index)
     {
         if (index < 0 || index >= linked_list_size) return;
 
@@ -156,11 +156,7 @@ namespace LinkedList
         }
 
         Node* new_node = createNode();
-        insertNodeAtIndex(index, new_node);
-    }
-
-    void SingleLinkedList::insertNodeAtIndex(int index, Node* new_node)
-    {
+        
         int current_index = 0;
         Node* cur_node = head_node;
         Node* prev_node = nullptr;
@@ -178,21 +174,22 @@ namespace LinkedList
         linked_list_size++;
 
         shiftNodesAfterInsertion(new_node, cur_node, prev_node);
+
     }
 
     void SingleLinkedList::shiftNodesAfterInsertion(Node* new_node, Node* cur_node, Node* prev_node)
     {
-        Node* next = cur_node;
+        Node* next_node = cur_node;
         cur_node = new_node;
 
-        while (cur_node != nullptr && next != nullptr)
+        while (cur_node != nullptr && next_node != nullptr)
         {
-            cur_node->body_part.setPosition(next->body_part.getPosition());
-            cur_node->body_part.setDirection(next->body_part.getDirection());
+            cur_node->body_part.setPosition(next_node->body_part.getPosition());
+            cur_node->body_part.setDirection(next_node->body_part.getDirection());
 
             prev_node = cur_node;
-            cur_node = next;
-            next = next->next;
+            cur_node = next_node;
+            next_node = next_node->next;
         }
 
         initializeNode(cur_node, prev_node, Operation::TAIL);
