@@ -32,6 +32,7 @@ namespace Player
 		BodyPart();
 		~BodyPart();
 
+		Direction prev_dir;
 		void initialize(float width, float height, sf::Vector2i pos, Direction dir);
 		void updatePosition();
 		void render();

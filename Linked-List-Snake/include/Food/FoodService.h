@@ -18,7 +18,7 @@ namespace Food
 	class FoodService
 	{
 	private:
-		const float spawn_duration = 4.f;
+		const float spawn_duration = 20.f;
 
 		float elapsed_duration;
 

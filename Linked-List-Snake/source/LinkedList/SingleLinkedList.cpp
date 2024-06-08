@@ -368,7 +368,7 @@ namespace LinkedList
         bool hasSnakeTurned = false;
         Direction prev_direction;
 
-        while (curr_node != nullptr) 
+       /* while (curr_node != nullptr) 
         {
             
             if (curr_node == head_node)
@@ -397,6 +397,12 @@ namespace LinkedList
             }
 
             prev_node = curr_node;
+            curr_node = curr_node->next;
+        }*/
+
+        while (curr_node != nullptr)
+        {
+            curr_node->body_part.setDirection(getReverseDirection(curr_node->body_part.prev_dir));
             curr_node = curr_node->next;
         }
     }
