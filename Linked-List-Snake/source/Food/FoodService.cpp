@@ -78,7 +78,7 @@ namespace Food
 
 	void FoodService::spawnFood()
 	{
-		current_food_item = createFood(getValidSpawnPosition(), getRandomFoodType());
+		current_food_item = createFood(getValidSpawnPosition(), FoodType::ALCOHOL);
 	}
 
 	sf::Vector2i FoodService::getValidSpawnPosition()

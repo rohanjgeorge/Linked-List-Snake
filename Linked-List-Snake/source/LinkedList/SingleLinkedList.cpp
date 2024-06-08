@@ -343,15 +343,15 @@ namespace LinkedList
     {
         Node* cur_node = head_node;
         Node* prev_node = nullptr;
-        Node* next = nullptr;
+        Node* next_node = nullptr;
 
         while (cur_node != nullptr)
         {
-            next = cur_node->next;
+            next_node = cur_node->next;
             cur_node->next = prev_node;
 
             prev_node = cur_node;
-            cur_node = next;
+            cur_node = next_node;
         }
 
         head_node = prev_node;
@@ -362,15 +362,57 @@ namespace LinkedList
 
     void SingleLinkedList::reverseNodeDirections()
     {
-        Node* cur_node = head_node;
-        Node* next = cur_node->next;
+        Node* curr_node = head_node;
+        Node* prev_node = nullptr;
 
-        while (cur_node != nullptr && next != nullptr)
+        bool hasSnakeTurned = false;
+        Direction prev_direction;
+
+        while (curr_node != nullptr) 
         {
-            cur_node->body_part.setDirection(next->body_part.getReverseDirection());
+            
+            if (curr_node == head_node)
+            {
+                prev_direction = curr_node->body_part.getDirection();  
+                head_node->body_part.setDirection(head_node->body_part.getReverseDirection());
 
-            cur_node = next;
-            next = cur_node->next;
+                prev_node = curr_node;
+                curr_node = curr_node->next;
+
+                continue;
+            }
+
+            if (hasSnakeTurned)
+            {
+                hasSnakeTurned = prev_direction != curr_node->body_part.getDirection();
+                Direction reverse_direction = getReverseDirection(prev_direction);
+                prev_direction = curr_node->body_part.getDirection();
+                curr_node->body_part.setDirection(reverse_direction);
+            }
+            else 
+            {
+                hasSnakeTurned = prev_direction != curr_node->body_part.getDirection();
+                prev_direction = curr_node->body_part.getDirection();
+                curr_node->body_part.setDirection(prev_node->body_part.getDirection());
+            }
+
+            prev_node = curr_node;
+            curr_node = curr_node->next;
+        }
+    }
+
+    Direction SingleLinkedList::getReverseDirection(Direction reference_direction)
+    {
+        switch (reference_direction)
+        {
+        case Direction::UP:
+            return Direction::DOWN;
+        case Direction::DOWN:
+            return Direction::UP;
+        case Direction::LEFT:
+            return Direction::RIGHT;
+        case Direction::RIGHT:
+            return Direction::LEFT;
         }
     }
 
