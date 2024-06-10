@@ -77,7 +77,11 @@ namespace LinkedListLib
         Node* cur_node = head_node->next;
         while (cur_node != nullptr)
         {
-            if (cur_node->body_part.getPosition() == predicted_position || cur_node->body_part.getPosition() == head_node->body_part.getPosition()) return true;
+            if (cur_node->body_part.getNextPosition() == predicted_position)
+            {
+                return true;
+            }
+
             cur_node = cur_node->next;
         }
 
