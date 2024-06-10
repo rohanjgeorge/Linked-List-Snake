@@ -39,7 +39,6 @@ namespace LinkedList
 		void initialize(float width, float height, sf::Vector2i position, Direction direction);
 		void render();
 
-
 		void insertNodeAtTail();
 		void insertNodeAtHead();
 		void insertNodeAtMiddle();
@@ -53,7 +52,6 @@ namespace LinkedList
 		void removeNodeAtIndex(int index);
 		void removeAllNodes();
 		void removeHalfNodes();
-
 		void shiftNodesAfterRemoval(Node* cur_node);
 
 		Node* findNodeAtIndex(int index);
