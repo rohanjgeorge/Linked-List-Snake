@@ -98,21 +98,6 @@ namespace Player
 		}
 	}
 
-	Direction BodyPart::getReverseDirection()
-	{
-		switch (direction)
-		{
-		case Direction::UP:
-			return Direction::DOWN;
-		case Direction::DOWN:
-			return Direction::UP;
-		case Direction::LEFT:
-			return Direction::RIGHT;
-		case Direction::RIGHT:
-			return Direction::LEFT;
-		}
-	}
-
 	void BodyPart::setPosition(sf::Vector2i position)
 	{
 		grid_position = position;
