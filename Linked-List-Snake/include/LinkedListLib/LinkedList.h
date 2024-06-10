@@ -27,6 +27,7 @@ namespace LinkedListLib
 
 		virtual Node* createNode() = 0;
 		sf::Vector2i getNewNodePosition(Node* reference_node, Operation operation);
+		Direction getReverseDirection(Direction reference_direction);
 
 		void updateNodes(Direction directionToSet);
 		int findMiddleNode();
@@ -38,13 +39,12 @@ namespace LinkedListLib
 		virtual ~LinkedList();
 
 		void initialize(float width, float height, sf::Vector2i position, Direction direction);
-		void update(Direction direction);
 		void render();
 
 		virtual void insertNodeAtTail() = 0;
 		virtual void insertNodeAtHead() = 0;
 		virtual void insertNodeAtMiddle() = 0;
-		virtual void insertNodeAt(int index) = 0;
+		virtual void insertNodeAtIndex(int index) = 0;
 
 		virtual void removeNodeAtTail() = 0;
 		virtual void removeNodeAtHead() = 0;
@@ -54,7 +54,6 @@ namespace LinkedListLib
 		virtual void removeHalfNodes() = 0;
 
 		virtual Direction reverse() = 0;
-
 
 		Node* getHeadNode();
 		int getLinkedListSize();

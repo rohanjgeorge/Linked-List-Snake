@@ -42,9 +42,8 @@ namespace Player
 		bodypart_image->setOriginAtCentre();
 	}
 
-	void BodyPart::update(Direction dir)
+	void BodyPart::updatePosition()
 	{
-		direction = dir;
 		grid_position = getNextPosition();
 
 		bodypart_image->setPosition(getBodyPartScreenPosition());
@@ -99,21 +98,6 @@ namespace Player
 		}
 	}
 
-	Direction BodyPart::getReverseDirection()
-	{
-		switch (direction)
-		{
-		case Direction::UP:
-			return Direction::DOWN;
-		case Direction::DOWN:
-			return Direction::UP;
-		case Direction::LEFT:
-			return Direction::RIGHT;
-		case Direction::RIGHT:
-			return Direction::LEFT;
-		}
-	}
-
 	void BodyPart::setPosition(sf::Vector2i position)
 	{
 		grid_position = position;
@@ -121,8 +105,10 @@ namespace Player
 
 	void BodyPart::setDirection(Direction direction)
 	{
+		previous_direction = this->direction;
 		this->direction = direction;
 	}
+
 
 	sf::Vector2i BodyPart::getNextPositionDown()
 	{
@@ -162,6 +148,11 @@ namespace Player
 	Direction BodyPart::getDirection()
 	{
 		return direction;
+	}
+
+	Direction BodyPart::getPreviousDirection()
+	{
+		return previous_direction;
 	}
 
 	sf::Vector2i BodyPart::getPosition()
