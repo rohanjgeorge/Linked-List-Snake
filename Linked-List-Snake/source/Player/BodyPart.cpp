@@ -120,8 +120,10 @@ namespace Player
 
 	void BodyPart::setDirection(Direction direction)
 	{
+		previous_direction = this->direction;
 		this->direction = direction;
 	}
+
 
 	sf::Vector2i BodyPart::getNextPositionDown()
 	{
@@ -161,6 +163,11 @@ namespace Player
 	Direction BodyPart::getDirection()
 	{
 		return direction;
+	}
+
+	Direction BodyPart::getPreviousDirection()
+	{
+		return previous_direction;
 	}
 
 	sf::Vector2i BodyPart::getPosition()
