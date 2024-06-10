@@ -7,7 +7,7 @@ namespace LinkedListLib
 	{
 		struct DoubleNode : public Node
 		{
-			Node* previous_node = nullptr;
+			Node* previous = nullptr;
 		};
 	}
 }

@@ -20,11 +20,6 @@ namespace LinkedListLib
         linked_list_size = 0;
     }
 
-    void LinkedList::update(Direction direction)
-    {
-        updateNodes(direction);
-    }
-
     void LinkedList::render()
     {
         Node* cur_node = head_node;
@@ -32,23 +27,31 @@ namespace LinkedListLib
         while (cur_node != nullptr)
         {
             cur_node->body_part.render();
-            cur_node = cur_node->next_node;
+            cur_node = cur_node->next;
         }
     }
 
-    void LinkedList::updateNodes(Direction directionToSet)
+    void LinkedList::updateNodeDirection(Direction direction_to_set)
     {
         Node* cur_node = head_node;
-        Direction node_direction = directionToSet;
 
         while (cur_node != nullptr)
         {
             Direction previous_direction = cur_node->body_part.getDirection();
+            cur_node->body_part.setDirection(direction_to_set);
+            direction_to_set = previous_direction;
+            cur_node = cur_node->next;
+        }
+    }
 
-            cur_node->body_part.update(node_direction);
+    void LinkedList::updateNodePosition() 
+    {
+        Node* cur_node = head_node;
 
-            node_direction = previous_direction;
-            cur_node = cur_node->next_node;
+        while (cur_node != nullptr)
+        {
+            cur_node->body_part.updatePosition();
+            cur_node = cur_node->next;
         }
     }
 
@@ -71,11 +74,11 @@ namespace LinkedListLib
 
         sf::Vector2i predicted_position = head_node->body_part.getNextPosition();
 
-        Node* cur_node = head_node->next_node;
+        Node* cur_node = head_node->next;
         while (cur_node != nullptr)
         {
             if (cur_node->body_part.getPosition() == predicted_position || cur_node->body_part.getPosition() == head_node->body_part.getPosition()) return true;
-            cur_node = cur_node->next_node;
+            cur_node = cur_node->next;
         }
 
         return false;
@@ -118,7 +121,7 @@ namespace LinkedListLib
         while (cur_node != nullptr)
         {
             nodes_position_list.push_back(cur_node->body_part.getPosition());
-            cur_node = cur_node->next_node;
+            cur_node = cur_node->next;
         }
 
         return nodes_position_list;
@@ -131,9 +134,9 @@ namespace LinkedListLib
         int midIndex = 0;  // This will track the index of the middle node.
 
         // Move fast pointer at 2x speed and slow pointer at 1x speed.
-        while (fast != nullptr && fast->next_node != nullptr) {
-            slow = slow->next_node;
-            fast = fast->next_node->next_node;
+        while (fast != nullptr && fast->next != nullptr) {
+            slow = slow->next;
+            fast = fast->next->next;
             midIndex++;
         }
 
@@ -150,10 +153,36 @@ namespace LinkedListLib
         while (cur_node != nullptr && current_index <= index)
         {
             prev_node = cur_node;
-            cur_node = cur_node->next_node;
+            cur_node = cur_node->next;
             current_index++;
         }
 
         return prev_node;
+    }
+
+    void LinkedList::reverseNodeDirections()
+    {
+        Node* curr_node = head_node;
+
+        while (curr_node != nullptr)
+        {
+            curr_node->body_part.setDirection(getReverseDirection(curr_node->body_part.getPreviousDirection()));
+            curr_node = curr_node->next;
+        }
+    }
+
+    Direction LinkedList::getReverseDirection(Direction reference_direction)
+    {
+        switch (reference_direction)
+        {
+        case Direction::UP:
+            return Direction::DOWN;
+        case Direction::DOWN:
+            return Direction::UP;
+        case Direction::LEFT:
+            return Direction::RIGHT;
+        case Direction::RIGHT:
+            return Direction::LEFT;
+        }
     }
 }

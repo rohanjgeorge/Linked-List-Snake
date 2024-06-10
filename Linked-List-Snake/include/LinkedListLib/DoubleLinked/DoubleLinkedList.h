@@ -18,9 +18,7 @@ namespace LinkedListLib
 			void insertNodeAtTail() override;
 			void insertNodeAtHead() override;
 			void insertNodeAtMiddle() override;
-			void insertNodeAt(int index) override;
-			void insertNodeAtIndex(int index, Node* new_node);
-
+			void insertNodeAtIndex(int index) override;
 			void shiftNodesAfterInsertion(Node* new_node, Node* cur_node, Node* prev_node);
 
 			void removeNodeAtTail() override;
@@ -30,11 +28,9 @@ namespace LinkedListLib
 			void removeNodeAtIndex(int index);
 			void removeAllNodes() override;
 			void removeHalfNodes() override;
-
 			void shiftNodesAfterRemoval(Node* cur_node);
 
 			Direction reverse() override;
-			void reverseNodeDirections();
 		};
 	}
 }

@@ -123,7 +123,7 @@ namespace Player
 
 	void SnakeController::updateSnakeDirection()
 	{
-		single_linked_list->updateNodeDirection(current_snake_direction);
+		linked_list->updateNodeDirection(current_snake_direction);
 	}
 
 	void SnakeController::moveSnake()
