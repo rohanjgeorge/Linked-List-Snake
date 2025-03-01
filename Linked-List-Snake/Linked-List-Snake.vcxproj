@@ -148,6 +148,7 @@
     <ClCompile Include="source\Global\ServiceLocator.cpp" />
     <ClCompile Include="source\Sound\SoundService.cpp" />
     <ClCompile Include="source\UI\SplashScreen\SplashScreenUIController.cpp" />
+    <ClCompile Include="source\UI\UIElement\RectangleShapeView.cpp" />
     <ClCompile Include="source\UI\UIElement\TextView.cpp" />
     <ClCompile Include="source\UI\UIService.cpp" />
     <ClCompile Include="source\UI\UIElement\UIView.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="include\Global\ServiceLocator.h" />
     <ClInclude Include="include\Sound\SoundService.h" />
     <ClInclude Include="include\UI\SplashScreen\SplashScreenUIController.h" />
+    <ClInclude Include="include\UI\UIElement\RectangleShapeView.h" />
     <ClInclude Include="include\UI\UIElement\TextView.h" />
     <ClInclude Include="include\UI\UIService.h" />
     <ClInclude Include="include\UI\UIElement\UIView.h" />
